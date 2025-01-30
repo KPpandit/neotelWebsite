@@ -1,0 +1,51 @@
+.custom-carousel-caption {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: To make the text stand out */
+    padding: 10px; /* Optional: To add some padding around the text */
+    width: 30%; /* Adjust as necessary */
+  }
+  
+  .carousel-item img {
+    height: 500px;
+    object-fit: contain; /* Optional: To make sure the image covers the container */
+  }
+  .MUI-button-color {
+    background-color: #253A7D;
+    color: white;
+  }
+  
+  /* In your Home.css or a similar CSS file */
+.horizontal-scroll {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.horizontal-scroll::-webkit-scrollbar-thumb {
+  background-color: #253A7D;
+  border-radius: 10px;
+}
+
+.horizontal-scroll::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+.logo-image {
+  width: "12%"; 
+  height: "10%";
+  margin: "20px"; 
+  cursor: "pointer";
+}
+.overlay-image {
+  position: "absolute";
+  top: 10;
+  left: 10;
+  zIndex: 10;
+}
