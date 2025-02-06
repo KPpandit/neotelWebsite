@@ -89,7 +89,7 @@ const Header = () => {
       link: "https://maps.app.goo.gl/3UNzEXszFVtNQHBZA",
     },
     { icon: <EmailIcon sx={{ fontSize: "18px", color: "#A7AED5" }} />, text: "support@neotel.nr" },
-    { icon: <AccessTimeIcon sx={{ fontSize: "18px", color: "#A7AED5" }} />, text: "7:00 AM - 12:00 PM" },
+    { icon: <AccessTimeIcon sx={{ fontSize: "18px", color: "#A7AED5" }} />, text: "8:00 AM - 12:00 AM" },
   ];
 
   const socialMediaLinks = [

@@ -13,9 +13,9 @@ export default function InnovationTomorrow() {
         navigate("/#value-plan");
         const valuePlanSection = document.getElementById("value-plan");
         if (valuePlanSection) {
-          valuePlanSection.scrollIntoView({ behavior: "smooth" });
+            valuePlanSection.scrollIntoView({ behavior: "smooth" });
         }
-      };
+    };
     return (
         <Box
             sx={{
@@ -42,7 +42,7 @@ export default function InnovationTomorrow() {
             </Card> */}
 
             {/* Content overlay */}
-           
+
             {/* Another Document Section */}
             <Grid container spacing={1} sx={{ padding: { lg: 10, md: 5, sm: 2, xs: 2 } }}>
                 <Grid item xs={12} md={6}>
@@ -62,7 +62,7 @@ export default function InnovationTomorrow() {
                         </Typography>
                         <Typography
                             variant="body1"
-                            sx={{ fontSize: "0.9rem",textAlign:'justify', lineHeight: 1.6, color: "black" }}
+                            sx={{ fontSize: "15px", textAlign: 'justify', lineHeight: 1.6, color: "black" }}
                         >
                             Neotel’s 5G Plus isn’t just a network; it’s a revolution. From
                             real-time gaming with zero lag to crystal-clear video calls with
@@ -71,51 +71,43 @@ export default function InnovationTomorrow() {
                         </Typography>
 
                         {/* Points with Ticks */}
-                        <List>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <CheckCircle sx={{ color: "#F9B616", fontSize: '40px' }} /> {/* Tick Icon */}
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="For Everyone"
-                                    sx={{
-                                        fontSize: "1.2rem", // Increased font size
-                                        color: "#4A5AA6",
-                                        fontWeight: '600', // Bold text for emphasis
-                                        lineHeight: 1.6 ,
-                                       
-                                    }}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <CheckCircle sx={{ color: "#F9B616", fontSize: '40px' }} />
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="For Bussinesses"
-                                    sx={{
-                                        fontSize: "1.2rem", // Increased font size
-                                        color: "#4A5AA6",
-                                        fontWeight: '600', // Bold text for emphasis
-                                        lineHeight: 1.6
-                                    }}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <CheckCircle sx={{ color: "#F9B616", fontSize: '40px' }} />
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary="For Gamers"
-                                    sx={{
-                                        fontSize: "1.2rem", // Increased font size
-                                        color: "#4A5AA6",
-                                        fontWeight: '600', // Bold text for emphasis
-                                        lineHeight: 1.6
-                                    }}
-                                />
-                            </ListItem>
-                        </List>
+                        <Box sx={{ textAlign: "left", padding: { xs: 2, sm: 3, md: 4 } }}>
+                            <Typography
+                                sx={{
+                                    fontSize: "15px",
+                                    color: "black",
+                                    // fontWeight: "600",
+                                    lineHeight: 1.6,
+                                    marginBottom: 2, // Adds space between sections
+                                }}
+                            >
+                                <strong>For Everyone:</strong> Neotel’s 5G Plus is designed for everyone. Whether you’re a student, a professional, or just someone who loves to stay connected, our network offers something for you. With Neotel, you can explore, create, and connect with confidence.
+                            </Typography>
+
+                            <Typography
+                                sx={{
+                                    fontSize: "15px",
+                                    color: "black",
+                                    // fontWeight: "600",
+                                    lineHeight: 1.6,
+                                    marginBottom: 2, // Adds space between sections
+                                }}
+                            >
+                                <strong>For Businesses:</strong> In today’s fast-paced world, connectivity is key to success. Neotel’s 5G Plus network offers businesses the tools they need to thrive in the digital economy, from cloud-based solutions to seamless video conferencing and beyond.
+                            </Typography>
+
+                            <Typography
+                                sx={{
+                                    fontSize: "15px",
+                                    color: "black",
+                                    // fontWeight: "600",
+                                    lineHeight: 1.6,
+                                }}
+                            >
+                                <strong>For Gamers:</strong> Experience gaming like never before with lightning-fast speeds and ultra-low latency. Neotel’s 5G Plus lets you compete in real-time, whether you’re battling it out in your favorite game or streaming your gameplay to a global audience.
+                            </Typography>
+                        </Box>
+
                         {/* <Box sx={{ marginTop: "5px" }}>
                             <Button
                                 variant="contained"
@@ -141,7 +133,7 @@ export default function InnovationTomorrow() {
                 </Grid>
 
                 {/* Right Grid for Image */}
-                <Grid item xs={12} md={6} sx={{marginLeft:{lg:0,md:0,sm:2,xs:3}}}>
+                <Grid item xs={12} md={6} sx={{ marginLeft: { lg: 0, md: 0, sm: 2, xs: 3 } }}>
                     <CardMedia
                         component="img"
                         image={RevolutionImage} // You can change this to any image you want to display here
@@ -149,7 +141,7 @@ export default function InnovationTomorrow() {
                         sx={{
                             width: "100%", // Full width
                             height: "100%", // Full height of the grid
-                            objectFit: "cover", // Ensure image scales proportionally
+                            objectFit: "fill", // Ensure image scales proportionally
                         }}
                     />
                 </Grid>

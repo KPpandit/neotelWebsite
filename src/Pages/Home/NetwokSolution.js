@@ -101,7 +101,7 @@ export default function NetworkSolution() {
                                 color: "black",
                             }}
                         >
-                            <strong>Follow Us : </strong>
+                            <strong>Follow Us: </strong>
                             Stay updated with the latest from Neotel by following us on social media.
                         </Typography>
                         <Typography
@@ -113,7 +113,7 @@ export default function NetworkSolution() {
                                 color: "black",
                             }}
                         >
-                            <strong> Join Us : </strong>
+                            <strong> Join Us: </strong>
                             Be part of the Neotel revolution. Explore career opportunities with us today.
                         </Typography>
                         <Typography
@@ -125,7 +125,7 @@ export default function NetworkSolution() {
                                 color: "black",
                             }}
                         >
-                            <strong> Learn More : </strong>
+                            <strong> Learn More: </strong>
                             Discover how Neotel’s 5G Plus technology can transform your digital experience.
                         </Typography>
                         <Box sx={{ marginTop: "35px" }}>

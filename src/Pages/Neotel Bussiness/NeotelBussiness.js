@@ -44,7 +44,7 @@ export default function NeotelBussiness() {
           </Typography>
           <Typography sx={{
             maxWidth: 700, margin: "0 auto 1rem", color: "black",
-            fontSize: "13px",
+            fontSize: "15px",
             fontWeight: "440",
             textAlign: "center"
           }}>
@@ -81,42 +81,42 @@ export default function NeotelBussiness() {
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "450",
+                  fontSize: "15px",
+                  // fontWeight: "450",
                   maxWidth: 350,
                 }}
               >
-                <strong>VoIP (Voice over Internet Protocol) : </strong>
+                <strong>VoIP (Voice over Internet Protocol): </strong>
                 High-quality voice services that
                 allow businesses to make calls over the internet, reducing costs and
-                increasing scalability
+                increasing scalability.
               </Typography>
             </ListItem>
             <ListItem>
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "500",
+                  fontSize: "15px",
+                  // fontWeight: "500",
                   maxWidth: 370,
                 }}
               >
-                <strong>Unified Communications:</strong>
+                <strong>Unified Communications: </strong>
                 Combine voice, video, messaging, and
                 collaboration tools in one platform, improving team productivity and
-                customer engagement
+                customer engagement.
               </Typography>
             </ListItem>
             <ListItem>
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "500",
+                  fontSize: "15px",
+                 
                   maxWidth: 370,
                 }}
               >
-                <strong>Business Phone Systems : </strong>
+                <strong>Business Phone Systems: </strong>
 
                 Customized phone systems designed for
                 small, medium, and large enterprises, offering features like call
@@ -127,12 +127,12 @@ export default function NeotelBussiness() {
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "500",
+                  fontSize: "15px",
+                 
                   maxWidth: 370,
                 }}
               >
-                <strong>Cloud PBX : </strong>
+                <strong>Cloud PBX: </strong>
 
                 A cloud-based phone system that provides flexibility and
                 features like remote working support, multi-device compatibility, and
@@ -183,12 +183,12 @@ export default function NeotelBussiness() {
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "450",
+                  fontSize: "15px",
+                  // fontWeight: "450",
                   maxWidth: 350,
                 }}
               >
-                <strong>Business Internet Packages : </strong>
+                <strong>Business Internet Packages: </strong>
 
                 High-speed, reliable internet connections
                 designed to meet the needs of modern businesses, including fiber-optic
@@ -199,12 +199,12 @@ export default function NeotelBussiness() {
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "500",
+                  fontSize: "15px",
+                  
                   maxWidth: 370,
                 }}
               >
-                <strong> Private Networks (VPN) : </strong>
+                <strong> Private Networks (VPN): </strong>
 
                 Secure and private connections for businesses,
                 ensuring data protection and safe communication across remote
@@ -215,12 +215,12 @@ export default function NeotelBussiness() {
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "500",
+                  fontSize: "15px",
+                
                   maxWidth: 370,
                 }}
               >
-                <strong>  MPLS (Multiprotocol Label Switching) : </strong>
+                <strong>  MPLS (Multiprotocol Label Switching): </strong>
 
 
                 Enterprise-level network solution
@@ -232,12 +232,12 @@ export default function NeotelBussiness() {
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "500",
+                  fontSize: "15px",
+                 
                   maxWidth: 370,
                 }}
               >
-                <strong> Managed Wi-Fi : </strong>
+                <strong> Managed Wi-Fi: </strong>
 
 
                 Scalable, high-performance Wi-Fi networks tailored for
@@ -274,7 +274,7 @@ export default function NeotelBussiness() {
         </Grid>
         <Grid item xs={12} md={6} sx={{ padding: 0, margin: { lg: 0, md: 0, sm: 4, xs: 4 } }}>
           <Typography variant="h3" sx={{ fontWeight: "bold", marginBottom: 2, fontSize: { lg: "40px", md: "40px", xs: "30px" } }}>
-            Cloud &</Typography>
+            Cloud And</Typography>
           <Typography variant="h3" sx={{ fontWeight: "bold", marginBottom: 2, fontSize: { lg: "40px", md: "40px", xs: "30px" } }}>
             IT Services</Typography>
           <List
@@ -292,12 +292,12 @@ export default function NeotelBussiness() {
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "450",
+                  fontSize: "15px",
+                 
                   maxWidth: 350,
                 }}
               >
-                <strong> Cloud Hosting : </strong>
+                <strong> Cloud Hosting: </strong>
 
                 Scalable cloud infrastructure to host websites, apps, and
                 databases, with top-tier security and uptime.
@@ -307,43 +307,43 @@ export default function NeotelBussiness() {
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "500",
+                  fontSize: "15px",
+                  
                   maxWidth: 370,
                 }}
               >
-                <strong> Data Backup and Recovery : </strong>
+                <strong> Data Backup and Recovery: </strong>
 
                 Secure data backup solutions that ensure
-                business continuity and prevent data loss during unexpected incidents
+                business continuity and prevent data loss during unexpected incidents.
               </Typography>
             </ListItem>
             <ListItem>
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "500",
+                  fontSize: "15px",
+                  
                   maxWidth: 370,
                 }}
               >
-                <strong> Cloud Storage : </strong>
+                <strong> Cloud Storage: </strong>
 
 
                 Reliable and secure cloud-based storage services, ideal
-                for businesses that require flexible, cost-effective data management
+                for businesses that require flexible, cost-effective data management.
               </Typography>
             </ListItem>
             <ListItem>
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "500",
+                  fontSize: "15px",
+                  
                   maxWidth: 370,
                 }}
               >
-                <strong> Managed IT Services : </strong>
+                <strong> Managed IT Services: </strong>
 
 
                 Comprehensive IT support and maintenance to
@@ -408,12 +408,12 @@ export default function NeotelBussiness() {
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "450",
+                  fontSize: "15px",
+                 
                   maxWidth: 350,
                 }}
               >
-                <strong>Mobile Plans for Businesses : </strong>
+                <strong>Mobile Plans for Businesses: </strong>
 
 
                 Tailored mobile service packages for
@@ -425,12 +425,12 @@ export default function NeotelBussiness() {
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "500",
-                  maxWidth: 370,
+                  fontSize: "15px",
+                 
+                  maxWidth: 350,
                 }}
               >
-                <strong>  Business Mobile Applications : </strong>
+                <strong>  Business Mobile Applications: </strong>
 
 
                 Customized mobile apps designed to
@@ -523,7 +523,7 @@ export default function NeotelBussiness() {
                     marginBottom: "-15px", // Reduce space between list items
                   },
                   "& .MuiTypography-root": {
-                    fontSize: "14px", // Set the font size for list text
+                    fontSize: "15px", // Set the font size for list text
                     lineHeight: "1.4", // Adjust line height for better readability
                   },
                 }}
@@ -540,13 +540,13 @@ export default function NeotelBussiness() {
                   <ListItemText primary="Endpoint Protection:
                   Protection for all devices used by employees
                   (laptops, smartphones, etc.) to prevent data breaches and unauthorized
-                  access" />
+                  access." />
                 </ListItem>
                 <ListItem>
                   <ListItemText
                     primary="Security Monitoring:
                     Real-time monitoring of business networks to
-                    detect and mitigate threats proactively"
+                    detect and mitigate threats proactively."
                   />
                 </ListItem>
                 <ListItem>
@@ -554,7 +554,7 @@ export default function NeotelBussiness() {
                     primary="Compliance Services:
                     Help businesses comply with industry regulations
                     and standards, such as GDPR, HIPAA, and others, through secure and
-                    certified solutions"
+                    certified solutions."
                   />
                 </ListItem>
               </List>
@@ -590,48 +590,48 @@ export default function NeotelBussiness() {
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "450",
+                  fontSize: "15px",
+                 
                   maxWidth: 350,
                 }}
               >
-                <strong>Video Conferencing : </strong>
+                <strong>Video Conferencing: </strong>
                 High-definition video call solutions for remote
                 meetings, with features like screen sharing, recording, and chat
-                functionality
+                functionality.
               </Typography>
             </ListItem>
             <ListItem>
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "500",
-                  maxWidth: 370,
+                  fontSize: "15px",
+                 
+                  maxWidth: 350,
                 }}
               >
-                <strong>Team Collaboration Software : </strong>
+                <strong>Team Collaboration Software: </strong>
 
                 Integrated tools for messaging, task
                 management, file sharing, and document collaboration to increase team
-                productivity
+                productivity.
               </Typography>
             </ListItem>
             <ListItem>
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "500",
-                  maxWidth: 370,
+                  fontSize: "15px",
+                 
+                  maxWidth: 350,
                 }}
               >
-                <strong> Project Management Software : </strong>
+                <strong> Project Management Software: </strong>
 
 
                 Cloud-based project management tools
                 that help businesses manage workflows, deadlines, and team
-                collaboration effectively
+                collaboration effectively.
               </Typography>
             </ListItem>
 
@@ -679,8 +679,8 @@ export default function NeotelBussiness() {
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "450",
+                  fontSize: "15px",
+                  
                   maxWidth: 350,
                 }}
               >
@@ -696,32 +696,32 @@ export default function NeotelBussiness() {
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "500",
+                  fontSize: "15px",
+               
                   maxWidth: 370,
                 }}
               >
-                <strong>Help Desk Solutions : </strong>
+                <strong>Help Desk Solutions: </strong>
 
 
                 Ticketing systems and customer service platforms
-                that help businesses deliver outstanding support experiences
+                that help businesses deliver outstanding support experiences.
               </Typography>
             </ListItem>
             <ListItem>
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "500",
+                  fontSize: "15px",
+               
                   maxWidth: 370,
                 }}
               >
-                <strong>Customer Relationship Management (CRM) : </strong>
+                <strong>Customer Relationship Management (CRM): </strong>
 
                 Software solutions that
                 help businesses manage and analyse customer interactions and data,
-                improving relationships and business growth
+                improving relationships and business growth.
               </Typography>
             </ListItem>
 
@@ -806,7 +806,7 @@ export default function NeotelBussiness() {
                     marginBottom: "-15px", // Reduce space between list items
                   },
                   "& .MuiTypography-root": {
-                    fontSize: "14px", // Set the font size for list text
+                    fontSize: "15px", // Set the font size for list text
                     lineHeight: "1.4", // Adjust line height for better readability
                   },
                 }}
@@ -816,7 +816,7 @@ export default function NeotelBussiness() {
                     primary="IoT Device Management:
                     Solutions for businesses to manage, monitor,
                     and secure their IoT devices, from smart meters to connected sensors
-                    and wearables"
+                    and wearables."
                   />
                 </ListItem>
                 <ListItem>
@@ -824,7 +824,7 @@ export default function NeotelBussiness() {
                     primary="IoT Data Analytics:
                     Advanced analytics platforms to gather, analyse, and
                     interpret data from IoT devices to optimize business operations and
-                    decision-making"
+                    decision-making."
                   />
                 </ListItem>
                 <ListItem>
@@ -866,28 +866,28 @@ export default function NeotelBussiness() {
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "450",
+                  fontSize: "15px",
+                
                   maxWidth: 350,
                 }}
               >
-                <strong>  Data Analytics Platforms : </strong>
+                <strong>  Data Analytics Platforms: </strong>
 
                 Business intelligence tools that help
                 organizations track performance, generate insights, and make
-                data-driven decisions
+                data-driven decisions.
               </Typography>
             </ListItem>
             <ListItem>
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "500",
+                  fontSize: "15px",
+                  
                   maxWidth: 370,
                 }}
               >
-                <strong>  Reporting Tools : </strong>
+                <strong>  Reporting Tools: </strong>
 
 
                 Customizable reports on sales, operations, customer
@@ -899,8 +899,8 @@ export default function NeotelBussiness() {
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "500",
+                  fontSize: "15px",
+                  
                   maxWidth: 370,
                 }}
               >
@@ -909,7 +909,7 @@ export default function NeotelBussiness() {
 
 
                 Leverage historical data and advanced algorithms
-                to forecast trends and optimize business strategies
+                to forecast trends and optimize business strategies.
               </Typography>
             </ListItem>
 
@@ -958,47 +958,47 @@ export default function NeotelBussiness() {
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "450",
+                  fontSize: "15px",
+                  
                   maxWidth: 350,
                 }}
               >
-                <strong>IT Consulting : </strong>
+                <strong>IT Consulting: </strong>
 
 
 
                 Expert advice to help businesses optimize their
                 technology infrastructure, from digital transformation strategies to
-                system integration
+                system integration.
               </Typography>
             </ListItem>
             <ListItem>
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "500",
-                  maxWidth: 370,
+                  fontSize: "15px",
+                  
+                  maxWidth: 350,
                 }}
               >
-                <strong> Project Management : </strong>
+                <strong> Project Management: </strong>
 
 
 
                 Professional services to ensure that IT projects are
-                delivered on time and within budget, from planning to execution
+                delivered on time and within budget, from planning to execution.
               </Typography>
             </ListItem>
             <ListItem>
               <Typography
                 sx={{
                   textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "500",
-                  maxWidth: 370,
+                  fontSize: "15px",
+                  
+                  maxWidth: 350,
                 }}
               >
-                <strong> Business Process Optimization : </strong>
+                <strong> Business Process Optimization: </strong>
 
 
                 Consulting to streamline and improve
@@ -1090,7 +1090,7 @@ export default function NeotelBussiness() {
                     marginBottom: "-15px", // Reduce space between list items
                   },
                   "& .MuiTypography-root": {
-                    fontSize: "14px", // Set the font size for list text
+                    fontSize: "15px", // Set the font size for list text
                     lineHeight: "1.4", // Adjust line height for better readability
                   },
                 }}
@@ -1099,7 +1099,7 @@ export default function NeotelBussiness() {
                   <ListItemText
                     primary="Tailored Solutions:
                     Our products are designed to meet the unique needs
-                    of each business, whether you are a small startup or a large enterprise"
+                    of each business, whether you are a small startup or a large enterprise."
                   />
                 </ListItem>
                 <ListItem>
@@ -1119,7 +1119,7 @@ export default function NeotelBussiness() {
                     primary="Innovation:
                     We constantly evolve and innovate our product offerings to
                     ensure your business stays ahead of the curve in an ever-changing
-                    digital landscape"
+                    digital landscape."
                   />
                 </ListItem>
               </List>
@@ -1151,10 +1151,10 @@ export default function NeotelBussiness() {
         >
           <Typography
             sx={{
-              maxWidth: 400,
+              // maxWidth: 500,
               margin: { xs: "0 auto 1rem", lg: "0 0 1rem" }, // Center text for small screens
               color: "black",
-              fontSize: "12px",
+              fontSize: "15px",
               textAlign: { xs: "center", lg: "justify" },
               padding:{xs:1,sm:1,md:0,lg:0}
             }}

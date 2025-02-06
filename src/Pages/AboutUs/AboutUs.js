@@ -56,7 +56,7 @@ export default function AboutUs() {
                                     maxWidth: 631,
                                     margin: "0 auto 0rem",
                                     color: "black",
-                                    fontSize: "0.9rem",
+                                    fontSize: "15px",
                                     // fontWeight: "440",
                                 }}
                             >
@@ -81,13 +81,15 @@ export default function AboutUs() {
                                 <Card
                                     sx={{
                                         maxWidth: "100%",
-                                        marginTop: -4,
+                                        // marginTop: -4,
                                         "&:hover": {
                                             boxShadow: 15,
                                             cursor: "pointer",
                                             "& .title": { color: "#233A7E" },
                                         },
                                         maxHeight: "100%",
+                                        paddingTop:5,
+                                        
                                     }}
                                 >
                                     {/* Display Image */}
@@ -133,6 +135,7 @@ export default function AboutUs() {
                                         color: "black",
                                         fontSize: "0.9rem",
                                         // fontWeight: "440",
+                                        fontSize: "15px",
                                         textAlign: 'justify'
                                     }}
                                 >
@@ -140,14 +143,14 @@ export default function AboutUs() {
                                     a tool for connectivity—it is the backbone of national growth and
                                     progress. It plays a vital role in driving economic development
                                     and uplifting key sectors such as social welfare, education,
-                                    commerce, healthcare and employment .
+                                    commerce, healthcare and employment.
                                 </Typography>
                                 <Typography
                                     sx={{
                                         maxWidth: 400,
                                         margin: "0 auto 1rem",
                                         color: "black",
-                                        fontSize: "0.9rem",
+                                        fontSize: "15px",
                                         // fontWeight: "440",
                                         textAlign: 'justify'
                                     }}
@@ -163,9 +166,9 @@ export default function AboutUs() {
                                 <Typography
                                     sx={{
                                         maxWidth: 400,
-                                        margin: "0 auto 0rem",
+                                        margin: "0 auto 1rem",
                                         color: "black",
-                                        fontSize: "0.9rem",
+                                        fontSize: "15px",
                                         // fontWeight: "440",
                                         textAlign: 'justify'
                                     }}
@@ -177,14 +180,15 @@ export default function AboutUs() {
                                     employment opportunities for the people of Nauru. Our
                                     commitment to nurturing local talent and fostering professional
                                     growth reflects our dedication to building a brighter, more
-                                    connected future for NAURU .
+                                    connected future for NAURU.
                                 </Typography>
                                 <Typography
                                     sx={{
                                         maxWidth: 400,
                                         margin: "0 auto 0rem",
                                         color: "black",
-                                        fontSize: "0.9rem",
+                                        fontSize: "15px",
+                                        
                                         // fontWeight: "440",
                                         textAlign: 'justify'
                                     }}
@@ -200,7 +204,7 @@ export default function AboutUs() {
                                         margin: "0 auto 0rem",
                                         paddingTop: 2,
                                         color: "black",
-                                        fontSize: "0.9rem",
+                                        fontSize: "15px",
                                         // fontWeight: "440",
                                         textAlign: 'justify',
                                         whiteSpace: "pre-line", // Allows new lines in text content

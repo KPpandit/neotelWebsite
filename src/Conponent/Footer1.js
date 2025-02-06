@@ -98,7 +98,7 @@ export default function Footer1() {
               </Grid>
               <Grid item xs={12} md>
                 <Typography sx={{ fontSize: "16px", fontWeight: "500", color: "grey" }}>
-                  Call us  7:00 AM - 12:00 PM
+                  Call us  8:00 AM - 12:00 AM
                 </Typography>
                 <Typography sx={{ fontSize: "18px", fontWeight: "1000", color: "black" }}>
                   (+674) 2222 123

@@ -63,11 +63,10 @@ export default function Partners() {
         <Typography variant="h4" sx={{ fontWeight: "bold", marginBottom: 2, color: "black" }}>
           Our Partners
         </Typography>
-        <Typography sx={{ maxWidth: 631,fontSize: "0.9rem", margin: "0 auto 4rem", color: "black", fontSize: "14px" }}>
-          At Neotel, we thrive on building strong connections—just like the ones we enable for our customers.
-          We have partnered with global technology leaders like <strong>Nokia ,</strong> <strong>Samsung ,</strong> <strong> Apple ,</strong> and <strong>Starlink ,</strong>  to bring
-          you the most advanced, accessible and reliable telecommunications solutions. Together, we aim to
-          make the world a little more connected.
+        <Typography sx={{ maxWidth: 631, margin: "0 auto 4rem", color: "black", fontSize: "16px" }}>
+
+
+          At Neotel, we thrive on building strong connections—just like the ones we enable for our customers. We have partnered with global technology leaders like <strong>Nokia</strong>, <strong>Samsung</strong>, <strong>Apple</strong>, <strong>Blue Arcus</strong>, <strong>Motorola</strong>, and  <strong>Starlink</strong> to bring you the most advanced, accessible and reliable telecommunications solutions. Together, we aim to make the world a little more connected.
         </Typography>
 
         {/* Cards */}
@@ -117,138 +116,121 @@ export default function Partners() {
             </Grid>
           ))}
         </Grid>
-        <Grid container spacing={1} sx={{ padding: { lg: 10, md: 5, sm: 2, xs: 2 }, paddingTop: { xs: 10 } }}>
-                <Grid item xs={12} md={12}>
-                    <Box sx={{ padding: "20px" }}>
-                        <Typography
+        <Grid container spacing={1} sx={{ paddingTop: { lg: 10, md: 5, sm: 2, xs: 2 }, paddingTop: { xs: 10 } }}>
+          <Grid item xs={12} md={12}>
+            {/* import { Box, Typography, List, ListItem } from "@mui/material"; */}
 
-                            sx={{
-                                fontWeight: "bold",
-                                color: "#4052A6",
-                                marginBottom: "16px",
-                                fontSize: { lg: "40px", md: "40px", xs: "30px" },
+            <Box sx={{ padding: "20px" }}>
+              <Typography
+                sx={{
+                  fontWeight: "bold",
+                  color: "#4052A6",
+                  marginBottom: "16px",
+                  textAlign: "left",
+                  fontSize: { lg: "40px", md: "40px", xs: "30px" },
+                }}
+              >
+                Why Do Our Partnerships Matter?
+              </Typography>
 
-                            }}
-                        >
-                            Why Do Our Partnerships Matter?
-                        </Typography>
-                        <Typography
-                            variant="body1"
-                            sx={{ fontSize: "0.9rem", textAlign: 'justify', lineHeight: 1.6, color: "black" }}
-                        >
-                            Neotel’s <strong> 5G Plus </strong>isn’t just a network; it’s a revolution. From
-                            real-time gaming with zero lag to crystal-clear video calls with
-                            loved ones halfway around the world, Neotel’s 5G Plus is designed
-                            to meet the demands of the modern digital lifestyle.
-                        </Typography>
+              <Typography
+                variant="body1"
+                sx={{ fontSize: "16px", textAlign: "left", lineHeight: 1.6, color: "black" }}
+              >
+                Collaboration drives our success at Neotel. Our partners play a vital role
+                in helping us deliver cutting-edge solutions, improve efficiency, and
+                provide exceptional products and services to our customers. We carefully
+                select partners who share our commitment to quality, reliability, and
+                service excellence.
+              </Typography>
 
-                        {/* Points with Ticks */}
-                        <List>
-                            <ListItem>
-                               
-                                <ListItemText
-                                    primary={
-                                        <Typography
-                                            component="span"
-                                            sx={{
-                                                fontSize: "1.0rem",
-                                                color: "black",
-                                                // fontWeight: 600,
-                                                lineHeight: 1.6,
-                                            }}
-                                        >
-                                           
-                                                <strong>For Everyone : </strong>
-                                            
-                                            Neotel’s 5G Plus is designed for everyone. Whether you’re a student, a professional, or just someone who loves to stay connected, our network offers something for you. With Neotel, you can explore, create, and connect with confidence.
-                                        </Typography>
-                                    }
-                                    sx={{
-                                        fontSize: "1.2rem",
-                                        lineHeight: 1.6,
-                                    }}
-                                />
+              {/* Bullet Points List */}
+              <List sx={{ paddingLeft: "20px", marginTop: "10px", listStyleType: "disc" }}>
+                {[
+                  "Deliver enhanced technology and services.",
+                  "Expand into new markets and strengthen our global presence.",
+                  "Ensuring reliability and high-performance solutions",
+                 
+                ].map((point, index) => (
+                  <ListItem
+                    key={index}
+                    sx={{
+                      display: "list-item",
+                      listStyleType: "disc",
+                      color: "black",
+                      paddingLeft: "10px",
+                    }}
+                  >
+                    <Typography variant="body1">{point}</Typography>
+                  </ListItem>
+                ))}
+              </List>
+              <Typography
+                variant="body1"
+                sx={{ fontSize: "16px", textAlign: "left", lineHeight: 1.6, color: "black" }}
+              >
+               Together, we’re shaping the future of connectivity with solutions that empower individuals, businesses, and communities worldwide.
+              </Typography>
+            </Box>
 
 
-                            </ListItem>
-                            <ListItem>
-                               
-                            <ListItemText
-                                    primary={
-                                        <Typography
-                                            component="span"
-                                            sx={{
-                                                fontSize: "1.0rem",
-                                                color: "black",
-                                                // fontWeight: 600,
-                                                lineHeight: 1.6,
-                                            }}
-                                        >
-                                           
-                                                <strong>For Businesses : </strong>
-                                            
-                                                 In today’s fast-paced world, connectivity is key to success. Neotel’s 5G Plus network offers businesses the tools they need to thrive in the digital economy, from cloud-based solutions to seamless video conferencing and beyond.
+          </Grid>
+          <Grid item xs={12} md={12}>
+            {/* import { Box, Typography, List, ListItem } from "@mui/material"; */}
 
-                                        </Typography>
-                                    }
-                                    sx={{
-                                        fontSize: "1.2rem",
-                                        lineHeight: 1.6,
-                                    }}
-                                />
-                            </ListItem>
-                            <ListItem>
-                               
-                            <ListItemText
-                                    primary={
-                                        <Typography
-                                            component="span"
-                                            sx={{
-                                                fontSize: "1.0rem",
-                                                color: "black",
-                                                // fontWeight: 600,
-                                                lineHeight: 1.6,
-                                            }}
-                                        >
-                                           
-                                                <strong>For Gamers : </strong>
-                                            
-                                                Experience gaming like never before with lightning-fast speeds and ultra-low latency. Neotel’s 5G Plus lets you compete in real-time, whether you’re battling it out in your favorite game or streaming your gameplay to a global audience.
-                                        </Typography>
-                                    }
-                                    sx={{
-                                        fontSize: "1.2rem",
-                                        lineHeight: 1.6,
-                                    }}
-                                />
-                            </ListItem>
-                        </List>
-                        {/* <Box sx={{ marginTop: "5px" }}>
-                            <Button
-                                variant="contained"
-                                sx={{
-                                    color: "white", // Text color
-                                    backgroundColor: "#4A5AA6", // Background color
-                                    borderRadius: "50px", // Circular corners
-                                    padding: "12px 30px", // Adjust size
-                                    fontSize: "1rem", // Font size
-                                    fontWeight: "600", // Bold text
-                                    textTransform: "none", // Prevent uppercase
-                                    "&:hover": {
-                                        backgroundColor: "#4A5AA6", // Hover effect
-                                    },
-                                }}
-                            >
-                                Learn More
-                            </Button>
-                        </Box> */}
+            <Box sx={{ padding: "20px" }}>
+              <Typography
+                sx={{
+                  fontWeight: "bold",
+                  color: "#4052A6",
+                  marginBottom: "16px",
+                  textAlign: "left",
+                  fontSize: { lg: "40px", md: "40px", xs: "30px" },
+                }}
+              >
+               Interested in Partnering with Us?
+              </Typography>
 
-                    </Box>
+              <Typography
+                variant="body1"
+                sx={{ fontSize: "16px", textAlign: "left", lineHeight: 1.6, color: "black" }}
+              >
+               We’re always looking to build new and exciting partnerships. If your organization shares our vision for innovation, quality, and customer excellence, we’d love to explore how we can collaborate. Reach out to us and let’s create something extraordinary together!
+              </Typography>
 
-                </Grid>
+              {/* Bullet Points List */}
+              <List sx={{ paddingLeft: "20px", marginTop: "10px", listStyleType: "disc" }}>
+                {[
+                  "Email: partnerships@neotel.nr",
+                  "Phone: +674 2222123",
+                 
+                ].map((point, index) => (
+                  <ListItem
+                    key={index}
+                    sx={{
+                      display: "list-item",
+                      listStyleType: "disc",
+                      color: "black",
+                      paddingLeft: "10px",
+                    }}
+                  >
+                    <Typography variant="body1">{point}</Typography>
+                  </ListItem>
+                ))}
+              </List>
+              <Typography
+                variant="body1"
+                sx={{ fontSize: "16px", textAlign: "left", lineHeight: 1.6, color: "black" }}
+              >
+               Together, we’re shaping the future of connectivity with solutions that empower individuals, businesses, and communities worldwide.
+              </Typography>
+            </Box>
 
-                
-            </Grid>
+
+          </Grid>
+
+
+        </Grid>
       </Box>
     </Box>
   );

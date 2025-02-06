@@ -24,7 +24,7 @@ export default function WhoWeAre() {
           </Typography>
           <Typography sx={{
             maxWidth: 700, margin: "0 auto 1rem", color: "black",
-            fontSize: "0.9rem",
+            fontSize: "15px",
             // fontWeight: "440",
             textAlign: "center"
           }}>
@@ -41,16 +41,17 @@ export default function WhoWeAre() {
           <Box component="img" src={whoweareCard1} alt="Brand" sx={{ width: { xs: "100%", md: "80%" }, height: "auto", marginBottom: { xs: 2, md: 0 } }} />
         </Grid>
         <Grid item xs={12} md={6} sx={{ padding: 4 }}>
-          <Typography sx={{ fontWeight: "bold", fontSize: { lg: "40px", md: "40px", xs: "30px" }, marginBottom: 0 }}> Innovation
+          <Typography sx={{ fontWeight: "bold", fontSize: { lg: "40px", md: "40px", xs: "30px" }, marginBottom: 0 }}>Unleashing 
+
            </Typography>
           <Typography sx={{ fontWeight: "bold", fontSize: { lg: "40px", md: "40px", xs: "30px" }, marginBottom: 2 }}>
-            Unleashed</Typography>
-          <Typography sx={{ marginBottom: 2, textAlign: "left", fontSize: "0.9rem"  ,maxWidth:350}}>
+          Innovation</Typography>
+          <Typography sx={{ marginBottom: 2, textAlign: "left", fontSize: "15px"  ,maxWidth:350}}>
             At Neotel, we are at the forefront of technological
             excellence, creating high-quality and affordable
-            customer-centric solutions
+            customer-centric solutions.
           </Typography>
-          <Typography sx={{ textAlign: "left", fontSize: "0.9rem" ,maxWidth:370}}>
+          <Typography sx={{ textAlign: "left", fontSize: "15px" ,maxWidth:370}}>
             Powered by Starlink, we are the fastest 5G Plus network
             in Nauru, committed to deliver new-age connectivity that
             meets evolving needs while remaining accessible to all.
@@ -81,20 +82,20 @@ export default function WhoWeAre() {
             sx={{
               marginBottom: 2,
               textAlign: { xs: "left", md: "left" },
-              fontSize: "0.9rem",
+              fontSize: "15px",
               // fontWeight: '500',
               maxWidth:350
             }}
           >
             By leveraging advanced technology and strategic
             partnerships, we are shaping a world of borderless
-            connectivity
+            connectivity.
 
           </Typography>
           <Typography
             sx={{
               textAlign: { xs: "justify", md: "left" }, // Center for small screens, right for medium and up
-              fontSize: "0.9rem",
+              fontSize: "15px",
               // fontWeight: '500',
               maxWidth:350
             }}
@@ -102,7 +103,7 @@ export default function WhoWeAre() {
             Our network empowers individuals, businesses, and
             communities to thrive in the digital age, enabling
             seamless collaboration and growth no matter where
-            they are
+            they are.
           </Typography>
           
         </Grid>
@@ -120,17 +121,17 @@ export default function WhoWeAre() {
             Future of </Typography>
             <Typography variant="h3" sx={{ fontWeight: "bold", marginBottom: 2, fontSize: { lg: "40px", md: "40px", xs: "30px" } }}>
             Connectivity</Typography>
-          <Typography sx={{ marginBottom: 2, textAlign: "justify", fontSize: "0.9rem", maxWidth:350 }}>
+          <Typography sx={{ marginBottom: 2, textAlign: "justify", fontSize: "15px", maxWidth:350 }}>
             We prioritize building connections you can count on,
             wherever you are. Designed to be fast, reliable and
             secure, our services meet the highest standards of
-            performance and safety
+            performance and safety.
 
           </Typography>
-          <Typography sx={{ marginBottom: 2, textAlign: "justify", fontSize: "0.9rem", maxWidth:350}}>
+          <Typography sx={{ marginBottom: 2, textAlign: "justify", fontSize: "15px", maxWidth:350}}>
             Every connection we make is backed by cutting-edge
             security protocols to safeguard your privacy and peace
-            of mind
+            of mind.
 
           </Typography>
         
@@ -154,34 +155,34 @@ export default function WhoWeAre() {
 
             sx={{ fontWeight: "bold", textAlign: 'left', marginBottom: 2, fontSize: { lg: "40px", md: "40px", xs: "30px" }, paddingTop: { lg: 3, md: 0, xs: 0 },maxWidth:{lg:350} }}
           >
-            Affordable & Accessible Services
+            Affordable And Accessible Services
 
           </Typography>
           <Typography
             sx={{
               marginBottom: 2,
               textAlign: { xs: "left", md: "left" }, // Center for small screens, right for medium and up
-              fontSize: "0.9rem",
+              fontSize: "15px",
               // fontWeight: '500',
               maxWidth:{lg:350}
             }}
           >
             Our services are designed to deliver exceptional value
-            without compromising on performance
+            without compromising on performance.
 
           </Typography>
           <Typography
             sx={{
               marginBottom: 2,
               textAlign: { xs: "left", md: "left" }, // Center for small screens, right for medium and up
-              fontSize: "0.9rem",
+              fontSize: "15px",
               // fontWeight: '500',
               maxWidth:{lg:350}
             }}
           >
             By making advanced telecommunications affordable, we
             are breaking barriers to ensure that no one is left behind
-            in the digital revolution
+            in the digital revolution.
 
           </Typography>
 

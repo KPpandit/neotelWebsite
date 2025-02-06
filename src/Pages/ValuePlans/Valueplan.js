@@ -7,10 +7,13 @@ import {
   Button,
   Container,
 } from "@mui/material";
-import DownloadIcon from "@mui/icons-material/Download"; // Import the download icon
-import viewPlan from "../../Images/viewPlan.png";
+import DownloadIcon from "@mui/icons-material/Download";
 import tableImage from "../../Images/tableImage.png";
+
 export default function ValuePlan() {
+  // APK file path (inside public folder)
+  const apkFilePath = "/Neotel_1.2.59_IMS.apk";
+
   return (
     <Container
       sx={{
@@ -20,7 +23,6 @@ export default function ValuePlan() {
         flexDirection: "column",
         alignItems: "center",
         gap: 4,
-
       }}
     >
       {/* Title */}
@@ -45,7 +47,7 @@ export default function ValuePlan() {
           borderRadius: 2,
           boxShadow: 3,
           overflow: "hidden",
-          marginLeft:{xs:1.7}
+          marginLeft: { xs: 1.7 },
         }}
       >
         <CardMedia
@@ -57,7 +59,6 @@ export default function ValuePlan() {
             width: "100%",
             objectFit: "cover",
             maxHeight: { xs: 250, sm: 400 },
-            
           }}
         />
       </Card>
@@ -80,9 +81,8 @@ export default function ValuePlan() {
       {/* Download Button */}
       <Button
         variant="contained"
-        
         size="large"
-        startIcon={<DownloadIcon />} // Add the download icon here
+        startIcon={<DownloadIcon />}
         sx={{
           mt: 2,
           px: 4,
@@ -90,10 +90,13 @@ export default function ValuePlan() {
           fontSize: "1rem",
           fontWeight: "bold",
           textTransform: "none",
-          backgroundColor:'#F9B616',
-          color:'black',
+          backgroundColor: "#F9B616",
+          color: "black",
           borderRadius: 2,
         }}
+        component="a"
+        href={apkFilePath} // Set the APK path
+        download="Neotel_1.2.59_IMS.apk" // Ensures the file gets downloaded
       >
         Download App
       </Button>
