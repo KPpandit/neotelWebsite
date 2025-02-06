@@ -1174,7 +1174,7 @@ export default function NeotelBussiness() {
           >
             <div>Seiuli Deepak Khanna</div>
             <div>CEO & Director</div>
-            <div>Telikom Nauri Corporation t/a Neotel</div>
+            <div>Telikom Nauru Corporation t/a Neotel</div>
             <div>Phone: +674 9990000</div>
             <div>Email: business@neotel.nr</div>
           </Typography>

@@ -27,16 +27,33 @@ export default function ContactInfo() {
                             fontSize: "13px",
                         }}
                     >
-                        We are the broadband internet service provider at neotel
+                        We’re here to help! Whether you have a question, need assistance, or want to share feedback, feel free to reach out using the contact options below. Our team is ready to assist you.
+
+                    </Typography>
+                    <Typography
+                        sx={{
+                            color: "black",
+                            fontSize: "17px",
+                            textAlign: "left",
+                            fontWeight: "bold",
+                            paddingBottom: 1,
+                        }}
+                    >
+
+                        Customer Service & Inquiries
+
+
                     </Typography>
                     <Box>
-                        {[
-                            "+1 +674 2222 123 ",
-                            "support@neotel.nr",
-                            "Telikom Nauru Corporation t/a Neotel, Ground Floor Civic Centre, Aiwo District Republic of Nauru",
+                        {/* {["Phone (local): 123",
+                            "Phone (International): +674 2222123 ",
+                            "Email: support@neotel.nr",
+                            "Mailing Address: Telikom Nauru Corporation t/a Neotel,Ground Floor Civic Centre, Aiwo District Republic of Nauru",
                         ].map((text, index) => (
-                            <Box
-                                key={index}
+                           
+                        ))} */}
+                         <Box
+                                // key={index}
                                 sx={{
                                     display: "flex",
                                     alignItems: "center",
@@ -52,14 +69,89 @@ export default function ContactInfo() {
                                         marginLeft: 1, // Added margin-left to give some space between checkbox and text
                                         color: "black",
                                         fontSize: "13px",
-                                        fontWeight: "450",
-                                        textAlign:'left'
+                                        // fontWeight: "450",
+                                        textAlign: 'left'
                                     }}
                                 >
-                                    {text}
+                                    <strong>Phone (local):</strong> 123
                                 </Typography>
                             </Box>
-                        ))}
+                            <Box
+                                // key={index}
+                                sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    marginBottom: 0,  // Adjusted margin for proper spacing
+                                }}
+                            >
+                                <Checkbox
+                                    sx={{ color: "blue", transform: "scale(0.6)" }}
+                                    disabled // Keep the checkbox unselectable
+                                />
+                                <Typography
+                                    sx={{
+                                        marginLeft: 1, // Added margin-left to give some space between checkbox and text
+                                        color: "black",
+                                        fontSize: "13px",
+                                        // fontWeight: "450",
+                                        textAlign: 'left'
+                                    }}
+                                >
+                                    <strong>Phone (International): </strong> +674 2222123
+                                </Typography>
+                            </Box>
+                            <Box
+                                // key={index}
+                                sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    marginBottom: 0,  // Adjusted margin for proper spacing
+                                }}
+                            >
+                                <Checkbox
+                                    sx={{ color: "blue", transform: "scale(0.6)" }}
+                                    disabled // Keep the checkbox unselectable
+                                />
+                                <Typography
+                                    sx={{
+                                        marginLeft: 1, // Added margin-left to give some space between checkbox and text
+                                        color: "black",
+                                        fontSize: "13px",
+                                        // fontWeight: "450",
+                                        textAlign: 'left'
+                                    }}
+                                >
+                                    <strong>Email: </strong>support@neotel.nr
+                                </Typography>
+                            </Box>
+                            <Box
+                                // key={index}
+                                sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    marginBottom: 0,  // Adjusted margin for proper spacing
+                                }}
+                            >
+                                <Checkbox
+                                    sx={{ color: "blue", transform: "scale(0.6)" }}
+                                    disabled // Keep the checkbox unselectable
+                                />
+                                <Typography
+                                    sx={{
+                                        marginLeft: 1, // Added margin-left to give some space between checkbox and text
+                                        color: "black",
+                                        fontSize: "13px",
+                                        // fontWeight: "450",
+                                        textAlign: 'left'
+                                    }}
+                                >
+                                    <strong>Mailing Address: </strong>Telikom Nauru Corporation t/a Neotel,Ground Floor Civic Centre, Aiwo District Republic of Nauru
+                                </Typography>
+                            </Box>
+                            
+
+                            
+
                     </Box>
 
                 </Grid>

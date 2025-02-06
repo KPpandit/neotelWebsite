@@ -141,7 +141,7 @@ export default function InnovationTomorrow() {
                         sx={{
                             width: "100%", // Full width
                             height: "100%", // Full height of the grid
-                            objectFit: "fill", // Ensure image scales proportionally
+                            objectFit: "scale-down", // Ensure image scales proportionally
                         }}
                     />
                 </Grid>
