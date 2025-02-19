@@ -10,6 +10,7 @@ import {
 import axios from "axios";
 
 const OtpVerification = ({ phoneNumber, onOtpVerified }) => {
+  console.log("otp varification ")
   const [otp, setOtp] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");

@@ -24,7 +24,8 @@ const PhoneNumberVerification = ({ onVerified }) => {
       );
 
       const { jwtToken } = response.data;
-      localStorage.setItem('CRM_TOKEN', jwtToken);
+      localStorage.setItem('CRM_TOKEN', jwtToken); // Store the token in localStorage
+      console.log('CRM Token stored successfully:', jwtToken);
     } catch (err) {
       console.error('Login failed:', err);
       setError('Failed to login and obtain CRM token.');
@@ -43,11 +44,13 @@ const PhoneNumberVerification = ({ onVerified }) => {
 
     setLoading(true);
     try {
-      // Ensure we have the CRM token
-      let crmToken = localStorage.getItem('CRM_TOKEN');
+      // Call the CRM login API to get the token
+      await loginAndGetToken();
+
+      // Verify the phone number using the CRM token
+      const crmToken = localStorage.getItem('CRM_TOKEN');
       if (!crmToken) {
-        await loginAndGetToken();
-        crmToken = localStorage.getItem('CRM_TOKEN');
+        throw new Error('CRM token not found.');
       }
 
       const response = await axios.get(

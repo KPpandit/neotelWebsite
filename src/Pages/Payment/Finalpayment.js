@@ -9,42 +9,44 @@ const Finalpaymnet = () => {
   const [step, setStep] = useState(1);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [selectedPlan, setSelectedPlan] = useState(null);
-  const [no,setNo]=useState('');
+  const [no, setNo] = useState('');
+
   return (
     <div style={{ padding: '20px', paddingTop: 50 }}>
-     
       {/* Step 1: Phone Number Verification */}
       {step === 1 && (
         <PhoneNumberVerification
           onVerified={(number) => {
             setPhoneNumber(number);
-            setStep(2);
+            setNo(number); // Update the `no` state with the verified number
+            setStep(2); // Move to the next step
           }}
         />
       )}
 
-      {/* Step 2: OTP Verification */}
-      {step === 2 && (
+      {/* Step 2: OTP Verification (if needed) */}
+      {/* {step === 2 && (
         <OtpVerification
           phoneNumber={phoneNumber}
           onOtpVerified={() => setStep(3)}
         />
-      )}
+      )} */}
 
-      {/* Step 3 and 4: Always display plans and payment gateway */}
+      {/* Step 2: Prepaid Plans */}
       <PrepaidPlans
-      
         onPlanSelect={(plan) => {
           setSelectedPlan(plan);
-          setStep(4);
+          setStep(3); // Move to the next step after selecting a plan
         }}
         no={no}
-        disabled={step < 3} // Disable plans until step 3
+        disabled={step < 2} // Disable if step is less than 2
       />
+
+      {/* Step 3: Payment Gateway */}
       <PaymentGateway
         no={no}
         selectedPlan={selectedPlan}
-        disabled={step < 4} // Disable payment gateway until step 4
+        disabled={step < 3} // Disable if step is less than 3
       />
     </div>
   );

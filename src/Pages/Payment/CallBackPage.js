@@ -24,7 +24,7 @@ const CallBackPage = () => {
   const CRM_TOKEN = localStorage.getItem("CRM_TOKEN");
   const packId = localStorage.getItem("packID");
   const packPrice = localStorage.getItem("packPrice");
-  const topUpValue = localStorage.getItem("topUpValue"); // Get topUpValue from localStorage
+  const topUpValue = localStorage.getItem("topUpValue"); 
 
   const urlParams = new URLSearchParams(window.location.search);
   const status = urlParams.get("status");
@@ -35,7 +35,7 @@ const CallBackPage = () => {
   const confirmPayment = async (transactionId) => {
     if (apiCalledRef.current) return;
     apiCalledRef.current = true;
-    setApiLoading(true); // Show loader while API is being called
+    setApiLoading(true); 
 
     const apiData = {
       partnerId: 0,
@@ -49,9 +49,9 @@ const CallBackPage = () => {
 
     try {
       await axios.post(
-        `https://bssproxy01.neotel.nr/eua/api/savepayment/currency/1/paymentrsult/${number}`,
+        `https://bssproxy01.neotel.nr/crm/api/savepayment/currency/1/paymentrsult/1/paymentmethod/1?msisdn=${number}`,
         apiData,
-        { headers: { Authorization: `Bearer ${token}` } }
+        { headers: { Authorization: `Bearer ${CRM_TOKEN}` } }
       );
       setPaymentStatus("success");
       setShowSuccessPopup(true); // Show popup on success
@@ -224,7 +224,10 @@ const CallBackPage = () => {
             }}
           >
             <Typography variant="h4" sx={{ color: "green", fontWeight: "bold" }}>
-              🎉 Payment Successful!
+              🎉
+            </Typography>
+            <Typography variant="h4" sx={{ color: "green", fontWeight: "bold" }}>
+               Payment Successful!
             </Typography>
             <Typography variant="body1" mt={1}>
               Your transaction was completed successfully.
