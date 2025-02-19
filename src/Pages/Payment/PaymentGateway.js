@@ -1,10 +1,18 @@
-import React from 'react';
-import { Typography, Button, Box } from '@mui/material';
+import React, { useState } from 'react';
+import { Typography, Button, Box, CircularProgress, FormControlLabel, Checkbox } from '@mui/material';
 import axios from 'axios';
 
 const PaymentGateway = ({ selectedPlan, disabled }) => {
+  console.log(disabled,'  --disabled')
+  console.log("selected plan details from payment gayway Conpoent ",selectedPlan)
+  const [buttonText, setButtonText] = useState(`Click And Pay ${selectedPlan?.pack_price || ''}`);
+  const [loading, setLoading] = useState(false); // State for loading indicator
+  const [privacyChecked, setPrivacyChecked] = useState(true); // Checkbox state
+
   const handlePayment = async () => {
-    if (disabled) return; // Do nothing if disabled
+    if (disabled || loading) return; // Prevent multiple clicks during loading
+
+    setLoading(true); // Start loading
 
     // Store pack ID and price in localStorage
     localStorage.setItem('packID', selectedPlan.pack_id);
@@ -15,70 +23,63 @@ const PaymentGateway = ({ selectedPlan, disabled }) => {
       quantity: 1,
       currency: 'AUD',
       name: 'Bundle Purchase',
-      // Custom success and failure URLs with transactionId placeholder
-      successUrl: 'http://localhost:3000/callbackstatus?status=success&transactionId=_transactionId_', // Success callback URL
-      failureUrl: 'http://localhost:3000/callbackstatus?status=failure&transactionId=_transactionId_', // Failure callback URL
+      successUrl: 'https://payment.neotel.nr/callbackstatus?status=success&transactionId=_transactionId_', 
+      failureUrl: 'https://payment.neotel.nr/callbackstatus?status=failure&transactionId=_transactionId_', 
     };
 
     try {
       // Step 1: Initiate payment
+      localStorage.removeItem("topUpValue");
       const response = await axios.post('https://bssproxy01.neotel.nr/pgw/api/payment', paymentData);
+      setButtonText('Login'); // Change button text to "Login"
       window.location.href = response.data.sessionUrl; // Redirect to payment gateway
     } catch (err) {
       console.error('Payment failed:', err);
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
   return (
-    <div>
-      {/* <Typography variant="h6" style={{ color: '#253A7D',textAlign:'center' }}>Complete Payment</Typography> */}
-      <Box
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 3 }}>
+      {disabled==false?<>   <Button
+        variant="contained"
+        onClick={handlePayment}
+        disabled={disabled || loading} // Disable button while loading
         sx={{
+          backgroundColor: disabled || loading ? '#ccc' : '#F6B625',
+          color: '#253A7D',
+          fontWeight: 'bold',
+          px: 4, // Horizontal padding
+          py: 1, // Vertical padding
+          '&:hover': {
+            backgroundColor: disabled || loading ? '#ccc' : '#e0a720',
+          },
           display: 'flex',
-          justifyContent: 'center',
-          // alignItems: 'center',
-          // minHeight: '100vh', // Ensures full viewport height
-          paddingTop: 3
+          alignItems: 'center',
+          gap: 1, // Space between text and loader
         }}
       >
-        {selectedPlan?.pack_price ? ( // Conditionally render button if pack_price exists
-          <Button
-            variant="contained"
-            onClick={handlePayment}
-            disabled={disabled}
-            sx={{
-              backgroundColor: disabled ? '#ccc' : '#F6B625',
-              color: '#253A7D',
-              fontWeight: 'bold',
-              px: 4, // Horizontal padding
-              py: 1, // Vertical padding
-              '&:hover': {
-                backgroundColor: disabled ? '#ccc' : '#e0a720',
-              },
-            }}
-          >
-            Click And Pay ${selectedPlan.pack_price}
-          </Button>
-        ) : <Button
-          variant="contained"
-          onClick={handlePayment}
-          disabled={disabled}
-          sx={{
-            backgroundColor: disabled ? '#ccc' : '#F6B625',
-            color: '#253A7D',
-            fontWeight: 'bold',
-            px: 4, // Horizontal padding
-            py: 1, // Vertical padding
-            '&:hover': {
-              backgroundColor: disabled ? '#ccc' : '#e0a720',
-            },
-          }}
-        >
-          Click And Pay 
-        </Button>
-        } {/* Render nothing if pack_price is null */}
+        {loading ? <CircularProgress size={24} sx={{ color: '#253A7D' }} /> : buttonText}
+      </Button></>:<></>}
+   
+
+      {/* Privacy Policy Checkbox */}
+      <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%', marginTop: 2 }}>
+        <FormControlLabel
+          control={<Checkbox checked={privacyChecked} sx={{ color: '#253A7D' }} />}
+          label={
+            <Typography variant="body2" sx={{ textAlign: 'center' }}>
+              By continuing, I agree to the Neotel &nbsp;
+              <a href="/privacy-policy" target="_blank" style={{ color: '#253A7D', textDecoration: 'none', fontWeight: 'bold' }}>
+                  Terms & Conditions, Privacy Policy & Payment Terms
+              </a>
+            </Typography>
+          }
+        />
       </Box>
-    </div>
+
+    </Box>
   );
 };
 

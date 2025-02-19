@@ -10,14 +10,15 @@ import whoweareImage2 from "../../Images/whoweareImage2.png";
 import whoweareCard1 from "../../Images/whoweareCard1.png";
 import whowearecard2 from "../../Images/whowearecard2.png";
 import profilePic from "../../Images/profilePic.png";
-import NeotelBussinessCard1 from "../../Images/NeotelBussinessCard1.png";
-import NeotelBussinessCard2 from "../../Images/NeotelBussinessCard2.png";
-import NeotelBussinessCard3 from "../../Images/NeotelBussinessCard3.png";
-import NeotelBussinessCard4 from "../../Images/ImagesNeotelBussinessCard4.png.png";
-import NeotelBussinessCard5 from "../../Images/NeotelBussinessCard5.png";
-import NeotelBussinessCard6 from "../../Images/NeotelBussinessCard6.png";
-import NeotelBussinessCard7 from "../../Images/NeotelBussinessCard7.png";
-import NeotelBussinessCard9 from "../../Images/ImagesNeotelBussinessCard9.png.png";
+import NeotelBussinessCard1 from "../../Images/bussinessCard1.png";
+import NeotelBussinessCard2 from "../../Images/bussinessCard2.png";
+import NeotelBussinessCard3 from "../../Images/bussinessCard3.png";
+import NeotelBussinessCard4 from "../../Images/bussinessCard4.png";
+import NeotelBussinessCard5 from "../../Images/bussinessCard5.png";
+import NeotelBussinessCard6 from "../../Images/bussinessCard6.png";
+import NeotelBussinessCard7 from "../../Images/NeotelBussinessCard6.png";
+import NeotelBussinessCard17 from "../../Images/NeotelBussinessCard6.png";
+import NeotelBussinessCard9 from "../../Images/bussinessCard17.png";
 import DeepakImage from "../../Images/DeepakImage.JPG";
 export default function NeotelBussiness() {
   const navigate = useNavigate();
@@ -746,7 +747,7 @@ export default function NeotelBussiness() {
         </Grid>
 
         <Grid item xs={12} md={6} sx={{ display: "flex", justifyContent: "flex-start", margin: { lg: 0, md: 0, sm: 4, xs: 4 } }}>
-          <Box component="img" src={NeotelBussinessCard7} alt="Brand" sx={{ width: { xs: "100%", md: "80%" }, height: "auto", marginBottom: { xs: 2, md: 0 } }} />
+          <Box component="img" src={NeotelBussinessCard6} alt="Brand" sx={{ width: { xs: "100%", md: "80%" }, height: "auto", marginBottom: { xs: 2, md: 0 } }} />
         </Grid>
       </Grid>
       {/* between Section */}
@@ -843,7 +844,7 @@ export default function NeotelBussiness() {
       </Grid>
       <Grid container spacing={10} sx={{ paddingTop: 10, padding: 4 }}>
         <Grid item xs={12} md={6} sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <Box component="img" src={NeotelBussinessCard6} alt="Brand" sx={{ width: { xs: "100%", md: "80%" }, height: "auto", marginBottom: { xs: 2, md: 0 } }} />
+          <Box component="img" src={NeotelBussinessCard17} alt="Brand" sx={{ width: { xs: "100%", md: "80%" }, height: "auto", marginBottom: { xs: 2, md: 0 } }} />
         </Grid>
         <Grid item xs={12} md={6} sx={{ padding: 4 }}>
           <Typography sx={{ fontWeight: "bold", fontSize: { lg: "40px", md: "40px", xs: "30px" }, marginBottom: 0, maxWidth: 350 }}>

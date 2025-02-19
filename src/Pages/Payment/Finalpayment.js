@@ -9,7 +9,7 @@ const Finalpaymnet = () => {
   const [step, setStep] = useState(1);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [selectedPlan, setSelectedPlan] = useState(null);
-
+  const [no,setNo]=useState('');
   return (
     <div style={{ padding: '20px', paddingTop: 50 }}>
      
@@ -33,13 +33,16 @@ const Finalpaymnet = () => {
 
       {/* Step 3 and 4: Always display plans and payment gateway */}
       <PrepaidPlans
+      
         onPlanSelect={(plan) => {
           setSelectedPlan(plan);
           setStep(4);
         }}
+        no={no}
         disabled={step < 3} // Disable plans until step 3
       />
       <PaymentGateway
+        no={no}
         selectedPlan={selectedPlan}
         disabled={step < 4} // Disable payment gateway until step 4
       />

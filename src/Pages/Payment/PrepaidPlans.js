@@ -1,216 +1,178 @@
-import React, { useState, useEffect } from 'react';
-import { Typography, Card, CardContent, Button, CircularProgress, Box, IconButton, Divider } from '@mui/material';
-import axios from 'axios';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import React, { useState, useEffect, useRef } from "react";
+import { Typography, Card, CardContent, CircularProgress, Box, Divider, Grid, TextField, Button } from "@mui/material";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
+import TopupRecharge from "./TopupRecharge";
 
-const PrepaidPlans = ({ onPlanSelect, disabled }) => {
+const PrepaidPlans = ({ selectedPlan, onPlanSelect, disabled }) => {
   const [plans, setPlans] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [selectedPack, setSelectedPack] = useState(null); // State to store selected plan
+  const [error, setError] = useState("");
+  const [selectedPack, setSelectedPack] = useState(null);
+  const [topUpValue, setTopUpValue] = useState(localStorage.getItem("topUpValue") || "");
+  const [inputError, setInputError] = useState("");
+  const [isTextFieldFocused, setIsTextFieldFocused] = useState(false);
+  const [isButtonVisible, setIsButtonVisible] = useState(false);
+  const orderSummaryRef = useRef(null);
+  const location = useLocation();
+  const [showTopupRecharge, setShowTopupRecharge] = useState(false);
+  useEffect(() => {
+    if (selectedPlan) setSelectedPack(selectedPlan);
+  }, [selectedPlan]);
 
   useEffect(() => {
     const fetchPlans = async () => {
       setLoading(true);
       try {
-        const response = await axios.get('https://bssproxy01.neotel.nr/abmf-prepaid/api/prepaid/packs?pack_status=APPROVED');
-        setPlans(response.data);
+        const response = await axios.get("https://bssproxy01.neotel.nr/abmf-prepaid/api/prepaid/packs?pack_status=APPROVED");
+        let fetchedPlans = response.data.filter(plan => plan.pack_id !== 78);
+        const queryParams = new URLSearchParams(location.search);
+        const packId = queryParams.get('pack_id');
+        if (packId) {
+          const selectedPlan = fetchedPlans.find(plan => plan.pack_id == packId);
+          if (selectedPlan && !disabled) {
+            setSelectedPack(selectedPlan);
+            onPlanSelect(selectedPlan);
+          }
+          fetchedPlans = [];
+        }
+        setPlans(fetchedPlans);
       } catch (err) {
-        setError('Failed to fetch plans.');
+        setError("Failed to fetch plans.");
       } finally {
         setLoading(false);
       }
     };
     fetchPlans();
-  }, []);
+  }, [location.search, disabled]);
 
-  // Custom arrow components for the carousel
-  const SampleNextArrow = (props) => {
-    const { onClick } = props;
-    return (
-      <IconButton
-        onClick={onClick}
-        sx={{
-          position: 'absolute',
-          right: -40,
-          top: '50%',
-          transform: 'translateY(-50%)',
-          backgroundColor: '#F6B625',
-          color: '#253A7D',
-          '&:hover': {
-            backgroundColor: '#e0a720',
-          },
-        }}
-      >
-        <ArrowForwardIosIcon />
-      </IconButton>
-    );
+  const handleTopUpChange = (event) => {
+    const value = event.target.value;
+    if (value && value < 20) setInputError("Top-Up amount must be greater then 20 .");
+    else setInputError("");
+    setTopUpValue(value);
+    localStorage.setItem("topUpValue", value);
+    setIsButtonVisible(value !== "");
   };
 
-  const SamplePrevArrow = (props) => {
-    const { onClick } = props;
-    return (
-      <IconButton
-        onClick={onClick}
-        sx={{
-          position: 'absolute',
-          left: -40,
-          top: '50%',
-          transform: 'translateY(-50%)',
-          backgroundColor: '#F6B625',
-          color: '#253A7D',
-          '&:hover': {
-            backgroundColor: '#e0a720',
-          },
-        }}
-      >
-        <ArrowBackIosIcon />
-      </IconButton>
-    );
+  const handleTextFieldFocus = () => setIsTextFieldFocused(true);
+  const handleTextFieldBlur = () => setIsTextFieldFocused(false);
+  const handleButtonClick = () => {
+    console.log("Button clicked!", topUpValue);
+    setShowTopupRecharge(true);
   };
 
-  // Carousel settings
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+  const handleCardClick = (plan) => {
+    if (disabled) return;
+    setSelectedPack(plan);
+    onPlanSelect(plan);
+    setTimeout(() => orderSummaryRef.current?.scrollIntoView({ behavior: "smooth" }), 0);
   };
 
-  return (
-    <Box sx={{ padding: 3, position: 'relative', paddingTop: 10 }}>
-      <Typography align="center" sx={{ color: '#253A7D', fontWeight: 'bold', mb: 3, fontSize: '28px' }}>
-        Discover Our Best Bundles
-      </Typography>
-
-      {loading && (
-        <Box display="flex" justifyContent="center">
-          <CircularProgress />
-        </Box>
+  const renderPlanDetails = (plan) => (
+    <Box sx={circleStyle}>
+      {!plan.description.toLowerCase().includes("router") && (
+        <>
+          <Typography variant="subtitle2" sx={priceStyle}>${plan.pack_price}</Typography>
+          <Typography variant="body2" sx={{ color: "black", fontSize: '12px' }}>For {plan.validity} Days</Typography>
+        </>
       )}
-      {error && (
-        <Typography color="error" align="center">
-          {error}
-        </Typography>
+      {plan.description.toLowerCase().includes("router") && (
+        <>
+          <Typography variant="body2" sx={{ color: "brown", width: 100, textAlign: 'center', fontSize: '12px' }}>$ 485</Typography>
+          <Typography variant="body2" sx={{ color: "black", width: 100, textAlign: 'center', fontSize: '12px' }}>Special Offer $ 100</Typography>
+          <Typography variant="body2" sx={{ color: "black", textAlign: 'center', fontSize: '12px' }}>150 Monthly / Unlimited Data</Typography>
+        </>
       )}
-
-      {/* Plan Selection Slider */}
-      <Slider {...settings}>
-        {plans.map((plan) => (
-          <Box key={plan.pack_id} sx={{ padding: 3 }}>
-            <Card
-              sx={{
-                height: '90%',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                boxShadow: 3,
-                borderRadius: 2,
-                transition: 'transform 0.2s',
-                '&:hover': {
-                  transform: 'scale(1.05)',
-                },
-                backgroundColor: '#A1B5BD',
-              }}
-            >
-              <CardContent>
-                {/* Plan Name */}
-                <Typography variant="h6" align="center" sx={{ fontWeight: 'bold', color: '#253A7D' }}>
-                  {plan.pack_name}
-                </Typography>
-
-                {/* Price & Validity Inside Circle */}
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    width: 150,
-                    height: 150,
-                    borderRadius: '50%',
-                    backgroundColor: '#E0E0E0',
-                    margin: '20px auto',
-                    flexDirection: 'column',
-                  }}
-                >
-                  <Typography variant="h6" sx={{ fontWeight: 'bold', color: 'brown' }}>
-                    ${plan.pack_price}
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: 'black' }}>
-                    For {plan.validity} Days
-                  </Typography>
-                </Box>
-              </CardContent>
-
-              {/* Select Button */}
-              <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
-                <Button
-                  variant="contained"
-                  onClick={() => {
-                    onPlanSelect(plan);
-                    setSelectedPack(plan); // Update selected pack
-                  }}
-                  disabled={disabled}
-                  sx={{
-                    backgroundColor: disabled ? '#ccc' : '#F6B625',
-                    color: '#253A7D',
-                    fontWeight: 'bold',
-                    '&:hover': {
-                      backgroundColor: disabled ? '#ccc' : '#e0a720',
-                    },
-                  }}
-                >
-                  Select
-                </Button>
-              </Box>
-            </Card>
-          </Box>
-        ))}
-      </Slider>
-
-      {/* Show line and amount details only if a pack is selected */}
-      {selectedPack && (
-        <Box sx={{ mt: 3 ,pt:3}}>
-          <Typography sx={{fontSize:'24px',textAlign:'center'}}>Order Summary</Typography>
-          <Divider sx={{ my: 4, backgroundColor: 'black', height: 3 }} />
-
-
-          {/* Amount Details Row */}
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', px: 3 }}>
-            <Typography variant="body1" sx={{ fontWeight: 'bold', color: 'black' }}>
-              Total
-            </Typography>
-            <Typography variant="body1" sx={{ fontWeight: 'bold', color: 'black' }}>
-              ${selectedPack.pack_price} AUD
-            </Typography>
-          </Box>
-        </Box>
+      {(plan.description.toLowerCase().includes("call") || plan.description.toLowerCase().includes("data")) && (
+        <Typography variant="body2" sx={{ color: "black", textAlign: 'center', fontSize: '12px' }}>Neotel to Neotel Call & SMS Free</Typography>
       )}
     </Box>
   );
+
+  const renderPlans = (title, plans) => (
+    <Box sx={{ mt: 2 }}>
+      <Box sx={{ display: "flex", gap: 1, overflowX: "auto", justifyContent: 'center', flexWrap: { xs: "wrap", sm: "nowrap" } }}>
+        {plans.map(plan => (
+          <Card
+            key={plan.pack_id}
+            sx={{ ...cardStyles, backgroundColor: selectedPack?.pack_id === plan.pack_id ? "#F7B416" : "#A1B5BD", minWidth: 150 }}
+            onClick={() => handleCardClick(plan)}
+          >
+            <CardContent>
+              <Typography variant="subtitle2" align="center" sx={titleStyle}>{plan.pack_name}</Typography>
+              {renderPlanDetails(plan)}
+            </CardContent>
+          </Card>
+        ))}
+      </Box>
+    </Box>
+  );
+
+  return (
+    <Box sx={{ padding: 0, position: "relative", paddingTop: 10 }}>
+      {!location.search.includes("pack_id") && (
+        <>
+          <Typography align="center" sx={{ color: "black", fontWeight: "bold", mb: 1, fontSize: "20px" }}>Discover Our Best Bundles</Typography>
+          <Grid container spacing={0}>
+            <Grid item xs={12}>{renderPlans("Data Plans", plans)}</Grid>
+          </Grid>
+          <Grid container spacing={5} paddingTop={8}>
+            <Grid item xs={12}>
+              <Typography variant="body1" sx={{ fontWeight: "bold", color: "black", fontSize: "20px", textAlign: 'center' }}>Want to buy a Top-Up of your choice</Typography>
+            </Grid>
+            <Grid item xs={12} sx={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
+              <TextField
+                variant="outlined"
+                fullWidth
+                disabled={disabled}
+                value={topUpValue}
+                onChange={handleTopUpChange}
+                onFocus={handleTextFieldFocus}
+                onBlur={handleTextFieldBlur}
+                type="number"
+                error={Boolean(inputError)}
+                helperText={inputError}
+                InputProps={{ sx: { borderRadius: "20px", textAlign: "center", fontWeight: "bold", color: "black", backgroundColor: "#F5F5F5" } }}
+                sx={{ width: "300px" }}
+                inputProps={{ min: 20 }}
+              />
+              {isButtonVisible && topUpValue>20 && <Button variant="contained" sx={{ mt: 2 ,backgroundColor:'#4A59A7'}} onClick={handleButtonClick}>Pay Top - up Amount</Button>}
+              {showTopupRecharge && <TopupRecharge topUpValue={topUpValue} disabled={false} />}
+            </Grid>
+          </Grid>
+        </>
+      )}
+      {selectedPack && (
+        <Box sx={{ mt: 3, pt: 3 }} ref={orderSummaryRef}>
+          <Typography sx={{ fontSize: "20px", textAlign: "center", paddingTop: 5 }}>Order Summary</Typography>
+          <Divider sx={{ my: 4, backgroundColor: "black", height: 3 }} />
+          <Box sx={{ px: 3 }}>
+            <DetailRow label="Pack Name" value={selectedPack.pack_name} />
+            <DetailRow label="Pack Validity" value={`${selectedPack.validity} Days`} />
+            <DetailRow label="Data Balance" value={selectedPack.assigned_data_balance === '931 GB' ? 'Unlimited Data' : selectedPack.assigned_data_balance} />
+            <DetailRow label="Neotel to Neotel Call" value={`${selectedPack.onn_call_balance === 1666 ? 'Unlimited' : selectedPack.onn_call_balance} ${selectedPack.onn_call_balance_parameter}`} />
+            <DetailRow label="Neotel to Neotel SMS" value={`${selectedPack.onn_sms_balance === 99999 ? 'Unlimited' : selectedPack.onn_sms_balance} SMS`} />
+            <DetailRow label="Total" value={`$ ${selectedPack.pack_price}`} />
+          </Box>
+        </Box>
+      )}
+      {loading && <Box display="flex" justifyContent="center"><CircularProgress /></Box>}
+      {error && <Typography color="error" align="center">{error}</Typography>}
+    </Box>
+  );
 };
+
+const DetailRow = ({ label, value }) => (
+  <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
+    <Typography variant="body1" sx={{ fontWeight: "bold", color: "black" }}>{label}</Typography>
+    <Typography variant="body1" sx={{ fontWeight: "bold", color: "black" }}>{value}</Typography>
+  </Box>
+);
+
+const cardStyles = { width: 250, boxShadow: 3, borderRadius: 2, cursor: "pointer" };
+const titleStyle = { fontWeight: "bold", color: "#253A7D", fontSize: '12px' };
+const priceStyle = { fontWeight: "bold", color: "brown", fontSize: '12px' };
+const circleStyle = { display: "flex", justifyContent: "center", alignItems: "center", width: 200, height: 200, borderRadius: "50%", backgroundColor: "#E0E0E0", margin: "10px auto", flexDirection: "column" };
 
 export default PrepaidPlans;

@@ -93,14 +93,18 @@ const OtpVerification = ({ phoneNumber, onOtpVerified }) => {
           <Button
             variant="contained"
             onClick={handleSendOtp}
-            disabled={loading || otpSent}
+            disabled={loading || (otpSent && timer > 0)} // Disable during countdown
             style={{
-              backgroundColor: otpSent ? "#ccc" : "#F6B625",
+              backgroundColor: (otpSent && timer > 0) ? "#ccc" : "#F6B625",
               color: "#253A7D",
               marginBottom: "10px",
             }}
           >
-            {otpSent ? `Resend OTP in ${timer}s` : "Send OTP"}
+            {otpSent
+              ? timer > 0
+                ? `Resend OTP in ${timer}s` // Show countdown if timer is active
+                : "Resend OTP" // Show "Resend OTP" after countdown completes
+              : "Send OTP"} 
           </Button>
 
           {otpSent && (
@@ -136,11 +140,7 @@ const OtpVerification = ({ phoneNumber, onOtpVerified }) => {
             </>
           )}
         </Grid>
-
       </Grid>
-
-
-
     </div>
   );
 };
