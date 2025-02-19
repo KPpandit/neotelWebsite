@@ -73,6 +73,9 @@ import TouristSim from './Pages/Esim/TouristSIM';
 import GeneralFaq from './Pages/FAQ/GeneralFaq';
 import AboutUs from './Pages/AboutUs/AboutUs';
 import ValuePlan from "./Pages/ValuePlans/Valueplan";
+import Services from './Pages/Services/Services';
+import Finalpaymnet from './Pages/Payment/Finalpayment';
+import CallBackPage from './Pages/Payment/CallBackPage';
 // import Services from './Pages/Services/Services';
 
 function App() {
@@ -190,7 +193,9 @@ function App() {
         <Route path="/myAccountSection" element={<MyAccountSection />} />
         <Route path="/about-company/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/Voip/Neotel_1.2.59_IMS.apk" element={<Navigate to="/" replace />} />
-
+        <Route path="/services" element={<Services />} />
+        <Route path="/123" element={<Finalpaymnet />} />
+        <Route path="/callbackstatus" element={<CallBackPage />} />
       </Routes>
       {!noFooterPaths.includes(location.pathname) && <Footer1 />}
     </>

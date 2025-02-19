@@ -29,13 +29,13 @@ export default function NeotelBussiness() {
       {/* Hero Section */}
       <Grid container spacing={0} alignItems="center" justifyContent="center" sx={{ flexDirection: { xs: "column", md: "row" } }}>
         <Grid item xs={12} sx={{ paddingBottom: 10 }}>
-        <Box>
-                <img
-                    src={NeotellBussinessBG}
-                    alt="Brand Banner"
-                    style={{ width: "100%", display: "block", height: '50%' }}
-                />
-            </Box>
+          <Box>
+            <img
+              src={NeotellBussinessBG}
+              alt="Brand Banner"
+              style={{ width: "100%", display: "block", height: '50%' }}
+            />
+          </Box>
           {/* <Box sx={{ width: "100%", height: { xs: "300px", sm: "400px", md: "400px" }, backgroundImage: `url(${NeotellBussinessBG})`, backgroundSize: "cover", backgroundPosition: "center" }} /> */}
         </Grid>
         <Grid item xs={12}>
@@ -112,7 +112,7 @@ export default function NeotelBussiness() {
                 sx={{
                   textAlign: "left",
                   fontSize: "15px",
-                 
+
                   maxWidth: 370,
                 }}
               >
@@ -128,7 +128,7 @@ export default function NeotelBussiness() {
                 sx={{
                   textAlign: "left",
                   fontSize: "15px",
-                 
+
                   maxWidth: 370,
                 }}
               >
@@ -200,7 +200,7 @@ export default function NeotelBussiness() {
                 sx={{
                   textAlign: "left",
                   fontSize: "15px",
-                  
+
                   maxWidth: 370,
                 }}
               >
@@ -216,7 +216,7 @@ export default function NeotelBussiness() {
                 sx={{
                   textAlign: "left",
                   fontSize: "15px",
-                
+
                   maxWidth: 370,
                 }}
               >
@@ -233,7 +233,7 @@ export default function NeotelBussiness() {
                 sx={{
                   textAlign: "left",
                   fontSize: "15px",
-                 
+
                   maxWidth: 370,
                 }}
               >
@@ -293,7 +293,7 @@ export default function NeotelBussiness() {
                 sx={{
                   textAlign: "left",
                   fontSize: "15px",
-                 
+
                   maxWidth: 350,
                 }}
               >
@@ -308,7 +308,7 @@ export default function NeotelBussiness() {
                 sx={{
                   textAlign: "left",
                   fontSize: "15px",
-                  
+
                   maxWidth: 370,
                 }}
               >
@@ -323,7 +323,7 @@ export default function NeotelBussiness() {
                 sx={{
                   textAlign: "left",
                   fontSize: "15px",
-                  
+
                   maxWidth: 370,
                 }}
               >
@@ -339,7 +339,7 @@ export default function NeotelBussiness() {
                 sx={{
                   textAlign: "left",
                   fontSize: "15px",
-                  
+
                   maxWidth: 370,
                 }}
               >
@@ -409,7 +409,7 @@ export default function NeotelBussiness() {
                 sx={{
                   textAlign: "left",
                   fontSize: "15px",
-                 
+
                   maxWidth: 350,
                 }}
               >
@@ -426,7 +426,7 @@ export default function NeotelBussiness() {
                 sx={{
                   textAlign: "left",
                   fontSize: "15px",
-                 
+
                   maxWidth: 350,
                 }}
               >
@@ -591,7 +591,7 @@ export default function NeotelBussiness() {
                 sx={{
                   textAlign: "left",
                   fontSize: "15px",
-                 
+
                   maxWidth: 350,
                 }}
               >
@@ -606,7 +606,7 @@ export default function NeotelBussiness() {
                 sx={{
                   textAlign: "left",
                   fontSize: "15px",
-                 
+
                   maxWidth: 350,
                 }}
               >
@@ -622,7 +622,7 @@ export default function NeotelBussiness() {
                 sx={{
                   textAlign: "left",
                   fontSize: "15px",
-                 
+
                   maxWidth: 350,
                 }}
               >
@@ -680,7 +680,7 @@ export default function NeotelBussiness() {
                 sx={{
                   textAlign: "left",
                   fontSize: "15px",
-                  
+
                   maxWidth: 350,
                 }}
               >
@@ -697,7 +697,7 @@ export default function NeotelBussiness() {
                 sx={{
                   textAlign: "left",
                   fontSize: "15px",
-               
+
                   maxWidth: 370,
                 }}
               >
@@ -713,7 +713,7 @@ export default function NeotelBussiness() {
                 sx={{
                   textAlign: "left",
                   fontSize: "15px",
-               
+
                   maxWidth: 370,
                 }}
               >
@@ -867,7 +867,7 @@ export default function NeotelBussiness() {
                 sx={{
                   textAlign: "left",
                   fontSize: "15px",
-                
+
                   maxWidth: 350,
                 }}
               >
@@ -883,7 +883,7 @@ export default function NeotelBussiness() {
                 sx={{
                   textAlign: "left",
                   fontSize: "15px",
-                  
+
                   maxWidth: 370,
                 }}
               >
@@ -900,7 +900,7 @@ export default function NeotelBussiness() {
                 sx={{
                   textAlign: "left",
                   fontSize: "15px",
-                  
+
                   maxWidth: 370,
                 }}
               >
@@ -959,7 +959,7 @@ export default function NeotelBussiness() {
                 sx={{
                   textAlign: "left",
                   fontSize: "15px",
-                  
+
                   maxWidth: 350,
                 }}
               >
@@ -977,7 +977,7 @@ export default function NeotelBussiness() {
                 sx={{
                   textAlign: "left",
                   fontSize: "15px",
-                  
+
                   maxWidth: 350,
                 }}
               >
@@ -994,7 +994,7 @@ export default function NeotelBussiness() {
                 sx={{
                   textAlign: "left",
                   fontSize: "15px",
-                  
+
                   maxWidth: 350,
                 }}
               >
@@ -1156,7 +1156,7 @@ export default function NeotelBussiness() {
               color: "black",
               fontSize: "15px",
               textAlign: { xs: "center", lg: "justify" },
-              padding:{xs:1,sm:1,md:0,lg:0}
+              padding: { xs: 1, sm: 1, md: 0, lg: 0 }
             }}
           >
             For more information on our business products or to get started, please contact us.
@@ -1175,9 +1175,18 @@ export default function NeotelBussiness() {
             <div>Seiuli Deepak Khanna</div>
             <div>CEO & Director</div>
             <div>Telikom Nauru Corporation t/a Neotel</div>
-            <div>Phone: +674 9990000</div>
-            <div>Email: business@neotel.nr</div>
+            <div>
+              <a
+                href="https://neotel.nr/help-at-hand/contact-us"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#253A7D", fontWeight: "bold", textDecoration: "none" }}
+              >
+                Contact Us
+              </a>
+            </div>
           </Typography>
+
         </Grid>
 
         <Grid

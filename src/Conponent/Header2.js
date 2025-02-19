@@ -58,6 +58,10 @@ const Header = () => {
       route: "/services",
     },
     {
+      label: "Payment",
+      route: "/123",
+    },
+    {
       label: "About",
       route: "/about",
       submenu: [
