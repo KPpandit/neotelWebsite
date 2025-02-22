@@ -79,9 +79,9 @@ const PrepaidPlans = ({ selectedPlan, onPlanSelect, disabled }) => {
       )}
       {plan.description.toLowerCase().includes("router") && (
         <>
-          <Typography variant="body2" sx={{ color: "brown", width: 100, textAlign: 'center', fontSize: '12px' }}>$ 485</Typography>
-          <Typography variant="body2" sx={{ color: "black", width: 100, textAlign: 'center', fontSize: '12px' }}>Special Offer $ 100</Typography>
-          <Typography variant="body2" sx={{ color: "black", textAlign: 'center', fontSize: '12px' }}>150 Monthly / Unlimited Data</Typography>
+           <Typography variant="subtitle2" sx={priceStyle}>${plan.pack_price}</Typography>
+           <Typography variant="body2" sx={{ color: "black", fontSize: '12px' }}>For {plan.validity} Days</Typography>
+          <Typography variant="body2" sx={{ color: "black", textAlign: 'center', fontSize: '12px' }}> Unlimited Data</Typography>
         </>
       )}
       {(plan.description.toLowerCase().includes("call") || plan.description.toLowerCase().includes("data")) && (

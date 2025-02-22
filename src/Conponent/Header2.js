@@ -59,7 +59,7 @@ const Header = () => {
     },
     {
       label: "Payment",
-      route: "/123",
+      route: "/buy",
     },
     {
       label: "About",

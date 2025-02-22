@@ -194,7 +194,7 @@ function App() {
         <Route path="/about-company/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/Voip/Neotel_1.2.59_IMS.apk" element={<Navigate to="/" replace />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/123" element={<Finalpaymnet />} />
+        <Route path="/buy" element={<Finalpaymnet />} />
         <Route path="/callbackstatus" element={<CallBackPage />} />
       </Routes>
       {!noFooterPaths.includes(location.pathname) && <Footer1 />}

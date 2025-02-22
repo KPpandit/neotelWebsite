@@ -33,7 +33,7 @@ export default function Services() {
   }, []);
 
   const handleRowClick = (pack_id) => {
-    navigate(`/123?pack_id=${pack_id}`);
+    navigate(`/buy?pack_id=${pack_id}`);
   };
 
   return (

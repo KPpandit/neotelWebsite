@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PhoneNumberVerification from './PhoneNumberVerification';
 import OtpVerification from './OtpVerification';
 import PrepaidPlans from './PrepaidPlans';
@@ -10,6 +10,11 @@ const Finalpaymnet = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [no, setNo] = useState('');
+
+  // Scroll to the top whenever the component mounts or updates
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to the top
+  }, []); // Empty dependency array ensures this runs only once on mount
 
   return (
     <div style={{ padding: '20px', paddingTop: 50 }}>
@@ -23,14 +28,6 @@ const Finalpaymnet = () => {
           }}
         />
       )}
-
-      {/* Step 2: OTP Verification (if needed) */}
-      {/* {step === 2 && (
-        <OtpVerification
-          phoneNumber={phoneNumber}
-          onOtpVerified={() => setStep(3)}
-        />
-      )} */}
 
       {/* Step 2: Prepaid Plans */}
       <PrepaidPlans

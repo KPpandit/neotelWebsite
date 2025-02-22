@@ -3,10 +3,12 @@ import { Box, Typography, Grid, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import whoweareImage from "../../Images/whoweareImage.png";
 import whoweare from "../../Images/whoweare.png";
-import whoweareImage2 from "../../Images/whoweareImage2.png";
-import whoweareCard1 from "../../Images/whoweareCard1.png";
-import whowearecard2 from "../../Images/whowearecard2.png";
-import whowearecard3 from "../../Images/whowearecard3.png";
+import whoweareImage2 from "../../Images/whowearecard2.jpg";
+
+import bussinessCard4 from "../../Images/bussinessCard4.png";
+import whoweareCard1 from "../../Images/whowearecard1.jpg";
+import whowearecard2 from "../../Images/bussinessCard17.png";
+import whowearecard3 from "../../Images/whowearecard3.jpg";
 export default function WhoWeAre() {
   const navigate = useNavigate();
   const handleGetStarted = () => navigate("/about-company/careers/jobForm");
@@ -114,7 +116,7 @@ export default function WhoWeAre() {
       </Grid>
       <Grid container spacing={10} sx={{ paddingTop: 10 ,paddingLeft: { lg: 5, md: 0, xs: 0 }, paddingRight: { lg: 0, md: 0, xs: 0 },padding:4}}>
         <Grid item xs={12} md={6} sx={{ display: "flex", justifyContent: "flex-end", margin:{lg:0,md:0,sm:4,xs:4} }}>
-          <Box component="img" src={whowearecard2} alt="Brand" sx={{ width: { xs: "100%", md: "80%" }, height: "auto", marginBottom: { xs: 2, md: 0 } }} />
+          <Box component="img" src={bussinessCard4} alt="Brand" sx={{ width: { xs: "100%", md: "80%" }, height: "auto", marginBottom: { xs: 2, md: 0 } }} />
         </Grid>
         <Grid item xs={12} md={6} sx={{ padding: 0, margin:{lg:0,md:0,sm:4,xs:4} }}>
           <Typography variant="h3" sx={{ fontWeight: "bold", marginBottom: 2, fontSize: { lg: "40px", md: "40px", xs: "30px" } }}>

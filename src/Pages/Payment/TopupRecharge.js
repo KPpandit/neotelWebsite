@@ -23,14 +23,15 @@ const TopupRecharge = ({ topUpValue, disabled }) => {
     setLoading(true);
 
     localStorage.setItem("topUpValue", topUpValue);
-
+    let msisdn =localStorage.getItem('Number');
     const paymentData = {
       amount: topUpValue,
       quantity: 1,
+      msisdn:msisdn,
       currency: "AUD",
       name: "Top-up Recharge",
-      successUrl: "https://payment.neotel.nr/callbackstatus?status=success&transactionId=_transactionId_",
-      failureUrl: "https://payment.neotel.nr/callbackstatus?status=failure&transactionId=_transactionId_",
+      successUrl: "https://neotel.nr/callbackstatus?status=success&transactionId=_transactionId_",
+      failureUrl: "https://neotel.nr/callbackstatus?status=failure&transactionId=_transactionId_",
     };
 
     try {
