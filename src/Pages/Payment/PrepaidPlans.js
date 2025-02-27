@@ -11,11 +11,11 @@ const PrepaidPlans = ({ selectedPlan, onPlanSelect, disabled }) => {
   const [selectedPack, setSelectedPack] = useState(null);
   const [topUpValue, setTopUpValue] = useState(localStorage.getItem("topUpValue") || "");
   const [inputError, setInputError] = useState("");
-  const [isTextFieldFocused, setIsTextFieldFocused] = useState(false);
   const [isButtonVisible, setIsButtonVisible] = useState(false);
   const orderSummaryRef = useRef(null);
   const location = useLocation();
   const [showTopupRecharge, setShowTopupRecharge] = useState(false);
+
   useEffect(() => {
     if (selectedPlan) setSelectedPack(selectedPlan);
   }, [selectedPlan]);
@@ -25,7 +25,7 @@ const PrepaidPlans = ({ selectedPlan, onPlanSelect, disabled }) => {
       setLoading(true);
       try {
         const response = await axios.get("https://bssproxy01.neotel.nr/abmf-prepaid/api/prepaid/packs?pack_status=APPROVED");
-        let fetchedPlans = response.data.filter(plan => plan.pack_id !== 78);
+        let fetchedPlans = response.data.filter(plan => plan.pack_id !== 78 && plan.category_name !== "Reseller");
         const queryParams = new URLSearchParams(location.search);
         const packId = queryParams.get('pack_id');
         if (packId) {
@@ -48,15 +48,13 @@ const PrepaidPlans = ({ selectedPlan, onPlanSelect, disabled }) => {
 
   const handleTopUpChange = (event) => {
     const value = event.target.value;
-    if (value && value < 20) setInputError("Top-Up amount must be greater then 20 .");
+    if (value && value < 20) setInputError("Top-Up amount must be greater than 20.");
     else setInputError("");
     setTopUpValue(value);
     localStorage.setItem("topUpValue", value);
     setIsButtonVisible(value !== "");
   };
 
-  const handleTextFieldFocus = () => setIsTextFieldFocused(true);
-  const handleTextFieldBlur = () => setIsTextFieldFocused(false);
   const handleButtonClick = () => {
     console.log("Button clicked!", topUpValue);
     setShowTopupRecharge(true);
@@ -71,18 +69,15 @@ const PrepaidPlans = ({ selectedPlan, onPlanSelect, disabled }) => {
 
   const renderPlanDetails = (plan) => (
     <Box sx={circleStyle}>
-      {!plan.description.toLowerCase().includes("router") && (
-        <>
-          <Typography variant="subtitle2" sx={priceStyle}>${plan.pack_price}</Typography>
-          <Typography variant="body2" sx={{ color: "black", fontSize: '12px' }}>For {plan.validity} Days</Typography>
-        </>
+      <Typography variant="subtitle2" sx={priceStyle}>${plan.pack_price}</Typography>
+      {plan.description.toLowerCase().includes("data") && (
+        <Typography variant="body2" sx={{ color: "black", fontSize: "12px", fontWeight: 'bold' }}>
+          {plan.data_balance} GB
+        </Typography>
       )}
+      <Typography variant="body2" sx={{ color: "black", fontSize: '12px', fontWeight: 'bold' }}>For {plan.validity} Days</Typography>
       {plan.description.toLowerCase().includes("router") && (
-        <>
-           <Typography variant="subtitle2" sx={priceStyle}>${plan.pack_price}</Typography>
-           <Typography variant="body2" sx={{ color: "black", fontSize: '12px' }}>For {plan.validity} Days</Typography>
-          <Typography variant="body2" sx={{ color: "black", textAlign: 'center', fontSize: '12px' }}> Unlimited Data</Typography>
-        </>
+        <Typography variant="body2" sx={{ color: "black", textAlign: 'center', fontSize: '12px' }}>Unlimited Data</Typography>
       )}
       {(plan.description.toLowerCase().includes("call") || plan.description.toLowerCase().includes("data")) && (
         <Typography variant="body2" sx={{ color: "black", textAlign: 'center', fontSize: '12px' }}>Neotel to Neotel Call & SMS Free</Typography>
@@ -128,8 +123,6 @@ const PrepaidPlans = ({ selectedPlan, onPlanSelect, disabled }) => {
                 disabled={disabled}
                 value={topUpValue}
                 onChange={handleTopUpChange}
-                onFocus={handleTextFieldFocus}
-                onBlur={handleTextFieldBlur}
                 type="number"
                 error={Boolean(inputError)}
                 helperText={inputError}
@@ -137,7 +130,7 @@ const PrepaidPlans = ({ selectedPlan, onPlanSelect, disabled }) => {
                 sx={{ width: "300px" }}
                 inputProps={{ min: 20 }}
               />
-              {isButtonVisible && topUpValue>20 && <Button variant="contained" sx={{ mt: 2 ,backgroundColor:'#4A59A7'}} onClick={handleButtonClick}>Pay Top - up Amount</Button>}
+              {isButtonVisible && topUpValue >= 20 && <Button variant="contained" sx={{ mt: 2, backgroundColor: '#4A59A7' }} onClick={handleButtonClick}>Pay Top-up Amount</Button>}
               {showTopupRecharge && <TopupRecharge topUpValue={topUpValue} disabled={false} />}
             </Grid>
           </Grid>
@@ -145,16 +138,18 @@ const PrepaidPlans = ({ selectedPlan, onPlanSelect, disabled }) => {
       )}
       {selectedPack && (
         <Box sx={{ mt: 3, pt: 3 }} ref={orderSummaryRef}>
-          <Typography sx={{ fontSize: "20px", textAlign: "center", paddingTop: 5 }}>Order Summary</Typography>
-          <Divider sx={{ my: 4, backgroundColor: "black", height: 3 }} />
-          <Box sx={{ px: 3 }}>
-            <DetailRow label="Pack Name" value={selectedPack.pack_name} />
-            <DetailRow label="Pack Validity" value={`${selectedPack.validity} Days`} />
-            <DetailRow label="Data Balance" value={selectedPack.assigned_data_balance === '931 GB' ? 'Unlimited Data' : selectedPack.assigned_data_balance} />
-            <DetailRow label="Neotel to Neotel Call" value={`${selectedPack.onn_call_balance === 1666 ? 'Unlimited' : selectedPack.onn_call_balance} ${selectedPack.onn_call_balance_parameter}`} />
-            <DetailRow label="Neotel to Neotel SMS" value={`${selectedPack.onn_sms_balance === 99999 ? 'Unlimited' : selectedPack.onn_sms_balance} SMS`} />
-            <DetailRow label="Total" value={`$ ${selectedPack.pack_price}`} />
-          </Box>
+          <Typography sx={{ fontSize: "24px", fontWeight: "bold", textAlign: "center", paddingTop: 5, color: "#253A7D" }}>Order Summary</Typography>
+          <Divider sx={{ my: 4, backgroundColor: "#253A7D", height: 2 }} />
+          <Card sx={{ maxWidth: 500, mx: "auto", boxShadow: 3, borderRadius: 2, p: 3 }}>
+            <CardContent>
+              <DetailRow label="Pack Name" value={selectedPack.pack_name} />
+              <DetailRow label="Pack Validity" value={`${selectedPack.validity} Days`} />
+              <DetailRow label="Data Balance" value={selectedPack.assigned_data_balance === '931 GB' ? 'Unlimited Data' : selectedPack.assigned_data_balance} />
+              <DetailRow label="Neotel to Neotel Call" value={`${selectedPack.onn_call_balance === 1666 ? 'Unlimited' : selectedPack.onn_call_balance} ${selectedPack.onn_call_balance_parameter}`} />
+              <DetailRow label="Neotel to Neotel SMS" value={`${selectedPack.onn_sms_balance === 99999 ? 'Unlimited' : selectedPack.onn_sms_balance} SMS`} />
+              <DetailRow label="Total" value={`$ ${selectedPack.pack_price}`} />
+            </CardContent>
+          </Card>
         </Box>
       )}
       {loading && <Box display="flex" justifyContent="center"><CircularProgress /></Box>}
@@ -165,8 +160,8 @@ const PrepaidPlans = ({ selectedPlan, onPlanSelect, disabled }) => {
 
 const DetailRow = ({ label, value }) => (
   <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
-    <Typography variant="body1" sx={{ fontWeight: "bold", color: "black" }}>{label}</Typography>
-    <Typography variant="body1" sx={{ fontWeight: "bold", color: "black" }}>{value}</Typography>
+    <Typography variant="body1" sx={{ fontWeight: "bold", color: "#253A7D" ,fontSize:{xs:'10px',sm:'10px',md:'14px',lg:'16px'}}}>{label}</Typography>
+    <Typography variant="body1" sx={{ fontWeight: "bold", color: "black" ,fontSize:{xs:'10px',sm:'10px',md:'14px',lg:'16px'}}}>{value}</Typography>
   </Box>
 );
 

@@ -44,7 +44,7 @@ export default function AboutUs() {
                         <Grid item xs={12}>
                             <Typography
                                 variant="h4"
-                                sx={{ fontWeight: "bold", fontSize: { lg: "40px", md: "40px", xs: "30px" },marginBottom: 2, color: "black" }}
+                                sx={{ fontWeight: "bold", fontSize: { lg: "40px", md: "40px", xs: "30px" }, marginBottom: 2, color: "black" }}
                             >
 
                                 About Us
@@ -58,6 +58,7 @@ export default function AboutUs() {
                                     color: "black",
                                     fontSize: "15px",
                                     // fontWeight: "440",
+                                    textAlign:'justify'
                                 }}
                             >
                                 <strong>Neotel</strong> is a telecommunications leader based in Nauru, committed to transforming the way the world
@@ -77,42 +78,32 @@ export default function AboutUs() {
                         }}
                     >
                         <Grid container spacing={0} justifyContent={"center"} sx={{ paddingLeft: { lg: 10, md: 5, sm: 0, xs: 0 }, paddingRight: { lg: 10, md: 5, sm: 0, xs: 0 } }}>
-                            <Grid item lg={6} xs={12} sx={{ padding: 4, paddingTop: { lg: 8 } }}>
+                            <Grid item lg={6} xs={12} justifyContent={"center"} alignContent={'center'} sx={{ padding: 4,  }}>
                                 <Card
                                     sx={{
                                         maxWidth: "100%",
-                                        // marginTop: -4,
                                         "&:hover": {
                                             boxShadow: 15,
                                             cursor: "pointer",
                                             "& .title": { color: "#233A7E" },
                                         },
                                         maxHeight: "100%",
-                                        paddingTop:5,
-                                        
+                                        paddingTop: 3,
+                                        paddingBottom:3
                                     }}
                                 >
                                     {/* Display Image */}
                                     <CardMedia
-                                        sx={{ height: 600,backgroundSize: "contain" }}
+                                        sx={{
+                                            height: 400, // Adjust height for a smaller circular image
+                                            width: 400, // Ensure width matches height for a perfect circle
+                                            backgroundSize: "cover", // Use "cover" to ensure the image fills the circle
+                                            borderRadius: "50%", // Make the image circular
+                                            margin: "auto", // Center the image
+                                        }}
                                         image={DeepakImage} // Use profilePic for each card
                                         title="Profile Picture"
                                     />
-                                    <CardContent>
-                                        <Typography
-                                            gutterBottom
-
-                                            component="div"
-                                            className="title"
-                                            sx={{ fontSize: '18px', color: 'black', fontWeight: '450' }}
-                                        >
-                                            {/* Deppak */}
-                                        </Typography>
-                                        <Typography variant="body2" sx={{ fontSize: '15px', color: 'grey', fontWeight: '430' }}>
-                                            {/* silo */}
-                                        </Typography>
-                                    </CardContent>
-
                                 </Card>
                             </Grid>
                             <Grid item lg={6} xs={12} >
@@ -133,7 +124,7 @@ export default function AboutUs() {
                                         maxWidth: 400,
                                         margin: "0 auto 1rem",
                                         color: "black",
-                                        fontSize: "0.9rem",
+                                        // fontSize: "0.9rem",
                                         // fontWeight: "440",
                                         fontSize: "15px",
                                         textAlign: 'justify'
@@ -188,7 +179,7 @@ export default function AboutUs() {
                                         margin: "0 auto 0rem",
                                         color: "black",
                                         fontSize: "15px",
-                                        
+
                                         // fontWeight: "440",
                                         textAlign: 'justify'
                                     }}

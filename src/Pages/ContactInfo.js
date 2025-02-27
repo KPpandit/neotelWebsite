@@ -185,7 +185,7 @@ export default function ContactInfo() {
                     <ul style={{ paddingLeft: "20px" }}>
                         <li><strong>Monday to Friday:</strong> 9:00 AM - 5:00 PM</li>
                         <li><strong>Saturday:</strong> 9:00 AM - 12:00 PM</li>
-                        <li><strong>Sunday:</strong> Closed</li>
+                        <li><strong>Sunday:</strong> Holiday</li>
                     </ul>
                 </Typography>
 

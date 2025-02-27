@@ -4,12 +4,12 @@ import axios from "axios";
 import Confetti from "react-confetti";
 
 const CallBackPage = () => {
-  const [loading, setLoading] = useState(true);
-  const [apiLoading, setApiLoading] = useState(false);
-  const [paymentStatus, setPaymentStatus] = useState(null);
-  const [transactionId, setTransactionId] = useState("");
-  const [error, setError] = useState("");
-  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  const [loading, setLoading] = useState(true); // Initial loading state
+  const [apiLoading, setApiLoading] = useState(false); // API call loading state
+  const [paymentStatus, setPaymentStatus] = useState(null); // Payment status (success/failed)
+  const [transactionId, setTransactionId] = useState(""); // Transaction ID
+  const [error, setError] = useState(""); // Error message
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false); // Success popup state
 
   const number = localStorage.getItem("Number");
   const packName = localStorage.getItem("packName");
@@ -22,7 +22,9 @@ const CallBackPage = () => {
   const status = urlParams.get("status");
   const transactionIdFromURL = urlParams.get("transactionId");
 
-  const apiCalledRef = useRef(false);
+  console.log("URL from beginning of data -----> :", transactionIdFromURL);
+
+  const apiCalledRef = useRef(false); // To prevent duplicate API calls
 
   const callAdditionalAPI = async (msisdn, transactionId, amount, status, remark) => {
     const apiData = {
@@ -38,13 +40,24 @@ const CallBackPage = () => {
       await axios.post('https://bssproxy01.neotel.nr/erp/api/ref/save/payment', apiData, {
         headers: { Authorization: `Bearer ${CRM_TOKEN}` }
       });
+      console.log("URL from 2nd step success -----> :", urlParams);
+
+      // Only set paymentStatus to "success" if the status is "success"
+      if (status === "success") {
+        setPaymentStatus("success");
+        setShowSuccessPopup(true);
+      } else {
+        setPaymentStatus("failed");
+      }
     } catch (err) {
+      console.log("URL from 2nd step failure -----> :", urlParams);
       console.error("Error calling additional API:", err);
+      setPaymentStatus("failed"); // Set payment status to failed on error
     }
   };
 
   const confirmPayment = async (transactionId, isTopUp = false) => {
-    if (apiCalledRef.current) return;
+    if (apiCalledRef.current) return; // Prevent duplicate API calls
     apiCalledRef.current = true;
     setApiLoading(true);
 
@@ -70,16 +83,17 @@ const CallBackPage = () => {
     try {
       // Main API call
       await axios.post(apiUrl, apiData, { headers: { Authorization: `Bearer ${CRM_TOKEN}` } });
-      setPaymentStatus("success");
-      setShowSuccessPopup(true);
+      console.log("URL in 1st step success -----> :", urlParams);
+
       // Additional API call with success status
       await callAdditionalAPI(number, transactionId, apiData.amount, "success", isTopUp ? "TOP-UP" : "BUNDALE");
     } catch (err) {
+      console.log("URL in 1st step failure -----> :", urlParams);
       setError(`Failed to confirm ${isTopUp ? "top-up" : ""} payment.`);
       console.error(`Error confirming ${isTopUp ? "top-up" : ""} payment:`, err);
+
       // Additional API call with failed status
       await callAdditionalAPI(number, transactionId, apiData.amount, "failed", isTopUp ? "TOP-UP" : "BUNDALE");
-      setPaymentStatus("failed"); // Set payment status to failed
     } finally {
       setApiLoading(false);
     }
@@ -104,16 +118,17 @@ const CallBackPage = () => {
       if (status === "success") {
         await confirmPayment(transactionIdFromURL, topUpValue != null);
       } else if (status === "failure") {
-        setPaymentStatus("failed");
+        setPaymentStatus("failed"); // Explicitly set payment status to failed
         await callAdditionalAPI(number, transactionIdFromURL, topUpValue || packPrice, "failed", topUpValue ? "TOP-UP" : "BUNDAL");
       }
 
-      setLoading(false);
+      setLoading(false); // Set loading to false after API calls are completed
     };
 
     fetchPaymentStatus();
   }, []);
 
+  // Show loading spinner while checking payment status or processing API calls
   if (loading || apiLoading) {
     return (
       <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", height: "100vh", backgroundColor: "#f0f2f5" }}>
@@ -123,6 +138,7 @@ const CallBackPage = () => {
     );
   }
 
+  // Show error message if there's an error
   if (error) {
     return (
       <Box textAlign="center" mt={10} sx={{ paddingTop: 10, paddingBottom: 10 }}>
@@ -132,6 +148,7 @@ const CallBackPage = () => {
     );
   }
 
+  // Render success or failed UI only after API calls are completed
   return (
     <Box textAlign="center" mt={10} p={3} paddingTop={20} paddingBottom={15}>
       {paymentStatus === "success" && (
@@ -151,6 +168,7 @@ const CallBackPage = () => {
         </>
       )}
 
+      {/* Success Popup Modal */}
       <Modal open={showSuccessPopup} onClose={() => setShowSuccessPopup(false)} closeAfterTransition BackdropComponent={Backdrop} BackdropProps={{ timeout: 500 }}>
         <Fade in={showSuccessPopup}>
           <Box sx={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", bgcolor: "white", p: 4, boxShadow: 24, borderRadius: 2, textAlign: "center", width: "90%", maxWidth: 400 }}>
@@ -161,6 +179,7 @@ const CallBackPage = () => {
         </Fade>
       </Modal>
 
+      {/* Confetti Animation */}
       {showSuccessPopup && <Confetti numberOfPieces={200} />}
     </Box>
   );

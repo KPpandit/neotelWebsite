@@ -88,12 +88,13 @@ const Header = () => {
 
   const infoItems = [
     {
+      text2: "Visit our Store ",
       icon: <LocationOnIcon sx={{ fontSize: "18px", color: "#A7AED5" }} />,
       text: "Civic Centre Complex",
       link: "https://maps.app.goo.gl/3UNzEXszFVtNQHBZA",
     },
-    { icon: <EmailIcon sx={{ fontSize: "18px", color: "#A7AED5" }} />, text: "support@neotel.nr" },
-    { icon: <AccessTimeIcon sx={{ fontSize: "18px", color: "#A7AED5" }} />, text: "8:00 AM - 12:00 AM" },
+    { text2: "Write to Us ", icon: <EmailIcon sx={{ fontSize: "18px", color: "#A7AED5" }} />, text: " support@neotel.nr" },
+    { text2: "Talk to Us", icon: <AccessTimeIcon sx={{ fontSize: "18px", color: "#A7AED5" }} />, text: "8:00 AM - 12:00 AM" },
   ];
 
   const socialMediaLinks = [
@@ -176,18 +177,32 @@ const Header = () => {
                       rel="noopener noreferrer"
                       sx={{ fontSize: "18px", display: "flex", alignItems: "center" }}
                     >
-                      {item.icon}
-                      <Typography sx={{ fontSize: "12px", color: "#A7AED5", marginLeft: "5px" }}>
-                        {item.text}
-                      </Typography>
+                      <Box sx={{ display: "flex", flexDirection: "column" }}>
+                        <Typography sx={{ fontSize: "12px", color: "#A7AED5", marginLeft: "5px" ,textAlign:'center'}}>
+                          {item.text2}
+                        </Typography>
+
+                        <Box sx={{ display: "flex", alignItems: "center" }}>
+                          {item.icon}
+                          <Typography sx={{ fontSize: "12px", color: "#A7AED5", marginLeft: "5px" ,textAlign:'left'}}>
+                            {item.text}
+                          </Typography>
+                        </Box>
+                      </Box>
                     </IconButton>
                   ) : (
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                    <Box sx={{ display: "flex", flexDirection: "column" }}>
+                    <Typography sx={{ fontSize: "12px", color: "#A7AED5", marginLeft: "5px" ,textAlign:'center'}}>
+                      {item.text2}
+                    </Typography>
+
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
                       {item.icon}
-                      <Typography sx={{ fontSize: "12px", color: "#A7AED5" }}>
+                      <Typography sx={{ fontSize: "12px", color: "#A7AED5", marginLeft: "5px" ,textAlign:'right'}}>
                         {item.text}
                       </Typography>
                     </Box>
+                  </Box>
                   )}
                 </Box>
               ))}
