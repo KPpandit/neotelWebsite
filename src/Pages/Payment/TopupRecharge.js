@@ -22,8 +22,8 @@ const TopupRecharge = ({ topUpValue, disabled }) => {
 
     setLoading(true);
 
-    localStorage.setItem("topUpValue", topUpValue);
-    let msisdn =localStorage.getItem('Number');
+    sessionStorage.setItem("topUpValue", topUpValue);
+    let msisdn =sessionStorage.getItem('Number');
     const paymentData = {
       amount: topUpValue,
       quantity: 1,

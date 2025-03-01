@@ -40,6 +40,7 @@ export default function ValuePlan() {
           mt: -10,
           fontSize: { lg: "40px", md: "40px", xs: "30px" },
           color: "black",
+          paddingTop:5
         }}
       >
         Download this app to make voice calls on the Neotel network from Android

@@ -93,7 +93,7 @@ const Header = () => {
       text: "Civic Centre Complex",
       link: "https://maps.app.goo.gl/3UNzEXszFVtNQHBZA",
     },
-    { text2: "Write to Us ", icon: <EmailIcon sx={{ fontSize: "18px", color: "#A7AED5" }} />, text: " support@neotel.nr" },
+    { text2: "Write to Us ", icon: <EmailIcon sx={{ fontSize: "18px", color: "#A7AED5" }} />, text: " support@neotel.nr", link: "mailto:support@neotel.nr", },
     { text2: "Talk to Us", icon: <AccessTimeIcon sx={{ fontSize: "18px", color: "#A7AED5" }} />, text: "8:00 AM - 12:00 AM" },
   ];
 
@@ -173,18 +173,20 @@ const Header = () => {
                       color="inherit"
                       component="a"
                       href={item.link}
-                      target="_blank"
+                      target={item.link.startsWith("mailto:") ? "_self" : "_blank"}
                       rel="noopener noreferrer"
                       sx={{ fontSize: "18px", display: "flex", alignItems: "center" }}
                     >
                       <Box sx={{ display: "flex", flexDirection: "column" }}>
-                        <Typography sx={{ fontSize: "12px", color: "#A7AED5", marginLeft: "5px" ,textAlign:'center'}}>
+                        <Typography
+                          sx={{ fontSize: "12px", color: "#A7AED5", marginLeft: "5px", textAlign: "center" }}
+                        >
                           {item.text2}
                         </Typography>
 
                         <Box sx={{ display: "flex", alignItems: "center" }}>
                           {item.icon}
-                          <Typography sx={{ fontSize: "12px", color: "#A7AED5", marginLeft: "5px" ,textAlign:'left'}}>
+                          <Typography sx={{ fontSize: "12px", color: "#A7AED5", marginLeft: "5px", textAlign: "left" }}>
                             {item.text}
                           </Typography>
                         </Box>
@@ -192,17 +194,17 @@ const Header = () => {
                     </IconButton>
                   ) : (
                     <Box sx={{ display: "flex", flexDirection: "column" }}>
-                    <Typography sx={{ fontSize: "12px", color: "#A7AED5", marginLeft: "5px" ,textAlign:'center'}}>
-                      {item.text2}
-                    </Typography>
-
-                    <Box sx={{ display: "flex", alignItems: "center" }}>
-                      {item.icon}
-                      <Typography sx={{ fontSize: "12px", color: "#A7AED5", marginLeft: "5px" ,textAlign:'right'}}>
-                        {item.text}
+                      <Typography sx={{ fontSize: "12px", color: "#A7AED5", marginLeft: "5px", textAlign: "center" }}>
+                        {item.text2}
                       </Typography>
+
+                      <Box sx={{ display: "flex", alignItems: "center" }}>
+                        {item.icon}
+                        <Typography sx={{ fontSize: "12px", color: "#A7AED5", marginLeft: "5px", textAlign: "right" }}>
+                          {item.text}
+                        </Typography>
+                      </Box>
                     </Box>
-                  </Box>
                   )}
                 </Box>
               ))}
@@ -211,9 +213,11 @@ const Header = () => {
               <Button
                 startIcon={<PersonAddIcon sx={{ fontSize: "18px", color: "#A7AED5" }} />}
                 sx={{ textTransform: "none", fontSize: "12px", color: "grey" }}
+                onClick={() => window.location.href = "https://selfcare.neotel.nr"}
               >
                 Register/Login
               </Button>
+
               {socialMediaLinks.map((social, index) => (
                 <Tooltip key={index} title={`Go to ${social.link}`}>
                   <IconButton

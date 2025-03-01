@@ -24,7 +24,8 @@ const PhoneNumberVerification = ({ onVerified }) => {
       );
 
       const { jwtToken } = response.data;
-      localStorage.setItem('CRM_TOKEN', jwtToken); // Store the token in localStorage
+      sessionStorage.setItem('CRM_TOKEN', jwtToken); 
+      sessionStorage.setItem('CRM_TOKEN', jwtToken);
       console.log('CRM Token stored successfully:', jwtToken);
     } catch (err) {
       console.error('Login failed:', err);
@@ -48,7 +49,7 @@ const PhoneNumberVerification = ({ onVerified }) => {
       await loginAndGetToken();
 
       // Verify the phone number using the CRM token
-      const crmToken = localStorage.getItem('CRM_TOKEN');
+      const crmToken = sessionStorage.getItem('CRM_TOKEN');
       if (!crmToken) {
         throw new Error('CRM token not found.');
       }
@@ -64,7 +65,8 @@ const PhoneNumberVerification = ({ onVerified }) => {
 
       if (response.data.subscriber_type.toLowerCase() === 'prepaid') {
         onVerified(fullNumber);
-        localStorage.setItem('Number', fullNumber);
+        sessionStorage.setItem('Number', fullNumber);
+        sessionStorage.setItem('Number', fullNumber);
       } else {
         setError('Only prepaid customers are allowed.');
       }
@@ -98,7 +100,7 @@ const PhoneNumberVerification = ({ onVerified }) => {
         }}
       >
         <TextField
-          label="Phone Number"
+          label="Enter Phone Number"
           value={phoneNumber}
           onChange={handleChange}
           error={!!error}
@@ -131,6 +133,7 @@ const PhoneNumberVerification = ({ onVerified }) => {
                   marginRight: '10px', // Adjusted spacing after 674
                   fontSize: "14px", // Reduced font size
                   userSelect: 'none',
+                  // backgroundColor:'blue'
                 }}
               >
                 674

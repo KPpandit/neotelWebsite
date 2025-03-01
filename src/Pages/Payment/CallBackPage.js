@@ -11,12 +11,12 @@ const CallBackPage = () => {
   const [error, setError] = useState(""); // Error message
   const [showSuccessPopup, setShowSuccessPopup] = useState(false); // Success popup state
 
-  const number = localStorage.getItem("Number");
-  const packName = localStorage.getItem("packName");
-  const CRM_TOKEN = localStorage.getItem("CRM_TOKEN");
-  const packId = localStorage.getItem("packID");
-  const packPrice = localStorage.getItem("packPrice");
-  const topUpValue = localStorage.getItem("topUpValue");
+  const number = sessionStorage.getItem("Number");
+  const packName = sessionStorage.getItem("packName");
+  const CRM_TOKEN = sessionStorage.getItem("CRM_TOKEN");
+  const packId = sessionStorage.getItem("packID");
+  const packPrice = sessionStorage.getItem("packPrice");
+  const topUpValue = sessionStorage.getItem("topUpValue");
 
   const urlParams = new URLSearchParams(window.location.search);
   const status = urlParams.get("status");
@@ -25,24 +25,28 @@ const CallBackPage = () => {
   console.log("URL from beginning of data -----> :", transactionIdFromURL);
 
   const apiCalledRef = useRef(false); // To prevent duplicate API calls
+  
+const callRef = useRef(0); // Use useRef to persist across re-renders
 
-  const callAdditionalAPI = async (msisdn, transactionId, amount, status, remark) => {
+const callAdditionalAPI = async (msisdn, transactionId, amount, status, remark) => {
+  if (callRef.current <= 0) { // Ensure API is called only once
+    callRef.current += 1; // Increment the counter to prevent duplicate calls
+
     const apiData = {
       msisdn,
       transactionId,
-      createDate: new Date().toISOString().split('T')[0],
+      createDate: new Date().toISOString().split("T")[0],
       amount,
       status: status === "success" ? "SUCCESS" : "FAILED",
       remark,
     };
 
     try {
-      await axios.post('https://bssproxy01.neotel.nr/erp/api/ref/save/payment', apiData, {
-        headers: { Authorization: `Bearer ${CRM_TOKEN}` }
+      await axios.post("https://bssproxy01.neotel.nr/erp/api/ref/save/payment", apiData, {
+        headers: { Authorization: `Bearer ${CRM_TOKEN}` },
       });
       console.log("URL from 2nd step success -----> :", urlParams);
 
-      // Only set paymentStatus to "success" if the status is "success"
       if (status === "success") {
         setPaymentStatus("success");
         setShowSuccessPopup(true);
@@ -54,7 +58,9 @@ const CallBackPage = () => {
       console.error("Error calling additional API:", err);
       setPaymentStatus("failed"); // Set payment status to failed on error
     }
-  };
+  }
+};
+
 
   const confirmPayment = async (transactionId, isTopUp = false) => {
     if (apiCalledRef.current) return; // Prevent duplicate API calls

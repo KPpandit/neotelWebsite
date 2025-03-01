@@ -9,7 +9,7 @@ const PrepaidPlans = ({ selectedPlan, onPlanSelect, disabled }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [selectedPack, setSelectedPack] = useState(null);
-  const [topUpValue, setTopUpValue] = useState(localStorage.getItem("topUpValue") || "");
+  const [topUpValue, setTopUpValue] = useState(sessionStorage.getItem("topUpValue") || "");
   const [inputError, setInputError] = useState("");
   const [isButtonVisible, setIsButtonVisible] = useState(false);
   const orderSummaryRef = useRef(null);
@@ -51,7 +51,8 @@ const PrepaidPlans = ({ selectedPlan, onPlanSelect, disabled }) => {
     if (value && value < 20) setInputError("Top-Up amount must be greater than 20.");
     else setInputError("");
     setTopUpValue(value);
-    localStorage.setItem("topUpValue", value);
+    sessionStorage.setItem("topUpValue", value);
+    sessionStorage.setItem("topUpValue", value);
     setIsButtonVisible(value !== "");
   };
 

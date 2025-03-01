@@ -150,7 +150,7 @@ export default function Partners() {
                   "Deliver enhanced technology and services.",
                   "Expand into new markets and strengthen our global presence.",
                   "Ensuring reliability and high-performance solutions",
-                 
+
                 ].map((point, index) => (
                   <ListItem
                     key={index}
@@ -169,7 +169,7 @@ export default function Partners() {
                 variant="body1"
                 sx={{ fontSize: "16px", textAlign: "left", lineHeight: 1.6, color: "black" }}
               >
-               Together, we’re shaping the future of connectivity with solutions that empower individuals, businesses, and communities worldwide.
+                Together, we’re shaping the future of connectivity with solutions that empower individuals, businesses, and communities worldwide.
               </Typography>
             </Box>
 
@@ -188,14 +188,14 @@ export default function Partners() {
                   fontSize: { lg: "40px", md: "40px", xs: "30px" },
                 }}
               >
-               Interested in Partnering with Us?
+                Interested in Partnering with Us?
               </Typography>
 
               <Typography
                 variant="body1"
                 sx={{ fontSize: "16px", textAlign: "left", lineHeight: 1.6, color: "black" }}
               >
-               We’re always looking to build new and exciting partnerships. If your organization shares our vision for innovation, quality, and customer excellence, we’d love to explore how we can collaborate. Reach out to us and let’s create something extraordinary together!
+                We’re always looking to build new and exciting partnerships. If your organization shares our vision for innovation, quality, and customer excellence, we’d love to explore how we can collaborate. Reach out to us and let’s create something extraordinary together!
               </Typography>
 
               {/* Bullet Points List */}
@@ -203,7 +203,6 @@ export default function Partners() {
                 {[
                   "Email: partnerships@neotel.nr",
                   "Phone: +674 2222123",
-                 
                 ].map((point, index) => (
                   <ListItem
                     key={index}
@@ -214,15 +213,24 @@ export default function Partners() {
                       paddingLeft: "10px",
                     }}
                   >
-                    <Typography variant="body1">{point}</Typography>
+                    <Typography variant="body1">
+                      {point.includes("Phone:") ? (
+                        <>
+                          Phone: <strong>+674 2222123</strong>
+                        </>
+                      ) : (
+                        point
+                      )}
+                    </Typography>
                   </ListItem>
                 ))}
               </List>
+
               <Typography
                 variant="body1"
                 sx={{ fontSize: "16px", textAlign: "left", lineHeight: 1.6, color: "black" }}
               >
-               Together, we’re shaping the future of connectivity with solutions that empower individuals, businesses, and communities worldwide.
+                Together, we’re shaping the future of connectivity with solutions that empower individuals, businesses, and communities worldwide.
               </Typography>
             </Box>
 
