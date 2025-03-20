@@ -45,7 +45,7 @@ export default function NeotelBussiness() {
           </Typography>
           <Typography sx={{
             maxWidth: 700, margin: "0 auto 1rem", color: "black",
-            fontSize: "15px",
+            fontSize: "16px",
             fontWeight: "440",
             textAlign: "center"
           }}>
@@ -58,11 +58,11 @@ export default function NeotelBussiness() {
 
       {/* Content Section 2*/}
       <Grid container spacing={10} sx={{ paddingTop: 10, padding: 4 }}>
-        <Grid item xs={12} md={6} sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <Box component="img" src={NeotelBussinessCard1} alt="Brand" sx={{ width: { xs: "100%", md: "80%" }, height: "auto", marginBottom: { xs: 2, md: 0 } }} />
+        <Grid item xs={12} md={7} sx={{ display: "flex", justifyContent: "flex-end" }}>
+          <Box component="img" src={NeotelBussinessCard1} alt="Brand" sx={{ width: { xs: "100%", md: "90%" }, height: "auto", marginBottom: { xs: 2, md: 0 } }} />
         </Grid>
-        <Grid item xs={12} md={6} sx={{ padding: 4 }}>
-          <Typography sx={{ fontWeight: "bold", fontSize: { lg: "40px", md: "40px", xs: "30px" }, marginBottom: 0, maxWidth: 350 }}> Business
+        <Grid item xs={12} md={5} sx={{ padding: 4 }}>
+          <Typography sx={{ fontWeight: "bold", fontSize: { lg: "40px", md: "40px", xs: "30px" }, marginBottom: 0, maxWidth: 350, lineHeight: 1.2, }}> Business
             Communication
             Solutions
           </Typography>
@@ -155,7 +155,7 @@ export default function NeotelBussiness() {
         <Grid
           item
           xs={12}
-          md={6}
+          md={5}
           sx={{
             padding: { lg: 4, md: 4, sm: 0, xs: 10 },
             textAlign: { xs: "left", md: "left" },
@@ -164,7 +164,7 @@ export default function NeotelBussiness() {
           }}
         >
           <Typography
-            sx={{ fontWeight: "bold", fontSize: { lg: "40px", md: "40px", xs: "30px" }, marginBottom: 2, paddingTop: { lg: 3, md: 0, xs: 0 } }}
+            sx={{ fontWeight: "bold", fontSize: { lg: "40px", md: "40px", xs: "30px" }, marginBottom: 2, paddingTop: { lg: 3, md: 0, xs: 0 },lineHeight: 1.2, }}
           >
             Internet & Data
             Solutions
@@ -265,19 +265,19 @@ export default function NeotelBussiness() {
           </Box> */}
         </Grid>
 
-        <Grid item xs={12} md={6} sx={{ display: "flex", justifyContent: "flex-start", margin: { lg: 0, md: 0, sm: 4, xs: 4 } }}>
-          <Box component="img" src={NeotelBussinessCard2} alt="Brand" sx={{ width: { xs: "100%", md: "80%" }, height: "auto", marginBottom: { xs: 2, md: 0 } }} />
+        <Grid item xs={12} md={7} sx={{ display: "flex", justifyContent: "flex-start", margin: { lg: 0, md: 0, sm: 4, xs: 4 } }}>
+          <Box component="img" src={NeotelBussinessCard2} alt="Brand" sx={{ width: { xs: "100%", md: "100%" }, height: "auto", marginBottom: { xs: 2, md: 0 } }} />
         </Grid>
       </Grid>
-      <Grid container spacing={10} sx={{ paddingTop: 10, paddingLeft: { lg: 5, md: 0, xs: 0 }, paddingRight: { lg: 0, md: 0, xs: 0 }, padding: 4 }}>
-        <Grid item xs={12} md={6} sx={{ display: "flex", justifyContent: "flex-end", margin: { lg: 0, md: 0, sm: 4, xs: 4 } }}>
+      <Grid container spacing={10} sx={{ paddingTop: 10, paddingLeft: { lg: 0, md: 0, xs: 0 }, paddingRight: { lg: 0, md: 0, xs: 0 }, padding: 4 }}>
+        <Grid item xs={12} md={7} sx={{ display: "flex", justifyContent: "flex-end", margin: { lg: 0, md: 0, sm: 4, xs: 4 } }}>
           <Box component="img" src={NeotelBussinessCard3} alt="Brand" sx={{ width: { xs: "100%", md: "80%" }, height: "auto", marginBottom: { xs: 2, md: 0 } }} />
         </Grid>
-        <Grid item xs={12} md={6} sx={{ padding: 0, margin: { lg: 0, md: 0, sm: 4, xs: 4 } }}>
+        <Grid item xs={12} md={5} sx={{ padding: 0, margin: { lg: 0, md: 0, sm: 4, xs: 4 } }}>
           <Typography variant="h3" sx={{ fontWeight: "bold", marginBottom: 2, fontSize: { lg: "40px", md: "40px", xs: "30px" } }}>
-            Cloud And</Typography>
+            Cloud And <br/>  IT Services</Typography>
           <Typography variant="h3" sx={{ fontWeight: "bold", marginBottom: 2, fontSize: { lg: "40px", md: "40px", xs: "30px" } }}>
-            IT Services</Typography>
+           </Typography>
           <List
             sx={{
               listStyleType: "disc", // Adds bullet points
@@ -378,7 +378,7 @@ export default function NeotelBussiness() {
         <Grid
           item
           xs={12}
-          md={6}
+          md={5}
           sx={{
             padding: 4,
             textAlign: { xs: "left", md: "left" },
@@ -388,7 +388,7 @@ export default function NeotelBussiness() {
         >
           <Typography
 
-            sx={{ fontWeight: "bold", textAlign: 'left', marginBottom: 2, fontSize: { lg: "40px", md: "40px", xs: "30px" }, paddingTop: { lg: 3, md: 0, xs: 0 }, maxWidth: { lg: 300 } }}
+            sx={{ fontWeight: "bold", textAlign: 'left', marginBottom: 2, fontSize: { lg: "40px", md: "40px", xs: "30px" }, paddingTop: { lg: 3, md: 0, xs: 0 }, maxWidth: { lg: 300 } ,lineHeight:1.2}}
           >
             Mobile
             Solutions
@@ -461,7 +461,7 @@ export default function NeotelBussiness() {
           </Box> */}
         </Grid>
 
-        <Grid item xs={12} md={6} sx={{ display: "flex", justifyContent: "flex-start", margin: { lg: 0, md: 0, sm: 4, xs: 4 } }}>
+        <Grid item xs={12} md={7} sx={{ display: "flex", justifyContent: "flex-start", margin: { lg: 0, md: 0, sm: 4, xs: 4 } }}>
           <Box component="img" src={NeotelBussinessCard4} alt="Brand" sx={{ width: { xs: "100%", md: "80%" }, height: "auto", marginBottom: { xs: 2, md: 0 } }} />
         </Grid>
       </Grid>
@@ -566,11 +566,11 @@ export default function NeotelBussiness() {
       </Grid>
       {/* Content Section 2*/}
       <Grid container spacing={10} sx={{ paddingTop: 10, padding: 4 }}>
-        <Grid item xs={12} md={6} sx={{ display: "flex", justifyContent: "flex-end" }}>
+        <Grid item xs={12} md={7} sx={{ display: "flex", justifyContent: "flex-end" }}>
           <Box component="img" src={NeotelBussinessCard5} alt="Brand" sx={{ width: { xs: "100%", md: "80%" }, height: "auto", marginBottom: { xs: 2, md: 0 } }} />
         </Grid>
-        <Grid item xs={12} md={6} sx={{ padding: 4 }}>
-          <Typography sx={{ fontWeight: "bold", fontSize: { lg: "40px", md: "40px", xs: "30px" }, marginBottom: 0, maxWidth: 350 }}> Business
+        <Grid item xs={12} md={5} sx={{ padding: 4 }}>
+          <Typography sx={{ fontWeight: "bold", fontSize: { lg: "40px", md: "40px", xs: "30px" }, marginBottom: 0, maxWidth: 350,lineHeight:1.2 }}> Business
             Business
             Collaboration
             Tools
@@ -651,7 +651,7 @@ export default function NeotelBussiness() {
         <Grid
           item
           xs={12}
-          md={6}
+          md={5}
           sx={{
             padding: { lg: 4, md: 4, sm: 0, xs: 10 },
             textAlign: { xs: "left", md: "left" },
@@ -746,8 +746,8 @@ export default function NeotelBussiness() {
           </Box> */}
         </Grid>
 
-        <Grid item xs={12} md={6} sx={{ display: "flex", justifyContent: "flex-start", margin: { lg: 0, md: 0, sm: 4, xs: 4 } }}>
-          <Box component="img" src={NeotelBussinessCard6} alt="Brand" sx={{ width: { xs: "100%", md: "80%" }, height: "auto", marginBottom: { xs: 2, md: 0 } }} />
+        <Grid item xs={12} md={7} sx={{ display: "flex", justifyContent: "flex-start", margin: { lg: 0, md: 0, sm: 4, xs: 4 } }}>
+          <Box component="img" src={NeotelBussinessCard6} alt="Brand" sx={{ width: { xs: "100%", md: "100%" }, height: "auto", marginBottom: { xs: 2, md: 0 } }} />
         </Grid>
       </Grid>
       {/* between Section */}
@@ -847,7 +847,7 @@ export default function NeotelBussiness() {
           <Box component="img" src={NeotelBussinessCard17} alt="Brand" sx={{ width: { xs: "100%", md: "80%" }, height: "auto", marginBottom: { xs: 2, md: 0 } }} />
         </Grid>
         <Grid item xs={12} md={6} sx={{ padding: 4 }}>
-          <Typography sx={{ fontWeight: "bold", fontSize: { lg: "40px", md: "40px", xs: "30px" }, marginBottom: 0, maxWidth: 350 }}>
+          <Typography sx={{ fontWeight: "bold", fontSize: { lg: "40px", md: "40px", xs: "30px" }, marginBottom: 0, maxWidth: 350 ,lineHeight:1.2}}>
             Business Analytics &
             Reporting Tools
           </Typography>
@@ -938,7 +938,7 @@ export default function NeotelBussiness() {
           }}
         >
           <Typography
-            sx={{ fontWeight: "bold", fontSize: { lg: "40px", md: "40px", xs: "30px" }, marginBottom: 2, paddingTop: { lg: 3, md: 0, xs: 0 } }}
+            sx={{ fontWeight: "bold", fontSize: { lg: "40px", md: "40px", xs: "30px" }, marginBottom: 2, paddingTop: { lg: 3, md: 0, xs: 0 },lineHeight:1.2 }}
           >
             Professional
             Services &
@@ -1028,7 +1028,7 @@ export default function NeotelBussiness() {
         </Grid>
 
         <Grid item xs={12} md={6} sx={{ display: "flex", justifyContent: "flex-start", margin: { lg: 0, md: 0, sm: 4, xs: 4 } }}>
-          <Box component="img" src={NeotelBussinessCard9} alt="Brand" sx={{ width: { xs: "100%", md: "80%" }, height: "auto", marginBottom: { xs: 2, md: 0 } }} />
+          <Box component="img" src={NeotelBussinessCard9} alt="Brand" sx={{ width: { xs: "100%", md: "100%" }, height: "auto", marginBottom: { xs: 2, md: 0 } }} />
         </Grid>
       </Grid>
       {/* /btween Secction */}

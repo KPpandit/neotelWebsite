@@ -29,9 +29,9 @@ const TopupRecharge = ({ topUpValue, disabled }) => {
       quantity: 1,
       msisdn:msisdn,
       currency: "AUD",
-      name: "Top-up Recharge",
-      successUrl: "https://neotel.nr/callbackstatus?status=success&transactionId=_transactionId_",
-      failureUrl: "https://neotel.nr/callbackstatus?status=failure&transactionId=_transactionId_",
+      name: "Top Up",
+      successUrl: "https://payment.neotel.nr/callbackstatus?status=success&transactionId=_transactionId_",
+      failureUrl: "https://payment.neotel.nr/callbackstatus?status=failure&transactionId=_transactionId_",
     };
 
     try {

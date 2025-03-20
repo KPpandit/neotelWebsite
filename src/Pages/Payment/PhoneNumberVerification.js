@@ -66,7 +66,7 @@ const PhoneNumberVerification = ({ onVerified }) => {
       if (response.data.subscriber_type.toLowerCase() === 'prepaid') {
         onVerified(fullNumber);
         sessionStorage.setItem('Number', fullNumber);
-        sessionStorage.setItem('Number', fullNumber);
+        localStorage.setItem('Number', fullNumber);
       } else {
         setError('Only prepaid customers are allowed.');
       }
@@ -79,7 +79,7 @@ const PhoneNumberVerification = ({ onVerified }) => {
   };
 
   return (
-    <div style={{ paddingTop: 70, maxWidth: 400, margin: 'auto' }}>
+    <div style={{ paddingTop: 70, maxWidth: 550, margin: 'auto' }}>
       <Typography
         sx={{
           fontSize: '18px',
@@ -89,7 +89,7 @@ const PhoneNumberVerification = ({ onVerified }) => {
           paddingTop: 1,
         }}
       >
-        Neotel Topup And Bundles
+        Enter Your Number to Select Your Bundles and Topup options
       </Typography>
 
       <Box

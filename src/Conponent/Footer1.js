@@ -16,6 +16,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import HeadsetMicIcon from "@mui/icons-material/HeadsetMic";
 import { MDBFooter } from "mdb-react-ui-kit";
 import XIcon from '@mui/icons-material/X';
+
 export default function Footer1() {
   const [showScroll, setShowScroll] = useState(false);
 
@@ -38,7 +39,7 @@ export default function Footer1() {
   }, []);
 
   const quickAccessItems = [
-    { name: "Prepaid", disabled:true },
+    { name: "Prepaid", disabled: true },
     { name: "Postpaid", disabled: true },
     { name: "Roaming", disabled: true },
     { name: "Data Bundles", disabled: true },
@@ -56,12 +57,12 @@ export default function Footer1() {
     { name: "Press Release", disabled: false },
     { name: "Corporate Responsibility", disabled: true },
     { name: "Terms and Conditions", disabled: false },
-    { name: "Privacy Policy", disabled: false},
+    { name: "Privacy Policy", disabled: false },
   ];
 
   const helpAtHandItems = [
     { name: "Contact Us", disabled: false },
-    { name: "Manage Your Account", disabled: true },
+    { name: "Manage Your Account", disabled: false },
     { name: "Store Locator", disabled: true },
     { name: "General FAQ's", disabled: false },
     { name: "Prepaid FAQ's", disabled: false },
@@ -71,6 +72,10 @@ export default function Footer1() {
   ];
 
   const createLinkPath = (category, item) => {
+    // Special case for "Manage Your Account"
+    if (item === "Manage Your Account") {
+      return "https://selfcare.neotel.nr";
+    }
     return `/${category}/${item.toLowerCase().replace(/\s+/g, "-")}`;
   };
 
@@ -172,6 +177,7 @@ export default function Footer1() {
                             textDecoration: "none",
                             "&:hover": { color: "#4A59A7" },
                           }}
+                          target={item.name === "Manage Your Account" ? "_blank" : "_self"} // Open in new tab for "Manage Your Account"
                         >
                           {item.name}
                         </MuiLink>

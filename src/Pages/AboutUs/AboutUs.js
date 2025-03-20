@@ -19,7 +19,7 @@ import profilePic from "../../Images/profilePic.png";
 import { useNavigate } from "react-router-dom";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import AboutUS1 from "../../Images/AboutUS1.png";
-import DeepakImage from "../../Images/DeepakImage.JPG";
+import DeepakImage from "../../Images/Deepak.jpeg";
 
 export default function AboutUs() {
     const theme = useTheme();
@@ -58,7 +58,7 @@ export default function AboutUs() {
                                     color: "black",
                                     fontSize: "15px",
                                     // fontWeight: "440",
-                                    textAlign:'justify'
+                                    textAlign: 'justify'
                                 }}
                             >
                                 <strong>Neotel</strong> is a telecommunications leader based in Nauru, committed to transforming the way the world
@@ -78,7 +78,7 @@ export default function AboutUs() {
                         }}
                     >
                         <Grid container spacing={0} justifyContent={"center"} sx={{ paddingLeft: { lg: 10, md: 5, sm: 0, xs: 0 }, paddingRight: { lg: 10, md: 5, sm: 0, xs: 0 } }}>
-                            <Grid item lg={6} xs={12} justifyContent={"center"} alignContent={'center'} sx={{ padding: 4,  }}>
+                            <Grid item lg={6} xs={12} justifyContent={"center"} alignContent={'center'} sx={{ padding: 4, }}>
                                 <Card
                                     sx={{
                                         maxWidth: "100%",
@@ -89,21 +89,29 @@ export default function AboutUs() {
                                         },
                                         maxHeight: "100%",
                                         paddingTop: 3,
-                                        paddingBottom:3
+                                        paddingBottom: 3
+
                                     }}
                                 >
                                     {/* Display Image */}
-                                    <CardMedia
-                                        sx={{
-                                            height: 400, // Adjust height for a smaller circular image
-                                            width: 400, // Ensure width matches height for a perfect circle
-                                            backgroundSize: "cover", // Use "cover" to ensure the image fills the circle
-                                            borderRadius: "50%", // Make the image circular
-                                            margin: "auto", // Center the image
-                                        }}
-                                        image={DeepakImage} // Use profilePic for each card
-                                        title="Profile Picture"
-                                    />
+                                    <a
+                                        href="https://www.linkedin.com/in/deepakkhanna23/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        style={{ textDecoration: "none" }}
+                                    >
+                                        <CardMedia
+                                            sx={{
+                                                height: 400,
+                                                width: 400,
+                                                backgroundSize: "cover",
+                                                borderRadius: "50%",
+                                                margin: "auto",
+                                            }}
+                                            image={DeepakImage}
+                                            title="Profile Picture"
+                                        />
+                                    </a>
                                 </Card>
                             </Grid>
                             <Grid item lg={6} xs={12} >

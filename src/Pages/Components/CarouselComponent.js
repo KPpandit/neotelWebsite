@@ -101,7 +101,7 @@ export default function CarouselComponent() {
                   }}
                   onClick={handleGetStartedClick}
                 >
-                  Get Started
+                  Click to Select Your Plan
                 </Button>
               </div>
             </div>

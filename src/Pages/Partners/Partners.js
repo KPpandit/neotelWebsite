@@ -216,7 +216,7 @@ export default function Partners() {
                     <Typography variant="body1">
                       {point.includes("Phone:") ? (
                         <>
-                          Phone: <strong>+674 2222123</strong>
+                          Phone: <strong>+674 9990000</strong>
                         </>
                       ) : (
                         point

@@ -6,28 +6,7 @@ import AppleImage from "../../Images/AppleImage.png";
 import VivoImage from "../../Images/VivoImage.png";
 import OnePlusImage from "../../Images/OnePlusImage.png";
 
-const brandCards = [
-  {
-    image: SamsungImage,
-    title: "Samsung",
-    description: "Enjoy unlimited Broadband at ₹999 Up to 200 Mbps speed, unlimited calls & OTT apps",
-  },
-  {
-    image: AppleImage,
-    title: "Apple",
-    description: "Enjoy unlimited Broadband at ₹999 Up to 200 Mbps speed, unlimited calls & OTT apps",
-  },
-  {
-    image: VivoImage,
-    title: "Vivo",
-    description: "Enjoy unlimited Broadband at ₹999 Up to 200 Mbps speed, unlimited calls & OTT apps",
-  },
-  {
-    image: OnePlusImage,
-    title: "OnePlus",
-    description: "Enjoy unlimited Broadband at ₹999 Up to 200 Mbps speed, unlimited calls & OTT apps",
-  },
-];
+
 
 export default function Brand() {
   return (
@@ -40,36 +19,26 @@ export default function Brand() {
       {/* Section Content */}
       <Box sx={{ padding: 4, textAlign: "center", maxWidth: "1200px", margin: "0 auto" }}>
         <Typography variant="h4" sx={{ fontWeight: "bold", marginBottom: 2, color: "black" }}>
-          Our Brand Partners
+          Our Brand 
         </Typography>
-        <Typography sx={{ maxWidth: 631, margin: "0 auto 4rem", color: "black", fontSize: '14px' ,fontWeight:'440'}}>
-          At Neotel, our brand represents the future of connectivity. We stand for innovation, trust, and global
-          reach. Our identity is built on the principles of technological excellence and customer centric solutions,
-          ensuring that every connection made through Neotel is reliable, fast, and secure
+        <Typography sx={{ maxWidth: 631, margin: "0 auto 4rem", color: "black", fontSize: '14px', fontSize: "16px" ,textAlign:'start'}}>
+        Neotel is reimagining the power of  connectivity with innovation, accessibility, and reliability. Rooted in Nauru and aiming to become the preferred Network of the Pacific, we are the fastest 5G Plus network, ensuring that individuals, businesses, and communities stay seamlessly connected, no matter where they are.
         </Typography>
 
         {/* Cards */}
-        <Grid container spacing={3} justifyContent="center">
-          {brandCards.map((card, index) => (
-            <Grid item key={index} sx={{ display: "flex", justifyContent: "center" }}>
-              <Card
-                sx={{
-                  width: 370,
-                  boxShadow: 3,
-                  textAlign: "center",
-                  border: "1px solid black", // Black border added
-                  borderRadius: "8px", // Optional: Add rounded corners
-                }}
-              >
-                <CardMedia component="img" height="140" image={card.image} alt={card.title} />
-                <CardContent>
-                  <Typography variant="body2" sx={{ color: "black" }}>
-                    {card.description}
-                  </Typography>
-                </CardContent>
-              </Card>
+        <Grid container spacing={3} justifyContent="center" sx={{marginTop:-8}}>
+         
+            <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" ,textAlign:'start', fontSize: "16px"}}>
+              <Typography sx={{ maxWidth: 631, color: "black", fontSize: '16px',  }}>
+              At our core, we bridge the digital divide, making cutting-edge technology affordable and accessible to all. Through strategic partnerships and state-of-the-art security protocols, we deliver high-performance, secure, and customer-centric solutions designed for the modern world.
+              </Typography>
             </Grid>
-          ))}
+            <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" ,textAlign:'start', fontSize: "16px"}}>
+              <Typography sx={{ maxWidth: 631, color: "black", fontSize: '16px',  }}>
+              We believe in unleashing innovation to push the boundaries of what’s possible, empowering our customers with borderless opportunities in the digital age. Neotel is not just a network—it’s a future-driven ecosystem that ensures no one is left behind in the digital revolution. Wherever you are, we connect you to what matters most.
+              </Typography>
+            </Grid>
+         
         </Grid>
       </Box>
     </Box>
