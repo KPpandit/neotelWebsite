@@ -54,7 +54,7 @@ export default function Footer1() {
     { name: "Who We Are", disabled: false },
     { name: "Management Team", disabled: true },
     { name: "Press Release", disabled: false },
-    { name: "Corporate Responsibility", disabled: true },
+    { name: "Corporate Responsibility", disabled: false },
     { name: "Terms and Conditions", disabled: false },
     { name: "Privacy Policy", disabled: false},
   ];
