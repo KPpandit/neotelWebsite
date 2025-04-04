@@ -22,17 +22,18 @@ const PaymentGateway = ({ selectedPlan, disabled }) => {
     sessionStorage.setItem('packName', selectedPlan.pack_name);
 
     
-    const packName = localStorage.getItem('packName') || sessionStorage.getItem('packName');
-    const msisdn = localStorage.getItem('Number') || sessionStorage.getItem('Number');
+    const packName =  sessionStorage.getItem('packName');
+    const msisdn = sessionStorage.getItem('Number');
+    const packId = sessionStorage.getItem('packID');
 
     const paymentData = {
       amount: selectedPlan.pack_price,
       quantity: 1,
       msisdn: msisdn,
       currency: 'AUD',
-      name: 'Bundle Purchase ' + packName,
-      successUrl: 'https://neotel.nr/callbackstatus?status=success&transactionId=_transactionId_',
-      failureUrl: 'https://neotel.nr/callbackstatus?status=failure&transactionId=_transactionId_',
+      name: 'Bundle Purchase ' + packName+'-'+packId,
+      successUrl: 'https://neotel.nr/callbackstatus/bundle?status=success&transactionId=_transactionId_',
+      failureUrl: 'https://neotel.nr/callbackstatus/bundle?status=failure&transactionId=_transactionId_',
     };
 
     try {

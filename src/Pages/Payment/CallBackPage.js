@@ -2,14 +2,18 @@ import React, { useEffect, useState, useRef } from "react";
 import { Typography, CircularProgress, Button, Box, Modal, Backdrop, Fade } from "@mui/material";
 import axios from "axios";
 import Confetti from "react-confetti";
+import { useLocation } from "react-router-dom";
 
 const CallBackPage = () => {
-  const [loading, setLoading] = useState(true); // Initial loading state
-  const [apiLoading, setApiLoading] = useState(false); // API call loading state
-  const [paymentStatus, setPaymentStatus] = useState(null); // Payment status (success/failed)
-  const [transactionId, setTransactionId] = useState(""); // Transaction ID
-  const [error, setError] = useState(""); // Error message
-  const [showSuccessPopup, setShowSuccessPopup] = useState(false); // Success popup state
+  const [loading, setLoading] = useState(true); 
+  const [apiLoading, setApiLoading] = useState(false);
+  const [paymentStatus, setPaymentStatus] = useState(null); 
+  const [transactionId, setTransactionId] = useState(""); 
+  const [error, setError] = useState(""); 
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false); 
+
+  const location = useLocation();
+  const isTopUp = location.pathname.includes("/topup");
 
   const number = sessionStorage.getItem("Number");
   const packName = sessionStorage.getItem("packName");
@@ -22,47 +26,41 @@ const CallBackPage = () => {
   const status = urlParams.get("status");
   const transactionIdFromURL = urlParams.get("transactionId");
 
-  console.log("URL from beginning of data -----> :", transactionIdFromURL);
-
   const apiCalledRef = useRef(false); // To prevent duplicate API calls
-  
-const callRef = useRef(0); // Use useRef to persist across re-renders
+  const callRef = useRef(0); // Use useRef to persist across re-renders
 
-const callAdditionalAPI = async (msisdn, transactionId, amount, status, remark) => {
-  if (callRef.current <= 0) { // Ensure API is called only once
-    callRef.current += 1; // Increment the counter to prevent duplicate calls
+  const callAdditionalAPI = async (msisdn, transactionId, amount, status, remark) => {
+    if (callRef.current <= 0) { // Ensure API is called only once
+      callRef.current += 1; // Increment the counter to prevent duplicate calls
 
-    const apiData = {
-      msisdn,
-      transactionId,
-      createDate: new Date().toISOString().split("T")[0],
-      amount,
-      status: status === "success" ? "SUCCESS" : "FAILED",
-      remark,
-    };
+      const apiData = {
+        msisdn,
+        transactionId,
+        createDate: new Date().toISOString().split("T")[0],
+        amount,
+        status: status === "success" ? "SUCCESS" : "FAILED",
+        remark,
+      };
 
-    try {
-      await axios.post("https://bssproxy01.neotel.nr/erp/api/ref/save/payment", apiData, {
-        headers: { Authorization: `Bearer ${CRM_TOKEN}` },
-      });
-      console.log("URL from 2nd step success -----> :", urlParams);
+      try {
+        await axios.post("https://bssproxy01.neotel.nr/erp/api/ref/save/payment", apiData, {
+          headers: { Authorization: `Bearer ${CRM_TOKEN}` },
+        });
 
-      if (status === "success") {
-        setPaymentStatus("success");
-        setShowSuccessPopup(true);
-      } else {
-        setPaymentStatus("failed");
+        if (status === "success") {
+          setPaymentStatus("success");
+          setShowSuccessPopup(true);
+        } else {
+          setPaymentStatus("failed");
+        }
+      } catch (err) {
+        console.error("Error calling additional API:", err);
+        setPaymentStatus("failed"); // Set payment status to failed on error
       }
-    } catch (err) {
-      console.log("URL from 2nd step failure -----> :", urlParams);
-      console.error("Error calling additional API:", err);
-      setPaymentStatus("failed"); // Set payment status to failed on error
     }
-  }
-};
+  };
 
-
-  const confirmPayment = async (transactionId, isTopUp = false) => {
+  const confirmPayment = async (transactionId) => {
     if (apiCalledRef.current) return; // Prevent duplicate API calls
     apiCalledRef.current = true;
     setApiLoading(true);
@@ -77,7 +75,7 @@ const callAdditionalAPI = async (msisdn, transactionId, amount, status, remark) 
       amount: parseFloat(packPrice),
       product: "plan",
       planId: parseInt(packId, 10),
-      paymentNotes: "Thank you !!",
+      paymentNotes: packName,
       paymentStatus: true,
       transactionId,
     };
@@ -86,20 +84,20 @@ const callAdditionalAPI = async (msisdn, transactionId, amount, status, remark) 
       "https://bssproxy01.neotel.nr/erp/api/save/payment/currency/1/paymentResult/1/paymentMethod/1/creditCard/1" :
       `https://bssproxy01.neotel.nr/erp/api/savepayment/currency/1/paymentrsult/1/paymentmethod/1?creditCard=2&msisdn=${number}`;
 
+    const remark = isTopUp ? "TOP-UP" : "BUNDALE";
+
     try {
       // Main API call
       await axios.post(apiUrl, apiData, { headers: { Authorization: `Bearer ${CRM_TOKEN}` } });
-      console.log("URL in 1st step success -----> :", urlParams);
 
       // Additional API call with success status
-      await callAdditionalAPI(number, transactionId, apiData.amount, "success", isTopUp ? "TOP-UP" : "BUNDALE");
+      await callAdditionalAPI(number, transactionId, apiData.amount, "success", remark);
     } catch (err) {
-      console.log("URL in 1st step failure -----> :", urlParams);
-      setError(`Failed to confirm ${isTopUp ? "top-up" : ""} payment.`);
-      console.error(`Error confirming ${isTopUp ? "top-up" : ""} payment:`, err);
+      setError(`Failed to confirm ${isTopUp ? "top-up" : "bundle"} payment.`);
+      console.error(`Error confirming ${isTopUp ? "top-up" : "bundle"} payment:`, err);
 
       // Additional API call with failed status
-      await callAdditionalAPI(number, transactionId, apiData.amount, "failed", isTopUp ? "TOP-UP" : "BUNDALE");
+      await callAdditionalAPI(number, transactionId, apiData.amount, "failed", remark);
     } finally {
       setApiLoading(false);
     }
@@ -122,10 +120,16 @@ const callAdditionalAPI = async (msisdn, transactionId, amount, status, remark) 
       setTransactionId(transactionIdFromURL);
 
       if (status === "success") {
-        await confirmPayment(transactionIdFromURL, topUpValue != null);
+        await confirmPayment(transactionIdFromURL);
       } else if (status === "failure") {
         setPaymentStatus("failed"); // Explicitly set payment status to failed
-        await callAdditionalAPI(number, transactionIdFromURL, topUpValue || packPrice, "failed", topUpValue ? "TOP-UP" : "BUNDAL");
+        await callAdditionalAPI(
+          number, 
+          transactionIdFromURL, 
+          isTopUp ? topUpValue : packPrice, 
+          "failed", 
+          isTopUp ? "TOP-UP" : "BUNDALE"
+        );
       }
 
       setLoading(false); // Set loading to false after API calls are completed
@@ -160,7 +164,7 @@ const callAdditionalAPI = async (msisdn, transactionId, amount, status, remark) 
       {paymentStatus === "success" && (
         <>
           <Typography variant="h4" sx={{ color: "green", fontWeight: "bold" }}>✅ Payment Successful!</Typography>
-          <Typography variant="body1" mt={1}>Thank you for your purchase. Your transaction has been completed successfully.</Typography>
+          <Typography variant="body1" mt={1}>Thank you for your {isTopUp ? "top-up" : "bundle purchase"}. Your transaction has been completed successfully.</Typography>
           <Typography variant="body1" fontWeight="bold" mt={1}>Transaction ID: {transactionId}</Typography>
         </>
       )}
@@ -168,9 +172,11 @@ const callAdditionalAPI = async (msisdn, transactionId, amount, status, remark) 
       {paymentStatus === "failed" && (
         <>
           <Typography variant="h4" sx={{ color: "red", fontWeight: "bold" }}>❌ Payment Failed!</Typography>
-          <Typography variant="body1" mt={1}>Your payment could not be processed. Please try again.</Typography>
+          <Typography variant="body1" mt={1}>Your {isTopUp ? "top-up" : "bundle purchase"} could not be processed. Please try again.</Typography>
           <Typography variant="body1" fontWeight="bold" mt={1}>Transaction ID: {transactionId}</Typography>
-          <Button variant="contained" sx={{ mt: 3, backgroundColor: "#d9534f", color: "white" }} onClick={() => (window.location.href = "/buy")}>Try Again</Button>
+          <Button variant="contained" sx={{ mt: 3, backgroundColor: "#d9534f", color: "white" }} onClick={() => (window.location.href = isTopUp ? "/topup" : "/buy")}>
+            Try Again
+          </Button>
         </>
       )}
 
@@ -179,7 +185,7 @@ const callAdditionalAPI = async (msisdn, transactionId, amount, status, remark) 
         <Fade in={showSuccessPopup}>
           <Box sx={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", bgcolor: "white", p: 4, boxShadow: 24, borderRadius: 2, textAlign: "center", width: "90%", maxWidth: 400 }}>
             <Typography variant="h4" sx={{ color: "green", fontWeight: "bold" }}>🎉 Payment Successful!</Typography>
-            <Typography variant="body1" mt={1}>Your transaction was completed successfully.</Typography>
+            <Typography variant="body1" mt={1}>Your {isTopUp ? "top-up" : "bundle purchase"} was completed successfully.</Typography>
             <Button variant="contained" sx={{ mt: 3, backgroundColor: "#28a745", color: "white" }} onClick={() => (window.location.href = "/")}>Go to Home</Button>
           </Box>
         </Fade>

@@ -39,7 +39,7 @@ export default function Footer1() {
 
   const quickAccessItems = [
     { name: "Prepaid", disabled:true },
-    { name: "Postpaid", disabled: true },
+    { name: "Postpaid", disabled: false },
     { name: "Roaming", disabled: true },
     { name: "Data Bundles", disabled: true },
     { name: "Special Offers", disabled: true },
@@ -52,7 +52,7 @@ export default function Footer1() {
     { name: "Careers", disabled: true },
     { name: "Partners", disabled: false },
     { name: "Who We Are", disabled: false },
-    { name: "Management Team", disabled: true },
+    { name: "Management Team", disabled: false },
     { name: "Press Release", disabled: false },
     { name: "Corporate Responsibility", disabled: false },
     { name: "Terms and Conditions", disabled: false },

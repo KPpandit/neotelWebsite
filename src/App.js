@@ -195,7 +195,8 @@ function App() {
         <Route path="/Voip/Neotel_1.2.59_IMS.apk" element={<Navigate to="/" replace />} />
         <Route path="/services" element={<Services />} />
         <Route path="/buy" element={<Finalpaymnet />} />
-        <Route path="/callbackstatus" element={<CallBackPage />} />
+        <Route path="/callbackstatus/topup" element={<CallBackPage />} />
+        <Route path="/callbackstatus/bundle" element={<CallBackPage />} />
       </Routes>
       {!noFooterPaths.includes(location.pathname) && <Footer1 />}
     </>

@@ -11,14 +11,66 @@ import {
     useTheme,
     useMediaQuery,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import contactUsBGImage from "../Images/contactUsBGImage.png";
 import ContactInfo from "./ContactInfo";
 import contactUSLower from "../Images/contactUSLower.png";
 
 export default function Contact() {
     const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+    const [formData, setFormData] = useState({
+        firstName: '',
+        phone: '674',
+        email: '',
+        inquiryType: ''
+    });
+    const [errors, setErrors] = useState({
+        phone: false,
+        email: false
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        
+        // Special handling for phone number
+        if (name === 'phone') {
+            // Ensure phone starts with 674 and has exactly 10 digits total
+            if (value.startsWith('674') && value.length <= 10 && /^\d+$/.test(value)) {
+                setFormData({...formData, [name]: value});
+            }
+            return;
+        }
+        
+        setFormData({...formData, [name]: value});
+    };
+
+    const validateEmail = (email) => {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        
+        // Validate phone number
+        const phoneValid = formData.phone.length === 10;
+        
+        // Validate email
+        const emailValid = validateEmail(formData.email);
+        
+        setErrors({
+            phone: !phoneValid,
+            email: !emailValid
+        });
+        
+        if (phoneValid && emailValid) {
+            // Submit form
+            console.log('Form submitted:', formData);
+            // Add your form submission logic here
+        }
+    };
+
     return (
         <Box sx={{ textAlign: "center", paddingBottom: 5, paddingTop: 15 }}>
             {/* Banner Image */}
@@ -32,10 +84,7 @@ export default function Contact() {
 
             {/* Form Section */}
             <Grid sx={{ backgroundColor: "#FFFFFF", paddingTop: 3 }}>
-                <Container
-                    component="main"
-                    maxWidth="lg"
-                >
+                <Container component="main" maxWidth="lg">
                     <Breadcrumbs />
                     <CssBaseline />
                     <Grid container spacing={1} sx={{ paddingTop: 6 }}>
@@ -59,35 +108,12 @@ export default function Contact() {
                                 <Grid item xs={12} lg={6}>
                                     <TextField
                                         fullWidth
+                                        name="firstName"
                                         label="First Name"
                                         variant="outlined"
                                         required
-                                        InputProps={{
-                                            sx: {
-                                                paddingY: 0.5, // Reduce input height
-                                                fontSize: "12px", // Smaller input text
-                                            },
-                                        }}
-                                        InputLabelProps={{
-                                            sx: { fontSize: "12px" }, // Smaller label text
-                                        }}
-                                        sx={{
-                                            "& .MuiOutlinedInput-root": {
-                                                borderRadius: 1, // Smaller border radius
-                                                fontSize: "12px", // TextField border font size
-                                            },
-                                        }}
-                                    />
-                                </Grid>
-
-                                {/* Your Number */}
-                                <Grid item xs={12} lg={6}>
-                                    <TextField
-                                        fullWidth
-                                        label="Your Phone"
-                                        variant="outlined"
-                                        type="tel"
-                                        required
+                                        value={formData.firstName}
+                                        onChange={handleChange}
                                         InputProps={{
                                             sx: {
                                                 paddingY: 0.5,
@@ -106,14 +132,52 @@ export default function Contact() {
                                     />
                                 </Grid>
 
+                                {/* Your Number */}
+                                <Grid item xs={12} lg={6}>
+                                    <TextField
+                                        fullWidth
+                                        name="phone"
+                                        label="Your Phone"
+                                        variant="outlined"
+                                        type="tel"
+                                        required
+                                        value={formData.phone}
+                                        onChange={handleChange}
+                                        error={errors.phone}
+                                        helperText={errors.phone ? "Phone must be 674 followed by 7 digits" : ""}
+                                        InputProps={{
+                                            sx: {
+                                                paddingY: 0.5,
+                                                fontSize: "12px",
+                                            },
+                                           
+                                        }}
+                                        InputLabelProps={{
+                                            sx: { fontSize: "12px" },
+                                            shrink: true
+                                        }}
+                                        sx={{
+                                            "& .MuiOutlinedInput-root": {
+                                                borderRadius: 1,
+                                                fontSize: "12px",
+                                            },
+                                        }}
+                                    />
+                                </Grid>
+
                                 {/* Your Email */}
                                 <Grid item xs={12} lg={6}>
                                     <TextField
                                         fullWidth
+                                        name="email"
                                         label="Your Email"
                                         variant="outlined"
                                         type="email"
                                         required
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        error={errors.email}
+                                        helperText={errors.email ? "Please enter a valid email address" : ""}
                                         InputProps={{
                                             sx: {
                                                 paddingY: 0.5,
@@ -136,10 +200,13 @@ export default function Contact() {
                                 <Grid item xs={12} lg={6}>
                                     <TextField
                                         fullWidth
+                                        name="inquiryType"
                                         label="Select Default"
                                         variant="outlined"
                                         select
                                         required
+                                        value={formData.inquiryType}
+                                        onChange={handleChange}
                                         InputProps={{
                                             sx: {
                                                 paddingY: 0.5,
@@ -166,16 +233,17 @@ export default function Contact() {
                             </Grid>
 
                             {/* Submit Button */}
-                            <Box sx={{ marginTop: 10, textAlign: "left" }}> {/* Align to left */}
+                            <Box sx={{ marginTop: 10, textAlign: "left" }}>
                                 <Button
                                     variant="contained"
                                     color="primary"
                                     size="large"
+                                    onClick={handleSubmit}
                                     sx={{
                                         backgroundColor: '#3B4A92',
-                                        paddingX: 6, // Horizontal padding for rectangle shape
-                                        paddingY: 2, // Vertical padding
-                                        borderRadius: 0, // Make it a rectangle
+                                        paddingX: 6,
+                                        paddingY: 2,
+                                        borderRadius: 0,
                                         fontSize: '11px'
                                     }}
                                 >
@@ -205,9 +273,6 @@ export default function Contact() {
                                 ></iframe>
                             </Box>
                         </Grid>
-                        {/* */}
-
-
                     </Grid>
                 </Container>
             </Grid>

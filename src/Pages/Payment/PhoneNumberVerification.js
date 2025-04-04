@@ -3,16 +3,15 @@ import { TextField, Typography, CircularProgress, Box } from '@mui/material';
 import axios from 'axios';
 
 const PhoneNumberVerification = ({ onVerified }) => {
-  const [phoneNumber, setPhoneNumber] = useState(''); // Only store the part after 674
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
-    const value = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
-
-    if (value.length <= 7) { // Limit to 7 digits (674 + 7 = 10 total)
+    const value = e.target.value.replace(/\D/g, '');
+    if (value.length <= 7) {
       setPhoneNumber(value);
-      setError(''); // Clear error when valid input is entered
+      setError('');
     }
   };
 
@@ -22,19 +21,16 @@ const PhoneNumberVerification = ({ onVerified }) => {
         'https://bssproxy01.neotel.nr/crm/api/login',
         { email: "pawan@gmail.com", password: "pawan123" }
       );
-
       const { jwtToken } = response.data;
-      sessionStorage.setItem('CRM_TOKEN', jwtToken); 
       sessionStorage.setItem('CRM_TOKEN', jwtToken);
-      console.log('CRM Token stored successfully:', jwtToken);
+      return jwtToken;
     } catch (err) {
       console.error('Login failed:', err);
-      setError('Failed to login and obtain CRM token.');
+      throw new Error('Failed to login and obtain CRM token.');
     }
   };
 
   useEffect(() => {
-    // Automatically call API when the number reaches 7 digits (total 10 with 674)
     if (phoneNumber.length === 7) {
       handleVerify();
     }
@@ -42,36 +38,23 @@ const PhoneNumberVerification = ({ onVerified }) => {
 
   const handleVerify = async () => {
     const fullNumber = `674${phoneNumber}`;
-
     setLoading(true);
+    
     try {
-      // Call the CRM login API to get the token
-      await loginAndGetToken();
-
-      // Verify the phone number using the CRM token
-      const crmToken = sessionStorage.getItem('CRM_TOKEN');
-      if (!crmToken) {
-        throw new Error('CRM token not found.');
-      }
-
+      const crmToken = await loginAndGetToken();
       const response = await axios.get(
         `https://bssproxy01.neotel.nr/abmf-prepaid/api/get/customer/detail?imsi=&msisdn=${fullNumber}`,
-        {
-          headers: {
-            Authorization: `Bearer ${crmToken}`,
-          },
-        }
+        { headers: { Authorization: `Bearer ${crmToken}` } }
       );
 
-      if (response.data.subscriber_type.toLowerCase() === 'prepaid') {
-        onVerified(fullNumber);
-        sessionStorage.setItem('Number', fullNumber);
+      const subscriberType = response.data.subscriber_type.toLowerCase();
+      if (subscriberType === 'prepaid' || subscriberType === 'postpaid') {
+        onVerified(fullNumber, subscriberType); // Pass customer type to parent
         sessionStorage.setItem('Number', fullNumber);
       } else {
-        setError('Only prepaid customers are allowed.');
+        setError('Only prepaid/postpaid customers are allowed.');
       }
     } catch (err) {
-      console.log(err.response?.data?.message || 'An error occurred', '---');
       setError(err.response?.data?.message || 'An error occurred');
     } finally {
       setLoading(false);
@@ -80,45 +63,31 @@ const PhoneNumberVerification = ({ onVerified }) => {
 
   return (
     <div style={{ paddingTop: 70, maxWidth: 400, margin: 'auto' }}>
-      <Typography
-        sx={{
-          fontSize: '18px',
-          fontWeight: 'bold',
-          textAlign: 'center',
-          paddingBottom: 0,
-          paddingTop: 1,
-        }}
-      >
+      <Typography sx={{ fontSize: '18px', fontWeight: 'bold', textAlign: 'center', paddingBottom: 0, paddingTop: 1 }}>
         Neotel Topup And Bundles
       </Typography>
 
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          padding: 2
-        }}
-      >
+      <Box sx={{ display: "flex", justifyContent: "center", padding: 2 }}>
         <TextField
           label="Enter Phone Number"
           value={phoneNumber}
           onChange={handleChange}
           error={!!error}
           helperText={error}
-          inputProps={{ maxLength: 7 }} // Limit to 7 digits after 674
+          inputProps={{ maxLength: 7 }}
           sx={{
-            width: "250px", // Reduced width
+            width: "250px",
             '& .MuiOutlinedInput-root': {
-              borderRadius: '20px', // Slightly smaller border-radius
-              height: "40px", // Reduced height
+              borderRadius: '20px',
+              height: "40px",
               paddingLeft: '15px',
               '&:before': {
                 content: '""',
                 position: 'absolute',
-                left: '45px', // Adjusted position for separator line
+                left: '45px',
                 top: '50%',
                 transform: 'translateY(-50%)',
-                height: '40%', // Reduced height of separator line
+                height: '40%',
                 width: '1px',
                 backgroundColor: '#ccc',
               },
@@ -126,16 +95,13 @@ const PhoneNumberVerification = ({ onVerified }) => {
           }}
           InputProps={{
             startAdornment: (
-              <Typography
-                sx={{
-                  color: 'text.secondary',
-                  fontWeight: 'bold',
-                  marginRight: '10px', // Adjusted spacing after 674
-                  fontSize: "14px", // Reduced font size
-                  userSelect: 'none',
-                  // backgroundColor:'blue'
-                }}
-              >
+              <Typography sx={{
+                color: 'text.secondary',
+                fontWeight: 'bold',
+                marginRight: '10px',
+                fontSize: "14px",
+                userSelect: 'none',
+              }}>
                 674
               </Typography>
             ),
