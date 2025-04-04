@@ -13,13 +13,15 @@ import {
   MenuItem,
   FormControl,
   InputLabel,
+  TextField
 } from "@mui/material";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import TopupRecharge from "./TopupRecharge";
-import DataUsageIcon from "@mui/icons-material/DataUsage"; // Icon for Bundles
-import MonetizationOnIcon from "@mui/icons-material/MonetizationOn"; // Icon for Top-U
-const PrepaidPlans = ({ selectedPlan, onPlanSelect, disabled }) => {
+import DataUsageIcon from "@mui/icons-material/DataUsage";
+import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+
+const PrepaidPlans = ({ selectedPlan, onPlanSelect, disabled, subscriberType }) => {
   const [plans, setPlans] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -30,7 +32,8 @@ const PrepaidPlans = ({ selectedPlan, onPlanSelect, disabled }) => {
   const orderSummaryRef = useRef(null);
   const location = useLocation();
   const [showTopupRecharge, setShowTopupRecharge] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
+  // Default to "topup" if postpaid, otherwise null
+  const [selectedOption, setSelectedOption] = useState(subscriberType === "postpaid" ? "topup" : null);
   const [showOrderSummary, setShowOrderSummary] = useState(false);
 
   const isSmallScreen = useMediaQuery("(max-width:600px)");
@@ -41,6 +44,9 @@ const PrepaidPlans = ({ selectedPlan, onPlanSelect, disabled }) => {
 
   useEffect(() => {
     const fetchPlans = async () => {
+      // Only fetch plans for prepaid customers
+      if (subscriberType === "postpaid") return;
+      
       setLoading(true);
       try {
         const response = await axios.get("https://bssproxy01.neotel.nr/abmf-prepaid/api/prepaid/packs?pack_status=APPROVED");
@@ -66,17 +72,16 @@ const PrepaidPlans = ({ selectedPlan, onPlanSelect, disabled }) => {
       }
     };
     fetchPlans();
-  }, [location.search, disabled]);
+  }, [location.search, disabled, subscriberType]);
 
   const handleTopUpChange = (event) => {
     const value = event.target.value;
     setTopUpValue(value);
     sessionStorage.setItem("topUpValue", value);
-    setIsButtonVisible(value !== "");
+    setIsButtonVisible(value !== "" && value >= 20);
   };
 
   const handleButtonClick = () => {
-    console.log("Button clicked!", topUpValue);
     setShowTopupRecharge(true);
   };
 
@@ -132,7 +137,6 @@ const PrepaidPlans = ({ selectedPlan, onPlanSelect, disabled }) => {
               </Typography>
               {renderPlanDetails(plan)}
 
-              {/* Hide the Select button if this plan is selected */}
               {selectedPack?.pack_id !== plan.pack_id && (
                 <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
                   <Button
@@ -151,13 +155,11 @@ const PrepaidPlans = ({ selectedPlan, onPlanSelect, disabled }) => {
     </Box>
   );
 
-
   const renderInitialCards = () => {
-    if (disabled) return null; // Do not render if disabled is true
+    if (disabled) return null;
 
     return (
       <Grid container spacing={2} alignItems="center" justifyContent="center">
-        {/* Heading */}
         <Grid item xs={12} textAlign="center">
           <Typography
             variant="h6"
@@ -167,11 +169,10 @@ const PrepaidPlans = ({ selectedPlan, onPlanSelect, disabled }) => {
               fontSize: "20px",
             }}
           >
-            Click the Option Required
+            {subscriberType === "postpaid" ? "Top-Up Your Account" : "Click the Option Required"}
           </Typography>
         </Grid>
 
-        {/* Cards */}
         <Grid item xs={12}>
           <Box
             sx={{
@@ -182,38 +183,40 @@ const PrepaidPlans = ({ selectedPlan, onPlanSelect, disabled }) => {
               alignItems: "center",
             }}
           >
-            {/* Buy Data Bundles Card */}
-            <Card
-              sx={{
-                background: selectedOption === "bundles"
-                  ? "linear-gradient(135deg, #FFA726, #F57C00)"
-                  : "linear-gradient(135deg, #4A59A7, #3A4A97)",
-                cursor: "pointer",
-                width: isSmallScreen ? "90%" : "240px",
-                borderRadius: "16px",
-                boxShadow: selectedOption === "bundles"
-                  ? "0 8px 15px rgba(255, 165, 0, 0.6)"
-                  : "0 5px 12px rgba(0, 0, 0, 0.3)",
-                "&:hover": {
-                  transform: "scale(1.05)",
-                  transition: "all 0.3s ease-in-out",
-                },
-              }}
-              onClick={() => setSelectedOption("bundles")}
-            >
-              <CardContent sx={{ display: "flex", alignItems: "center", gap: 1, py: 3 }}>
-                <DataUsageIcon sx={{ color: "white", fontSize: 30 }} />
-                <Typography
-                  variant="h6"
-                  align="center"
-                  sx={{ color: "white", flexGrow: 1, fontWeight: "bold", fontSize: "16px" }}
-                >
-                  Buy Data Bundles
-                </Typography>
-              </CardContent>
-            </Card>
+            {/* Only show Buy Data Bundles for prepaid */}
+            {subscriberType === "prepaid" && (
+              <Card
+                sx={{
+                  background: selectedOption === "bundles"
+                    ? "linear-gradient(135deg, #FFA726, #F57C00)"
+                    : "linear-gradient(135deg, #4A59A7, #3A4A97)",
+                  cursor: "pointer",
+                  width: isSmallScreen ? "90%" : "240px",
+                  borderRadius: "16px",
+                  boxShadow: selectedOption === "bundles"
+                    ? "0 8px 15px rgba(255, 165, 0, 0.6)"
+                    : "0 5px 12px rgba(0, 0, 0, 0.3)",
+                  "&:hover": {
+                    transform: "scale(1.05)",
+                    transition: "all 0.3s ease-in-out",
+                  },
+                }}
+                onClick={() => setSelectedOption("bundles")}
+              >
+                <CardContent sx={{ display: "flex", alignItems: "center", gap: 1, py: 3 }}>
+                  <DataUsageIcon sx={{ color: "white", fontSize: 30 }} />
+                  <Typography
+                    variant="h6"
+                    align="center"
+                    sx={{ color: "white", flexGrow: 1, fontWeight: "bold", fontSize: "16px" }}
+                  >
+                    Buy Data Bundles
+                  </Typography>
+                </CardContent>
+              </Card>
+            )}
 
-            {/* Buy Top-Up Card */}
+            {/* Buy Top-Up Card - shown for both */}
             <Card
               sx={{
                 background: selectedOption === "topup"
@@ -249,64 +252,118 @@ const PrepaidPlans = ({ selectedPlan, onPlanSelect, disabled }) => {
     );
   };
 
+  const renderTopupSection = () => (
+    <Box sx={{ width: "100%" }}>
+      <Typography variant="body1" sx={{ fontWeight: "bold", color: "black", fontSize: "20px", textAlign: 'center' }}>
+        {subscriberType === "postpaid" ? "Enter Top-Up Amount (Minimum $20)" : "Please Ente The Amount"}
+      </Typography>
+      <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center", mt: 2 }}>
+        {subscriberType === "postpaid" ? (
+          <TextField
+            label="Enter Amount (A$)"
+            value={topUpValue}
+            onChange={handleTopUpChange}
+            type="number"
+            InputProps={{ sx: { borderRadius: "20px", textAlign: "center", fontWeight: "bold", color: "black", backgroundColor: "#F5F5F5" } }}
+            sx={{ width: "300px", borderRadius: "20px" }}
+            helperText={topUpValue && topUpValue < 20 ? "Minimum amount is $20" : ""}
+            error={topUpValue && topUpValue < 20}
+          />
+        //   <TextField
+        //   variant="outlined"
+        //   fullWidth
+        //   disabled={disabled}
+        //   value={topUpValue}
+        //   onChange={handleTopUpChange}
+        //   type="number"
+        //   error={Boolean(inputError)}
+        //   helperText={inputError}
+        //   InputProps={{ sx: { borderRadius: "20px", textAlign: "center", fontWeight: "bold", color: "black", backgroundColor: "#F5F5F5" } }}
+        //   sx={{ width: "300px" }}
+        //   inputProps={{ min: 20 }}
+        // />
+        ) : (
+          <TextField
+          label="Enter Amount (A$)"
+          value={topUpValue}
+          onChange={handleTopUpChange}
+          type="number"
+          InputProps={{ sx: { borderRadius: "20px", textAlign: "center", fontWeight: "bold", color: "black", backgroundColor: "#F5F5F5" } }}
+          sx={{ width: "300px", borderRadius: "20px" }}
+          helperText={topUpValue && topUpValue < 20 ? "Minimum amount is $20" : ""}
+          error={topUpValue && topUpValue < 20}
+        />
+        //  <TextField
+        //         variant="outlined"
+        //         fullWidth
+        //         disabled={disabled}
+        //         value={topUpValue}
+        //         onChange={handleTopUpChange}
+        //         type="number"
+        //         error={topUpValue && topUpValue < 20}
+        //         helperText={inputError}
+              
+        //         sx={{ width: "300px" }}
+        //         inputProps={{ min: 20 }}
+        //       />
+        )}
+        {isButtonVisible && topUpValue >= 20 && (
+          <Button variant="contained" sx={{ mt: 2, backgroundColor: '#4A59A7' }} onClick={handleButtonClick}>
+            Pay Top-up Amount
+          </Button>
+        )}
+        {showTopupRecharge && <TopupRecharge topUpValue={topUpValue} disabled={false} />}
+      </Box>
+    </Box>
+  );
+
   const queryParams = new URLSearchParams(location.search);
   const packId = queryParams.get('pack_id');
 
   return (
     <Box sx={{ padding: 0, position: "relative", paddingTop: 10 }}>
-
       {!packId && (
         <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, alignItems: "center", justifyContent: "center", gap: 4, mt: 4 }}>
           {!selectedOption && renderInitialCards()}
-          {selectedOption === "bundles" && (
+          
+          {selectedOption === "bundles" && subscriberType === "prepaid" && (
             <Box sx={{ width: "100%" }}>
-              <Typography align="center" sx={{ color: "black", fontWeight: "bold", mb: 1, fontSize: "20px" }}>Select the Desired Bundle and Proceed to Checkout</Typography>
+              <Typography align="center" sx={{ color: "black", fontWeight: "bold", mb: 1, fontSize: "20px" }}>
+                Select the Desired Bundle and Proceed to Checkout
+              </Typography>
               {renderPlans("Data Plans", plans)}
             </Box>
           )}
-          {selectedOption === "topup" && (
-            <Box sx={{ width: "100%" }}>
-              <Typography variant="body1" sx={{ fontWeight: "bold", color: "black", fontSize: "20px", textAlign: 'center' }}>Select the Amount from Dropdown Box</Typography>
-              <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center", mt: 2 }}>
-                <FormControl sx={{ width: "300px" }}>
-                  <InputLabel id="topup-amount-label" >Top-Up Amount</InputLabel>
-                  <Select
-                    labelId="topup-amount-label"
-                    id="topup-amount"
-                    value={topUpValue}
-                    onChange={handleTopUpChange}
-                    label="Top-Up Amount"
-                    sx={{ borderRadius: "20px", textAlign: "center", fontWeight: "bold", color: "black", backgroundColor: "#F5F5F5" }}
-                  >
-                    <MenuItem sx={{fontWeight:'bold'}} value={20}>A$ 20.00</MenuItem>
-                    <MenuItem sx={{fontWeight:'bold'}} value={50}>A$ 50.00</MenuItem>
-                    <MenuItem sx={{fontWeight:'bold'}} value={100}>A$ 100.00</MenuItem>
-                    <MenuItem sx={{fontWeight:'bold'}} value={200}>A$ 200.00</MenuItem>
-                  </Select>
-                </FormControl>
-                {isButtonVisible && topUpValue >= 20 && <Button variant="contained" sx={{ mt: 2, backgroundColor: '#4A59A7' }} onClick={handleButtonClick}>Pay Top-up Amount</Button>}
-                {showTopupRecharge && <TopupRecharge topUpValue={topUpValue} disabled={false} />}
-              </Box>
-            </Box>
-          )}
+          
+          {selectedOption === "topup" && renderTopupSection()}
         </Box>
       )}
+      
       {(packId || showOrderSummary) && selectedPack && (
         <Box sx={{ mt: 3, pt: 3 }} ref={orderSummaryRef}>
-          <Typography sx={{ fontSize: "24px", fontWeight: "bold", textAlign: "center", paddingTop: 5, color: "#253A7D" }}>Order Summary</Typography>
+          <Typography sx={{ fontSize: "24px", fontWeight: "bold", textAlign: "center", paddingTop: 5, color: "#253A7D" }}>
+            Order Summary
+          </Typography>
           <Divider sx={{ my: 4, backgroundColor: "#253A7D", height: 2 }} />
           <Card sx={{ maxWidth: 500, mx: "auto", boxShadow: 3, borderRadius: 2, p: 3 }}>
             <CardContent>
-              <DetailRow label="Pack Name" value={selectedPack.pack_name} />
-              <DetailRow label="Pack Validity" value={`${selectedPack.validity} Days`} />
-              <DetailRow label="Data Balance" value={selectedPack.assigned_data_balance === '931 GB' ? 'Unlimited Data' : selectedPack.assigned_data_balance} />
-              <DetailRow label="Neotel to Neotel Call" value={`${selectedPack.onn_call_balance === 1666 ? 'Unlimited' : selectedPack.onn_call_balance} ${selectedPack.onn_call_balance_parameter}`} />
-              <DetailRow label="Neotel to Neotel SMS" value={`${selectedPack.onn_sms_balance === 99999 ? 'Unlimited' : selectedPack.onn_sms_balance} SMS`} />
-              <DetailRow label="Total" value={`$ ${selectedPack.pack_price}`} />
+              {selectedOption === "bundles" ? (
+                <>
+                  <DetailRow label="Pack Name" value={selectedPack.pack_name} />
+                  <DetailRow label="Pack Validity" value={`${selectedPack.validity} Days`} />
+                  <DetailRow label="Data Balance" value={selectedPack.assigned_data_balance === '931 GB' ? 'Unlimited Data' : selectedPack.assigned_data_balance} />
+                  <DetailRow label="Neotel to Neotel Call" value={`${selectedPack.onn_call_balance === 1666 ? 'Unlimited' : selectedPack.onn_call_balance} ${selectedPack.onn_call_balance_parameter}`} />
+                  <DetailRow label="Neotel to Neotel SMS" value={`${selectedPack.onn_sms_balance === 99999 ? 'Unlimited' : selectedPack.onn_sms_balance} SMS`} />
+                  <DetailRow label="Total" value={`$ ${selectedPack.pack_price}`} />
+                </>
+              ) : (
+                <DetailRow label="Top-Up Amount" value={`A$ ${topUpValue}.00`} />
+              )}
             </CardContent>
           </Card>
         </Box>
       )}
+      
       {loading && <Box display="flex" justifyContent="center"><CircularProgress /></Box>}
       {error && <Typography color="error" align="center">{error}</Typography>}
     </Box>

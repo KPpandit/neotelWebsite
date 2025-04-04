@@ -24,7 +24,7 @@ const PhoneNumberVerification = ({ onVerified }) => {
       );
 
       const { jwtToken } = response.data;
-      sessionStorage.setItem('CRM_TOKEN', jwtToken); 
+      sessionStorage.setItem('CRM_TOKEN', jwtToken);
       sessionStorage.setItem('CRM_TOKEN', jwtToken);
       console.log('CRM Token stored successfully:', jwtToken);
     } catch (err) {
@@ -45,10 +45,8 @@ const PhoneNumberVerification = ({ onVerified }) => {
 
     setLoading(true);
     try {
-      // Call the CRM login API to get the token
       await loginAndGetToken();
 
-      // Verify the phone number using the CRM token
       const crmToken = sessionStorage.getItem('CRM_TOKEN');
       if (!crmToken) {
         throw new Error('CRM token not found.');
@@ -63,12 +61,14 @@ const PhoneNumberVerification = ({ onVerified }) => {
         }
       );
 
-      if (response.data.subscriber_type.toLowerCase() === 'prepaid') {
-        onVerified(fullNumber);
+      const subscriberType = response.data.subscriber_type.toLowerCase();
+      if (subscriberType === 'prepaid') {
+        onVerified(fullNumber, 'prepaid');
         sessionStorage.setItem('Number', fullNumber);
         localStorage.setItem('Number', fullNumber);
       } else {
-        setError('Only prepaid customers are allowed.');
+        onVerified(fullNumber, 'postpaid');
+        setError('Only prepaid customers can purchase bundles.');
       }
     } catch (err) {
       console.log(err.response?.data?.message || 'An error occurred', '---');

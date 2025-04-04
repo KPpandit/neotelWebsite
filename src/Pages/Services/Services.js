@@ -16,23 +16,84 @@ export default function Services() {
     { name: "NEO 5G", top: "81%", height: "14%" },
   ];
 
+
+  const handleImageClick = () => {
+    navigate("/buy"); // Navigates to the payment page
+  };
   const handleRowClick = (planName) => {
     console.log(`Navigating to: /buy?plan=${planName}`);
     navigate(`/pay?plan=${encodeURIComponent(planName)}`); // Use encodeURIComponent for safer URL
   };
 
   return (
+    // <Container
+    //   sx={{
+    //     py: 5,
+    //     display: "flex",
+    //     flexDirection: "column",
+    //     alignItems: "center",
+    //     justifyContent: "center",
+    //     gap: 4,
+    //     position: "relative",
+    //   }}
+    // >
+    //   <Typography
+    //     variant="h4"
+    //     align="center"
+    //     sx={{
+    //       fontWeight: "bold",
+    //       mb: 2,
+    //       textTransform: "uppercase",
+    //       color: "black",
+    //       fontSize: { lg: "40px", md: "40px", xs: "30px" },
+    //     }}
+    //   >
+    //    Select the Desired Bundle 
+    //   </Typography>
+
+    //   <Box sx={{ position: "relative", width: "100%", maxWidth: "800px" }}>
+    //     <img
+    //       src={Neotel_HomepagePlan}
+    //       alt="Plan"
+    //       style={{
+    //         width: "100%",
+    //         borderRadius: "10px",
+    //         objectFit: "cover",
+    //         boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+    //       }}
+    //     />
+
+    //     {/* Corrected Clickable Areas */}
+    //     {plans.map((plan) => (
+    //       <Box
+    //         key={plan.name}
+    //         sx={{
+    //           position: "absolute",
+    //           top: plan.top,
+    //           left: 0,
+    //           width: "100%",
+    //           height: plan.height,
+    //           cursor: "pointer",
+    //           "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.1)" },
+    //         }}
+    //         onClick={() => handleRowClick(plan.name)}
+    //       />
+    //     ))}
+    //   </Box>
+    // </Container>
+    <>
     <Container
       sx={{
+        
         py: 5,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         gap: 4,
-        position: "relative",
       }}
     >
+      {/* Title */}
       <Typography
         variant="h4"
         align="center"
@@ -44,38 +105,24 @@ export default function Services() {
           fontSize: { lg: "40px", md: "40px", xs: "30px" },
         }}
       >
-       Select the Desired Bundle 
+        Discover Your Best Value Plan
       </Typography>
 
-      <Box sx={{ position: "relative", width: "100%", maxWidth: "800px" }}>
-        <img
-          src={Neotel_HomepagePlan}
-          alt="Plan"
-          style={{
-            width: "100%",
-            borderRadius: "10px",
-            objectFit: "cover",
-            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-          }}
-        />
-
-        {/* Corrected Clickable Areas */}
-        {plans.map((plan) => (
-          <Box
-            key={plan.name}
-            sx={{
-              position: "absolute",
-              top: plan.top,
-              left: 0,
-              width: "100%",
-              height: plan.height,
-              cursor: "pointer",
-              "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.1)" },
-            }}
-            onClick={() => handleRowClick(plan.name)}
-          />
-        ))}
-      </Box>
+      {/* Single Clickable Image */}
+      <img
+        src={Neotel_HomepagePlan} // Replace with actual image URL
+        alt="Plan"
+        style={{
+          width: "100%",
+          maxWidth: "800px",
+          borderRadius: "10px",
+          cursor: "pointer",
+          objectFit: "cover",
+          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+        }}
+        onClick={handleImageClick}
+      />
     </Container>
+    </>
   );
 }
