@@ -81,15 +81,15 @@ import CallBackPage from './Pages/Payment/CallBackPage';
 function App() {
   const location = useLocation();
   useEffect(() => {
-    if (location.pathname === '/Voip/Neotel_1.2.59_IMS.apk') {
+    if (location.pathname === '/Voip/Neotel 1.2.66.apk') {
       handleDownload();
     }
   }, [location]);
 
   const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = '/Neotel_1.2.59_IMS.apk'; // File should be in the public folder
-    link.download = 'Neotel_1.2.59_IMS.apk'; // File name to save as
+    link.href = '/Neotel 1.2.66.apk'; // File should be in the public folder
+    link.download = 'Neotel 1.2.66.apk'; // File name to save as
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

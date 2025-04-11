@@ -13,7 +13,7 @@ import Services from "../Services/Services";
 
 export default function ValuePlan() {
   // APK file path (inside public folder)
-  const apkFilePath = "/Neotel_1.2.59_IMS.apk";
+  const apkFilePath = "/Neotel 1.2.66.apk";
 
   return (
     <Container
@@ -65,7 +65,7 @@ export default function ValuePlan() {
         }}
         component="a"
         href={apkFilePath} // Set the APK path
-        download="Neotel_1.2.59_IMS.apk" // Ensures the file gets downloaded
+        download="Neotel 1.2.66.apk" // Ensures the file gets downloaded
       >
         Download App
       </Button>
