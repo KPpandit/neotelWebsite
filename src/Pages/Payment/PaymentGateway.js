@@ -32,7 +32,7 @@ const PaymentGateway = ({ selectedPlan, disabled }) => {
       quantity: 1,
       msisdn: msisdn,
       currency: 'AUD',
-      name: 'Bundle Purchase ' + packName+'-'+packID+' - '+Number,
+      name: 'Bundle Purchase ' + packName+'-'+packID+'-'+Number,
       successUrl: 'https://payment.neotel.nr/callbackstatus?status=success&transactionId=_transactionId_',
       failureUrl: 'https://payment.neotel.nr/callbackstatus?status=failure&transactionId=_transactionId_',
     };
@@ -41,7 +41,7 @@ const PaymentGateway = ({ selectedPlan, disabled }) => {
       // Step 1: Initiate payment
       localStorage.removeItem('topUpValue');
       sessionStorage.removeItem('topUpValue');
-      const response = await axios.post('https://bssproxy01.neotel.nr/pgw/api/payment', paymentData);
+      const response = await axios.post('https://bssproxy01.neotel.nr/tpayment/api/payment', paymentData);
       setButtonText('Login'); // Change button text to "Login"
       window.location.href = response.data.sessionUrl; // Redirect to payment gateway
     } catch (err) {

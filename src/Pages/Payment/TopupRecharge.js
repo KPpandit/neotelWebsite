@@ -35,7 +35,7 @@ const TopupRecharge = ({ topUpValue, disabled }) => {
     };
 
     try {
-      const response = await axios.post("https://bssproxy01.neotel.nr/pgw/api/payment", paymentData);
+      const response = await axios.post("https://bssproxy01.neotel.nr/tpayment/api/payment", paymentData);
       setButtonText("wait");
       window.location.href = response.data.sessionUrl;
     } catch (err) {

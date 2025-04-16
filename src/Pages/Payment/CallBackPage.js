@@ -4,6 +4,8 @@ import axios from "axios";
 import Confetti from "react-confetti";
 
 const CallBackPage = () => {
+  const isTestMode = true; // Set to true for UI testing
+
   const [loading, setLoading] = useState(true); // Initial loading state
   const [apiLoading, setApiLoading] = useState(false); // API call loading state
   const [paymentStatus, setPaymentStatus] = useState(null); // Payment status (success/failed)
@@ -112,27 +114,40 @@ const callAdditionalAPI = async (msisdn, transactionId, amount, status, remark) 
         setLoading(false);
         return;
       }
-
+  
       if (!status || !transactionIdFromURL) {
         setError("Invalid callback URL.");
         setLoading(false);
         return;
       }
-
+  
       setTransactionId(transactionIdFromURL);
-
+  
+      if (isTestMode) {
+        // Simulate success or failure UI
+        if (status === "success") {
+          setPaymentStatus("success");
+          setShowSuccessPopup(true);
+        } else {
+          setPaymentStatus("failed");
+        }
+        setLoading(false);
+        return;
+      }
+  
       if (status === "success") {
         await confirmPayment(transactionIdFromURL, topUpValue != null);
       } else if (status === "failure") {
-        setPaymentStatus("failed"); // Explicitly set payment status to failed
+        setPaymentStatus("failed");
         await callAdditionalAPI(number, transactionIdFromURL, topUpValue || packPrice, "failed", topUpValue ? "TOP-UP" : "BUNDAL");
       }
-
-      setLoading(false); // Set loading to false after API calls are completed
+  
+      setLoading(false);
     };
-
+  
     fetchPaymentStatus();
   }, []);
+  
 
   // Show loading spinner while checking payment status or processing API calls
   if (loading || apiLoading) {
