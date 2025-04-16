@@ -33,8 +33,8 @@ const PaymentGateway = ({ selectedPlan, disabled }) => {
       msisdn: msisdn,
       currency: 'AUD',
       name: 'Bundle Purchase ' + packName+'-'+packID+'-'+Number,
-      successUrl: 'https://payment.neotel.nr/callbackstatus?status=success&transactionId=_transactionId_',
-      failureUrl: 'https://payment.neotel.nr/callbackstatus?status=failure&transactionId=_transactionId_',
+      successUrl: "http://localhost:3000/callbackstatus?status=success&transactionId=_transactionId_&amount=_amount_&quantity=_quantity_&name=_name_&msisdn=_msisdn_",
+      failureUrl: "http://localhost:3000/callbackstatus?status=failure&transactionId=_transactionId_&amount=_amount_&quantity=_quantity_&name=_name_&msisdn=_msisdn_"
     };
 
     try {
