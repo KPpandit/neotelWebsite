@@ -41,6 +41,7 @@ export default function Footer1() {
     { name: "Prepaid", disabled:true },
     { name: "Postpaid", disabled: false },
     { name: "Roaming", disabled: true },
+    { name: "International Tarrif", disabled: false },
     { name: "Data Bundles", disabled: true },
     { name: "Special Offers", disabled: true },
     { name: "Neotel Business", disabled: false },

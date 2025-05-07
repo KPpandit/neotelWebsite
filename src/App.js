@@ -76,20 +76,21 @@ import ValuePlan from "./Pages/ValuePlans/Valueplan";
 import Services from './Pages/Services/Services';
 import Finalpaymnet from './Pages/Payment/Finalpayment';
 import CallBackPage from './Pages/Payment/CallBackPage';
+import InternationalTarrif from './Pages/InternationalTarrif/InternationalTarrif';
 // import Services from './Pages/Services/Services';
 
 function App() {
   const location = useLocation();
   useEffect(() => {
-    if (location.pathname === '/Voip/Neotel 1.2.66.apk') {
+    if (location.pathname === '/Voip/Neotel 1.2.69 2.apk') {
       handleDownload();
     }
   }, [location]);
 
   const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = '/Neotel 1.2.66.apk'; // File should be in the public folder
-    link.download = 'Neotel 1.2.66.apk'; // File name to save as
+    link.href = '/Neotel 1.2.69 2.apk'; // File should be in the public folder
+    link.download = 'Neotel 1.2.69 2.apk'; // File name to save as
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -194,6 +195,7 @@ function App() {
         <Route path="/about-company/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/Voip/Neotel_1.2.59_IMS.apk" element={<Navigate to="/" replace />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/quick-access/international-tarrif" element={<InternationalTarrif />} />
         <Route path="/buy" element={<Finalpaymnet />} />
         <Route path="/callbackstatus/topup" element={<CallBackPage />} />
         <Route path="/callbackstatus/bundle" element={<CallBackPage />} />
