@@ -4,7 +4,7 @@ import axios from "axios";
 import Confetti from "react-confetti";
 
 const CallBackPage = () => {
-  const isTestMode = true; // Set to true for UI testing
+  const isTestMode = false; // Set to true for UI testing
 
   const [loading, setLoading] = useState(true);
   const [apiLoading, setApiLoading] = useState(false);
