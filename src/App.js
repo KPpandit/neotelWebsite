@@ -77,6 +77,7 @@ import Services from './Pages/Services/Services';
 import Finalpaymnet from './Pages/Payment/Finalpayment';
 import CallBackPage from './Pages/Payment/CallBackPage';
 import InternationalTarrif from './Pages/InternationalTarrif/InternationalTarrif';
+import MainBalance from './Pages/BAPage/MainBalance';
 // import Services from './Pages/Services/Services';
 
 function App() {
@@ -199,6 +200,7 @@ function App() {
         <Route path="/buy" element={<Finalpaymnet />} />
         <Route path="/callbackstatus/topup" element={<CallBackPage />} />
         <Route path="/callbackstatus/bundle" element={<CallBackPage />} />
+        <Route path="/mainBalance" element={<MainBalance />} />
       </Routes>
       {!noFooterPaths.includes(location.pathname) && <Footer1 />}
     </>

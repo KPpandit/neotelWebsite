@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Typography, CircularProgress, Box } from '@mui/material';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const PhoneNumberVerification = ({ onVerified }) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const value = e.target.value.replace(/\D/g, '');
@@ -36,18 +38,64 @@ const PhoneNumberVerification = ({ onVerified }) => {
     }
   }, [phoneNumber]);
 
+  const checkPrepaidConditions = async (fullNumber, crmToken, customerDetail) => {
+    try {
+      // Call the prepaid customer details API
+      const prepaidResponse = await axios.get(
+        `https://bssproxy01.neotel.nr/abmf-prepaid/api/prepaid/customer/get/details?msisdn=${fullNumber}&imsi`,
+        { headers: { Authorization: `Bearer ${crmToken}` } }
+      );
+      
+      const { active_pack } = prepaidResponse.data;
+      const { customer_balance_credits } = customerDetail;
+      
+      // Get the values we need to check
+      const customerBalance = customer_balance_credits.customer_balance;
+      const availableData = customer_balance_credits.available_data;
+      
+      // First condition: active_pack is null and customer balance is 0
+      const condition1 = active_pack === null && customerBalance === 0;
+      
+      // Second condition: active_pack is not null, customer balance is 0 and available data is 0
+      const condition2 = active_pack !== null && customerBalance === 0 && availableData === 0;
+      
+      if (condition1 || condition2) {
+        navigate('/mainBalance', { state: { type: 'balance' } });
+        return false; // Don't proceed with normal verification
+      }
+      
+      return true; // Proceed with normal verification
+    } catch (err) {
+      console.error('Error checking prepaid conditions:', err);
+      return true; // If there's an error, proceed with normal flow
+    }
+  };
+
   const handleVerify = async () => {
     const fullNumber = `674${phoneNumber}`;
     setLoading(true);
     
     try {
       const crmToken = await loginAndGetToken();
+      
+     
       const response = await axios.get(
         `https://bssproxy01.neotel.nr/abmf-prepaid/api/get/customer/detail?imsi=&msisdn=${fullNumber}`,
         { headers: { Authorization: `Bearer ${crmToken}` } }
       );
 
-      const subscriberType = response.data.subscriber_type.toLowerCase();
+      const customerDetail = response.data;
+      const subscriberType = customerDetail.subscriber_type.toLowerCase();
+      
+      if (subscriberType === 'prepaid') {
+        
+        const shouldProceed = await checkPrepaidConditions(fullNumber, crmToken, customerDetail);
+        if (!shouldProceed) {
+          setLoading(false);
+          return;
+        }
+      }
+      
       if (subscriberType === 'prepaid' || subscriberType === 'postpaid') {
         onVerified(fullNumber, subscriberType); // Pass customer type to parent
         sessionStorage.setItem('Number', fullNumber);
