@@ -14,33 +14,33 @@ const PaymentGateway = ({ selectedPlan, disabled }) => {
 
     setLoading(true); // Start loading
 
-    
+
     sessionStorage.setItem('packID', selectedPlan.pack_id);
-   
+
     sessionStorage.setItem('packPrice', selectedPlan.pack_price);
-    
+
     sessionStorage.setItem('packName', selectedPlan.pack_name);
 
-    
-    const packName =  sessionStorage.getItem('packName');
+
+    const packName = sessionStorage.getItem('packName');
     const msisdn = sessionStorage.getItem('Number');
     const packId = sessionStorage.getItem('packID');
-
+    const Number = localStorage.getItem('Number') || sessionStorage.getItem('Number');
     const paymentData = {
       amount: selectedPlan.pack_price,
       quantity: 1,
       msisdn: msisdn,
       currency: 'AUD',
-      name: 'Bundle Purchase ' + packName+'-'+packId,
-      successUrl: 'https://neotel.nr/callbackstatus/bundle?status=success&transactionId=_transactionId_',
-      failureUrl: 'https://neotel.nr/callbackstatus/bundle?status=failure&transactionId=_transactionId_',
+      name: 'Bundle Purchase ' + packName + '-' + packId + '-' + Number, // + packName+'-'+packID+'-'+Number
+      successUrl: "http://localhost:3000/callbackstatus/bundle?status=success&transactionId=_transactionId_&amount=_amount_&quantity=_quantity_&name=_name_&msisdn=_msisdn_",
+      failureUrl: "http://localhost:3000//callbackstatus/bundle?status=failure&transactionId=_transactionId_&amount=_amount_&quantity=_quantity_&name=_name_&msisdn=_msisdn_"
     };
 
     try {
       // Step 1: Initiate payment
       localStorage.removeItem('topUpValue');
       sessionStorage.removeItem('topUpValue');
-      const response = await axios.post('https://bssproxy01.neotel.nr/pgw/api/payment', paymentData);
+      const response = await axios.post('https://bssproxy01.neotel.nr/tpayment/api/payment', paymentData);
       setButtonText('Login'); // Change button text to "Login"
       window.location.href = response.data.sessionUrl; // Redirect to payment gateway
     } catch (err) {

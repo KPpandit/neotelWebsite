@@ -17,23 +17,27 @@ import { useLocation } from "react-router-dom";
 export default function MainBalance() {
     const theme = useTheme();
     const location = useLocation();
-    const type = location.state?.type || 'balance';
+    
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  
 
-    const isBundle = type === 'bundle';
+  const type = location.state?.type || 'balance';
+  const isBundle = type === 'bundle';
 
-    const headingText = isBundle
-        ? 'Your Bundle has Expired'
-        : 'Your Main Balance is 0 AUD';
+  const headingText = isBundle
+    ? 'Your Bundle has Expired'
+    : 'Your Main Balance is 0 AUD';
 
-    const subText = isBundle
-        ? 'Dear Customer, Your active bundle is 100% utilised. To continue using please Top up or activate bundle. Visit Neotel store at Civic Centre for more help .'
-        : 'Dear Customer,\nYour account balance is currently 0 AUD. To continue using Neotel services such as calls, SMS, and mobile data, please Top Up your account or activate a new bundle.';
-    const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-    const actions = [
-        "Buy a Top-Up",
-        "Activate a New Bundle",
-        "Visit our store for assistance",
-    ];
+  const subText = isBundle
+    ? 'Dear Customer, Your active bundle is 100% utilised. To continue using please Top up or activate bundle. Visit Neotel store at Civic Centre for more help.'
+    : 'Dear Customer,\nYour account balance is currently 0 AUD. To continue using Neotel services such as calls, SMS, and mobile data, please Top Up your account or activate a new bundle.';
+
+  const actions = [
+    "Buy a Top-Up",
+    "Activate a New Bundle",
+    "Visit our store for assistance",
+  ];
+
     return (
         <Box sx={{ textAlign: "center", paddingBottom: 5, paddingTop: 15 }}>
             <Box>
