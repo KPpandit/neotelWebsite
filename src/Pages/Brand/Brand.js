@@ -10,22 +10,22 @@ const brandCards = [
   {
     image: SamsungImage,
     title: "Samsung",
-    description: "Enjoy unlimited Broadband at ₹999 Up to 200 Mbps speed, unlimited calls & OTT apps",
+    // description: "Enjoy unlimited Broadband at ₹999 Up to 200 Mbps speed, unlimited calls & OTT apps",
   },
   {
     image: AppleImage,
     title: "Apple",
-    description: "Enjoy unlimited Broadband at ₹999 Up to 200 Mbps speed, unlimited calls & OTT apps",
+    // description: "Enjoy unlimited Broadband at ₹999 Up to 200 Mbps speed, unlimited calls & OTT apps",
   },
   {
     image: VivoImage,
     title: "Vivo",
-    description: "Enjoy unlimited Broadband at ₹999 Up to 200 Mbps speed, unlimited calls & OTT apps",
+    // description: "Enjoy unlimited Broadband at ₹999 Up to 200 Mbps speed, unlimited calls & OTT apps",
   },
   {
     image: OnePlusImage,
     title: "OnePlus",
-    description: "Enjoy unlimited Broadband at ₹999 Up to 200 Mbps speed, unlimited calls & OTT apps",
+    // description: "Enjoy unlimited Broadband at ₹999 Up to 200 Mbps speed, unlimited calls & OTT apps",
   },
 ];
 
@@ -42,13 +42,21 @@ export default function Brand() {
         <Typography variant="h4" sx={{ fontWeight: "bold", marginBottom: 2, color: "black" }}>
           Our Brand Partners
         </Typography>
-        <Typography sx={{ maxWidth: 631, margin: "0 auto 4rem", color: "black", fontSize: '14px' ,fontWeight:'440'}}>
-          At Neotel, our brand represents the future of connectivity. We stand for innovation, trust, and global
-          reach. Our identity is built on the principles of technological excellence and customer centric solutions,
-          ensuring that every connection made through Neotel is reliable, fast, and secure
-        </Typography>
+        <Typography sx={{ maxWidth: 650, margin: "0 auto 1rem", color: "black", fontSize: '14px' ,fontWeight:'400'}}>
+         At Neotel, we thrive on building strong connections—just like the ones we enable for our customers. We have partnered with global technology leaders like <strong>Nokia</strong>, <strong>Samsung</strong>, <strong>Apple</strong>, and <strong> Starlink </strong>to bring you the most advanced, accessible and reliable telecommunications solutions. Together, we aim to make the world a little more connected.
 
-        {/* Cards */}
+        </Typography>
+         <Typography sx={{ maxWidth: 650, margin: "0 auto 1rem", color: "black", fontSize: '14px' ,fontWeight:'400'}}>
+         At Neotel, we thrive on building strong connections—just like the ones we enable for our customers. We have partnered with global technology leaders like <strong>Nokia</strong>, <strong>Samsung</strong>, <strong>Apple</strong>, and <strong> Starlink </strong>to bring you the most advanced, accessible and reliable telecommunications solutions. Together, we aim to make the world a little more connected.
+
+        </Typography>
+         <Typography sx={{ maxWidth: 650, margin: "0 auto 1rem", color: "black", fontSize: '14px' ,fontWeight:'400'}}>
+         At Neotel, we thrive on building strong connections—just like the ones we enable for our customers. We have partnered with global technology leaders like <strong>Nokia</strong>, <strong>Samsung</strong>, <strong>Apple</strong>, and <strong> Starlink </strong>to bring you the most advanced, accessible and reliable telecommunications solutions. Together, we aim to make the world a little more connected.
+
+        </Typography>
+         
+
+        
         <Grid container spacing={3} justifyContent="center">
           {brandCards.map((card, index) => (
             <Grid item key={index} sx={{ display: "flex", justifyContent: "center" }}>
@@ -62,11 +70,11 @@ export default function Brand() {
                 }}
               >
                 <CardMedia component="img" height="140" image={card.image} alt={card.title} />
-                <CardContent>
+                {/* <CardContent>
                   <Typography variant="body2" sx={{ color: "black" }}>
                     {card.description}
                   </Typography>
-                </CardContent>
+                </CardContent> */}
               </Card>
             </Grid>
           ))}

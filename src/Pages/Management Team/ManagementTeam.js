@@ -17,7 +17,7 @@ import profilePic from "../../Images/profilePic.png";
 import { useNavigate } from "react-router-dom";
 import managemntBgImage from "../../Images/managemntBgImage.png";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import DeepakImage from "../../Images/DeepakImage.JPG";
+import DeepakImage from "../../Images/Deepak.jpeg";
 const CustomDisplayCard = ({ image, title, description }) => {
   const navigate = useNavigate();
 
@@ -288,7 +288,7 @@ export default function ManagemntTeam() {
               </Grid>
 
             </Grid>
-            <Grid container spacing={2} justifyContent="center">
+            {/* <Grid container spacing={2} justifyContent="center">
               {cardData1.map((card, index) => (
                 <CustomDisplayCard
                   key={index}
@@ -297,7 +297,7 @@ export default function ManagemntTeam() {
                   description={card.description}
                 />
               ))}
-            </Grid>
+            </Grid> */}
           </Box>
         </Container>
       </Grid>

@@ -219,7 +219,7 @@ export default function ContactInfo() {
                     Please check out the best suggested
                     <Typography
                         component="a"
-                        href="http://122.185.196.10:8082/help-at-hand/general-faq's"
+                        href="/help-at-hand/general-faq's"
                         sx={{
                             color: "red",
                             textDecoration: "none",

@@ -1,7 +1,7 @@
 import { Container, Typography } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Neotel_HomepagePlan from '../../Images/Neotel_HomepagePlan.png';
+import Neotel_HomepagePlan from '../../Images/Neotel_HomepagePlan.jpg';
 export default function Services() {
   const navigate = useNavigate();
 

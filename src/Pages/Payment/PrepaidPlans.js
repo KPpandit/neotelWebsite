@@ -25,7 +25,9 @@ const PrepaidPlans = ({ selectedPlan, onPlanSelect, disabled }) => {
       setLoading(true);
       try {
         const response = await axios.get("https://bssproxy01.neotel.nr/abmf-prepaid/api/prepaid/packs?pack_status=APPROVED");
-        let fetchedPlans = response.data.filter(plan => plan.pack_id !== 78 && plan.category_name !== "Reseller");
+        let fetchedPlans = response.data
+          .filter(plan => plan.pack_id !== 78 && plan.category_name !== "Reseller")
+          .sort((a, b) =>  a.pack_price - b.pack_price );
         const queryParams = new URLSearchParams(location.search);
         const packId = queryParams.get('pack_id');
         if (packId) {
@@ -161,8 +163,8 @@ const PrepaidPlans = ({ selectedPlan, onPlanSelect, disabled }) => {
 
 const DetailRow = ({ label, value }) => (
   <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
-    <Typography variant="body1" sx={{ fontWeight: "bold", color: "#253A7D" ,fontSize:{xs:'10px',sm:'10px',md:'14px',lg:'16px'}}}>{label}</Typography>
-    <Typography variant="body1" sx={{ fontWeight: "bold", color: "black" ,fontSize:{xs:'10px',sm:'10px',md:'14px',lg:'16px'}}}>{value}</Typography>
+    <Typography variant="body1" sx={{ fontWeight: "bold", color: "#253A7D", fontSize: { xs: '10px', sm: '10px', md: '14px', lg: '16px' } }}>{label}</Typography>
+    <Typography variant="body1" sx={{ fontWeight: "bold", color: "black", fontSize: { xs: '10px', sm: '10px', md: '14px', lg: '16px' } }}>{value}</Typography>
   </Box>
 );
 

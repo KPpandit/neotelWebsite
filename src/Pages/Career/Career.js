@@ -20,66 +20,72 @@ export default function Career() {
   };
   const perks = [
     {
-      title: "Agility",
+      title: "People First",
       description:
-        "Lorem ipsum dolor sit amet, consectetuer adipiscing magna aliquam erat volutpat. ",
+        "People are our greatest asset. From offering opportunities for career advancement to prioritizing work-life balance, we are committed to creating a supportive and inclusive workplace where every team member can thrive.",
     },
     {
-      title: "Benefits",
+      title: "Competitive Compensation",
       description:
-        "Lorem ipsum dolor sit amet, consectetuer adipiscing magna aliquam erat volutpat. ",
+        "At Neotel, we value the health and happiness of our team. We offer competitive salaries, flexible work options and benefits tailored to each role to support the professional and personal well-being of our employees.",
     },
     {
-      title: "PEOPLE FIRST",
+      title: "Freedom to Grow",
       description:
-        "Lorem ipsum dolor sit amet, consectetuer adipiscing magna aliquam erat volutpat. ",
+        "With Neotel, you’ll have the freedom and support to explore new opportunities, develop your skills, and pursue your passions. Whether you’re looking to take on a new challenge or broaden your expertise, we provide the tools and mentorship to help you reach your full potential.",
     },
     {
-      title: "FREEDOM TO GROW",
+      title: "Learning Never Stops",
       description:
-        "Lorem ipsum dolor sit amet, consectetuer adipiscing magna aliquam erat volutpat. ",
+        "We never know-it-all and understand that continuous learning is the key to personal and professional growth. Your curiosity is encouraged here and learning is seen as an essential part of your career journey.",
     },
     {
-      title: "LEARNING NEVER STOPS",
+      title: "Largest Private-Public Partnership",
       description:
-        "Lorem ipsum dolor sit amet, consectetuer adipiscing magna aliquam erat volutpat. ",
+        "Join one of the largest Private-Public Partnership companies in Nauru where collaboration drives growth and innovation.",
     },
-    {
-      title: "NEW VALUES",
-      description:
-        "Lorem ipsum dolor sit amet, consectetuer adipiscing magna aliquam erat volutpat. ",
-    },
+   
   ];
 
   const additionalPerks = [
     {
-      title: "ENTERPRISE",
-      description: "Lorem ipsum dolor sit amet, consectetuer adipiscing magna aliquam erat volutpat.",
+      title: "Retail Sales:",
+      description: "Drive sales and build relationships with customers to deliver exceptional experiences in our retail stores.",
       image: Enterprise,
     },
     {
-      title: "DIGITAL",
-      description: "Lorem ipsum dolor sit amet, consectetuer adipiscing magna aliquam erat volutpat.",
+      title: "Corporate Sales:",
+      description: "Develop and manage business accounts, providing tailored telecom solutions for companies of all sizes.",
       image: DIGITAL,
     },
     {
-      title: "SALES & DISTRIBUTION",
-      description: "Lorem ipsum dolor sit amet, consectetuer adipiscing magna aliquam erat volutpat.",
+      title: "Marketing:",
+      description: " Lead creative marketing campaigns, build the brand presence and drive customer engagement through innovative strategies. ",
       image: Sales,
     },
     {
-      title: "RETAIL",
-      description: "Lorem ipsum dolor sit amet, consectetuer adipiscing magna aliquam erat volutpat.",
+      title: "Distribution:",
+      description: "Manage the distribution network, ensuring seamless delivery of products and services to all customers.",
       image: Retail,
     },
     {
-      title: "COMMERCIAL / FINANCE",
-      description: "Lorem ipsum dolor sit amet, consectetuer adipiscing magna aliquam erat volutpat.",
+      title: "Finance:",
+      description: "Oversee financial operations, budgeting, forecasting, and ensure sound financial management to support the growth of Neotel.",
       image: Commerical,
     },
     {
-      title: "LEARNING NEVER STOPS",
-      description: "Lorem ipsum dolor sit amet, consectetuer adipiscing magna aliquam erat volutpat.",
+      title: "Technical:",
+      description: "Maintain and upgrade telecom infrastructure, ensuring all technical systems run smoothly and efficiently .",
+      image: Learning,
+    },
+     {
+      title: "Operations:",
+      description: "Streamline operations to ensure optimal performance, overseeing day-to-day activities and improving operational efficiency.",
+      image: Learning,
+    },
+     {
+      title: "Customer Care:",
+      description: "Provide outstanding support to our customers, helping them with inquiries, troubleshooting and ensuring an excellent service experience. ",
       image: Learning,
     },
   ];
@@ -165,6 +171,8 @@ export default function Career() {
             <Grid item xs={12} md={5} key={index}>
               <Card
                 sx={{
+                    width: 400,           // fixed width
+          height: 300, 
                   padding: 4,
                   borderRadius: "15px",
                   backgroundColor: "#f5f5f5",

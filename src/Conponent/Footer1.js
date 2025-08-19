@@ -50,7 +50,7 @@ export default function Footer1() {
 
   const aboutCompanyItems = [
     { name: "Brand", disabled: false },
-    { name: "Careers", disabled: true },
+    { name: "Careers", disabled: false },
     { name: "Partners", disabled: false },
     { name: "Who We Are", disabled: false },
     { name: "Management Team", disabled: false },

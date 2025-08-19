@@ -59,15 +59,15 @@ const PhoneNumberVerification = ({ onVerified }) => {
       // Second condition: active_pack is not null, customer balance is 0 and available data is 0
       const condition2 = active_pack !== null && customerBalance === 0 && availableData === 0;
 
-      if (condition1) {
-        navigate('/mainBalance', { state: { type: 'balance' } });
-        return false;
-      }
+      // if (condition1) {
+      //   navigate('/mainBalance', { state: { type: 'balance' } });
+      //   return false;
+      // }
 
-      if (condition2) {
-        navigate('/mainBalance', { state: { type: 'bundle' } });
-        return false;
-      }
+      // if (condition2) {
+      //   navigate('/mainBalance', { state: { type: 'bundle' } });
+      //   return false;
+      // }
 
 
       return true; // Proceed with normal verification
