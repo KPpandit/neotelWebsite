@@ -43,7 +43,7 @@ export default function Brand() {
           Our Brand Partners
         </Typography>
         <Typography sx={{ maxWidth: 650, margin: "0 auto 1rem", color: "black", fontSize: '14px' ,fontWeight:'400'}}>
-         At Neotel, we thrive on building strong connections—just like the ones we enable for our customers. We have partnered with global technology leaders like <strong>Nokia</strong>, <strong>Samsung</strong>, <strong>Apple</strong>, and <strong> Starlink </strong>to bring you the most advanced, accessible and reliable telecommunications solutions. Together, we aim to make the world a little more connected.
+         Neotel is reimagining the power of  connectivity with innovation, accessibility, and reliability. Rooted in Nauru and aiming to become the preferred Network of the Pacific, we are the fastest 5G Plus network, ensuring that individuals, businesses, and communities stay seamlessly connected, no matter where they are.
 
         </Typography>
          <Typography sx={{ maxWidth: 650, margin: "0 auto 1rem", color: "black", fontSize: '14px' ,fontWeight:'400'}}>
@@ -51,7 +51,7 @@ export default function Brand() {
 
         </Typography>
          <Typography sx={{ maxWidth: 650, margin: "0 auto 1rem", color: "black", fontSize: '14px' ,fontWeight:'400'}}>
-         At Neotel, we thrive on building strong connections—just like the ones we enable for our customers. We have partnered with global technology leaders like <strong>Nokia</strong>, <strong>Samsung</strong>, <strong>Apple</strong>, and <strong> Starlink </strong>to bring you the most advanced, accessible and reliable telecommunications solutions. Together, we aim to make the world a little more connected.
+        We believe in unleashing innovation to push the boundaries of what’s possible, empowering our customers with borderless opportunities in the digital age. Neotel is not just a network—it’s a future-driven ecosystem that ensures no one is left behind in the digital revolution. Wherever you are, we connect you to what matters most.
 
         </Typography>
          

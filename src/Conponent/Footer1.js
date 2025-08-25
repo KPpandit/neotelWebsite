@@ -16,6 +16,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import HeadsetMicIcon from "@mui/icons-material/HeadsetMic";
 import { MDBFooter } from "mdb-react-ui-kit";
 import XIcon from '@mui/icons-material/X';
+
 export default function Footer1() {
   const [showScroll, setShowScroll] = useState(false);
 
@@ -62,7 +63,7 @@ export default function Footer1() {
 
   const helpAtHandItems = [
     { name: "Contact Us", disabled: false },
-    { name: "Manage Your Account", disabled: true },
+    { name: "Manage Your Account", disabled: false, externalLink: "https://selfcare.neotel.nr/" },
     { name: "Store Locator", disabled: true },
     { name: "General FAQ's", disabled: false },
     { name: "Prepaid FAQ's", disabled: false },
@@ -162,6 +163,18 @@ export default function Footer1() {
                     <Typography key={i} sx={{ fontSize: 16, fontWeight: 500, color: "grey", mt: 1 }}>
                       {item.disabled ? (
                         <span>{item.name}</span> // Non-clickable
+                      ) : item.externalLink ? (
+                        <MuiLink
+                          href={item.externalLink}
+                          target="_blank"
+                          sx={{
+                            color: "grey",
+                            textDecoration: "none",
+                            "&:hover": { color: "#4A59A7" },
+                          }}
+                        >
+                          {item.name}
+                        </MuiLink>
                       ) : (
                         <MuiLink
                           href={createLinkPath(
